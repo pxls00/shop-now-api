@@ -1,0 +1,40 @@
+{
+  "name": "shop-now-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:pxls00/shop-now-api.git",
+  "author": "Abdurahim <89141756+pxls00@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc --project ./",
+    "dev": "nodemon --config nodemon.json src/main.ts",
+    "prod": "node dist/main.js"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/body-parser": "^1.19.2",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.3.1",
+    "@types/pino": "^7.0.5",
+    "eslint": "^8.42.0",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "tslint": "^6.1.3",
+    "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.9",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.8",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "mongoose": "^7.2.4",
+    "pino": "^8.14.1",
+    "pino-pretty": "^10.0.0"
+  }
+}
