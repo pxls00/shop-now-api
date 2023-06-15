@@ -5,7 +5,8 @@ import log from './logger'
 function connect() {
   const dbUri = config.dbUri
 
-  return mongoose.connect(dbUri)
+  return mongoose
+    .connect(dbUri)
     .then(() => {
       log.info('DB connected')
     })
