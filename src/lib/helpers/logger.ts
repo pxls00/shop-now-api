@@ -1,13 +1,13 @@
 import logger from 'pino'
 import dayjs from 'dayjs'
-import pinoPretty from 'pino-pretty'
+import 'pino-pretty'
 
 const log = logger({
   transport: {
-    target: 'pino-pretty'
+    target: 'pino-pretty',
   },
   base: {
-    pid: false
+    pid: false,
   },
   timestamp: () => `,"time":"${dayjs().format()}"`,
 })
