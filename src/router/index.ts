@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { CompanyRouter } from '../modules/companies/index'
+import { CompanyRouter } from '../modules/company/index'
 import config from '../lib/configs/default'
 
 const router = Router()
