@@ -1,11 +1,11 @@
-import {Schema, model} from 'mongoose'
+import { Schema, model } from 'mongoose'
 
-import type {ICompanyDocument} from './company.types'
+import type { ICompanyDocument } from './company.types'
 
 const CompanySchema = new Schema({
   name: {
     required: true,
-    type: String
+    type: String,
   },
   logo_img: {
     required: true,
@@ -13,7 +13,7 @@ const CompanySchema = new Schema({
   },
   description: {
     required: true,
-    type: String
+    type: String,
   },
   created_at: {
     type: Date,
@@ -21,44 +21,46 @@ const CompanySchema = new Schema({
   },
   orders_count: {
     type: Number,
-    required: true
+    required: true,
   },
-  rate: [{
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: 'users',
-      required: true
+  rate: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users',
+        required: true,
+      },
+      rate: {
+        type: String,
+        required: true,
+      },
     },
-    rate: {
-      type: String,
-      required: true
-    }
-  }],
+  ],
   followers: [
     {
       type: Schema.Types.ObjectId,
       ref: 'users',
-      required: true
-    }
+      required: true,
+    },
   ],
   review_comments: [
     {
       user: {
         type: Schema.Types.ObjectId,
         ref: 'users',
-        required: true
+        required: true,
       },
       body: String,
       created_at: {
         type: Date,
         default: Date.now,
       },
-    }
+    },
   ],
   banner_img: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const Company = model<ICompanyDocument>('Companies', CompanySchema)
