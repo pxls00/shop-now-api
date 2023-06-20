@@ -4,4 +4,5 @@ export interface IDefaultConfig {
   dbPassowrd: Readonly<string>
   dbUri: Readonly<string>
   apiBaseURL: Readonly<string>
+  apiDocsURL: Readonly<string>
 }
