@@ -12,7 +12,8 @@
     "paths": {
       "*": ["node_modules/*"]
     },
-    "types": ["node", "express", "mongoose"]
+    "types": ["node", "express", "mongoose", "swagger-jsdoc", "swagger-ui-express"],
+    "resolveJsonModule": true
   },
   "include": ["src/**/*"]
 }
