@@ -1,6 +1,6 @@
-import express from 'express';
+import express from 'express'
 import cors from 'cors'
-import corsOptions from '../configs/cors-options';
+import corsOptions from '../configs/cors-options'
 import config from '../configs/default'
 
 // import routes from '../../routes';
@@ -10,10 +10,10 @@ class App {
   public server
 
   constructor() {
-    this.server = express();
+    this.server = express()
     this.cors()
-    this.middlewares();
-    this.routes();
+    this.middlewares()
+    this.routes()
   }
 
   middlewares() {
@@ -25,7 +25,7 @@ class App {
   }
 
   routes() {
-    this.server.use(router);
+    this.server.use(router)
   }
 }
 

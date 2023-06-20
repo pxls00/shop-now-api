@@ -1,4 +1,4 @@
-import {Router} from 'express'
+import { Router } from 'express'
 
 import CompanyController from '../controllers/company.controller'
 
