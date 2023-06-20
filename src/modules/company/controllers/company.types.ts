@@ -1,10 +1,10 @@
-import type {ICompanyDocument} from '../models/company.types'
+import type { ICompanyDocument } from '../models/company.types'
 
 // Enums
 export enum ESortOptions {
   by_popular,
   by_order_count,
-  by_rate
+  by_rate,
 }
 
 // Types
@@ -12,7 +12,7 @@ export type TSortOptionKey = keyof ICompanyDocument
 export type TSortOptionValue = -1
 
 export type TSortOptionsQuery = {
- [$key in keyof typeof ESortOptions]: boolean
+  [$key in keyof typeof ESortOptions]: boolean
 }
 
 export type TSortOptions = {
@@ -20,17 +20,19 @@ export type TSortOptions = {
 }
 // Interfaces
 export interface IQueryOptionsQuery {
-  skip: number,
-  limit: number,
+  skip: number
+  limit: number
   search: string
 }
 
 export interface ISortOption {
-  key: TSortOptionKey,
+  key: TSortOptionKey
   value: TSortOptionValue
 }
 
-export interface IGetCompanyListQuery extends TSortOptionsQuery, IQueryOptionsQuery {}
+export interface IGetCompanyListQuery
+  extends TSortOptionsQuery,
+    IQueryOptionsQuery {}
 export interface IQueryOptions extends IQueryOptionsQuery {
   sortOption: ISortOption
 }

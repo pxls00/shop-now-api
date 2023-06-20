@@ -1,5 +1,5 @@
 import type { TSortOptionValue } from '../controllers/company.types'
-import type { ICompanyDocument } from '../models/company.types';
+import type { ICompanyDocument } from '../models/company.types'
 
 export interface ISortOption {
   [$key: string]: TSortOptionValue
