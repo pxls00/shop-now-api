@@ -6,6 +6,7 @@ const config: IDefaultConfig = {
   dbPassowrd: 'abu.2006',
   dbUri: `mongodb+srv://Abdurahim:abu.2006@shop-now-api.pikjhdq.mongodb.net/`,
   apiBaseURL: '/api',
+  apiDocsURL: '/docs',
 }
 
 export default config
