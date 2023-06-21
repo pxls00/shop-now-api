@@ -1,6 +1,6 @@
 import supertest from 'supertest'
-import app from '../lib/helpers/app'
-import config from '../lib/configs/default'
+import app from '../utils/app'
+import config from '../lib/default'
 import { CompanyConfig } from '../modules/company/index'
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import mongoose from 'mongoose'
