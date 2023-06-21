@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import config from '../lib/config'
 
 import CompanyController from '../controllers/company.controller'
 
@@ -16,7 +17,7 @@ const controller = new CompanyController()
  *      summary: Get Companies List
  *      description: Responds if the app is up and running
  */
-router.get(`${routerEndpointName}`, controller.getCompanyList)
-router.get(`${routerEndpointName}/:company_id`, controller.getCompanyById)
+router.get(`${config.moduleRouteBaseURL}`, controller.getCompanyList)
+router.get(`${config.moduleRouteBaseURL}/:${config.moduleRouteItemIdURL}`, controller.getCompanyById)
 
 export default router
