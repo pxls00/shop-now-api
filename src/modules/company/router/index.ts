@@ -3,7 +3,6 @@ import config from '../lib/config'
 
 import CompanyController from '../controllers/company.controller'
 
-const routerEndpointName = '/companies'
 const router = Router()
 
 const controller = new CompanyController()
@@ -18,6 +17,9 @@ const controller = new CompanyController()
  *      description: Responds if the app is up and running
  */
 router.get(`${config.moduleRouteBaseURL}`, controller.getCompanyList)
-router.get(`${config.moduleRouteBaseURL}/:${config.moduleRouteItemIdURL}`, controller.getCompanyById)
+router.get(
+  `${config.moduleRouteBaseURL}/:${config.moduleRouteItemIdURL}`,
+  controller.getCompanyById
+)
 
 export default router

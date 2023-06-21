@@ -1,9 +1,9 @@
 import supertest from 'supertest'
 import app from '../lib/helpers/app'
 import config from '../lib/configs/default'
-import {CompanyConfig} from '../modules/company/index'
-import { MongoMemoryServer } from "mongodb-memory-server";
-import mongoose from 'mongoose';
+import { CompanyConfig } from '../modules/company/index'
+import { MongoMemoryServer } from 'mongodb-memory-server'
+import mongoose from 'mongoose'
 
 describe('company', () => {
   beforeAll(async () => {
@@ -13,8 +13,12 @@ describe('company', () => {
   describe('get company route', () => {
     describe('given the company does not exist', () => {
       it('it should return 404', async () => {
-        const companyTestId = "company-123"
-        await supertest(app).get(`${config.apiBaseURL}${CompanyConfig.moduleRouteBaseURL}/${companyTestId}`).expect(404)
+        const companyTestId = 'company-123'
+        await supertest(app)
+          .get(
+            `${config.apiBaseURL}${CompanyConfig.moduleRouteBaseURL}/${companyTestId}`
+          )
+          .expect(404)
       })
     })
   })

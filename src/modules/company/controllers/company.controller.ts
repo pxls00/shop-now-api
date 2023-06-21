@@ -67,12 +67,12 @@ class CompanyController {
       const { company_id } = req.params
       const query = { id: company_id }
       const response = await services.getCompanyById(query)
-      if(!response) {
+      if (!response) {
         return res.status(404).json('Company is not defined')
       }
       return res.status(200).json(response)
     } catch (error) {
-      return res.status(404).json({message: error})
+      return res.status(404).json({ message: error })
     }
   }
 

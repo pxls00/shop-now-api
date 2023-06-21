@@ -33,7 +33,9 @@ class CompanyServices {
   public async getCompanyById(
     query: FilterQuery<ICompanyDocument>
   ): Promise<Partial<IGetCompanyByIdRes>> {
-    const data = await Companies.findById(query.id) as ICompanyDocument | undefined
+    const data = (await Companies.findById(query.id)) as
+      | ICompanyDocument
+      | undefined
     return {
       data,
     }
