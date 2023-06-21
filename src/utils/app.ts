@@ -1,10 +1,9 @@
 import express from 'express'
 import cors from 'cors'
-import corsOptions from '../configs/cors-options'
+import corsOptions from '../lib/cors-options'
 // import config from '../configs/default'
 
-// import routes from '../../routes';
-import router from '../../router/index'
+import router from '../router/index'
 
 class App {
   public server
