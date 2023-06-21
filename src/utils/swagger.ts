@@ -3,8 +3,8 @@ import { Router } from 'express'
 import swaggerJsdoc from 'swagger-jsdoc'
 import type { Options } from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
-import { version } from '../../../package.json'
-import config from '../configs/default'
+import { version } from '../../package.json'
+import config from '../lib/default'
 import log from './logger'
 
 const router = Router()

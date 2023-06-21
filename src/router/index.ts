@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import SwaggerDocs from '../lib/helpers/swagger'
+import SwaggerDocs from '../utils/swagger'
 import { CompanyRouter } from '../modules/company/index'
-import config from '../lib/configs/default'
+import config from '../lib/default'
 
 const router = Router()
 router.use(config.apiBaseURL, CompanyRouter)

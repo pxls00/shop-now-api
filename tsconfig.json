@@ -2,13 +2,13 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "target": "es6",
+    "target": "esnext",
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    // "strict": true,
-    "module": "ESNext",
+    "strict": true,
+    "module": "commonjs",
     "types": ["node", "express", "mongoose", "swagger-jsdoc", "swagger-ui-express", "jest", "supertest"],
     "resolveJsonModule": true,
     "skipLibCheck": true,
