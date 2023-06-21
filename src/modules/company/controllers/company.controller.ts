@@ -11,9 +11,9 @@ import type {
 } from '../services/company.types'
 import CompanyService from '../services/company.services'
 
-class CompanyController {
-  private services: CompanyService = new CompanyService()
+const services = CompanyService
 
+class CompanyController {
   public async getCompanyList(
     req: Request,
     res: Response
@@ -50,8 +50,7 @@ class CompanyController {
       } else {
         sortOption = sortOptions['by_popular']
       }
-
-      const response = await this.services.getCompanyList(queryOption)
+      const response = await services.getCompanyList(queryOption)
 
       return res.json(response)
     } catch (error) {
@@ -64,11 +63,17 @@ class CompanyController {
     req: Request,
     res: Response
   ): Promise<Response<IGetCompanyByIdRes>> {
-    const { company_id } = req.params
-    const query = { id: company_id }
-    const response = this.services.getCompanyById(query)
-
-    return res.json(response)
+    try {
+      const { company_id } = req.params
+      const query = { id: company_id }
+      const response = await services.getCompanyById(query)
+      if (!response) {
+        return res.status(404).json('Company is not defined')
+      }
+      return res.status(200).json(response)
+    } catch (error) {
+      return res.status(404).json({ message: error })
+    }
   }
 
   // public async followCompanyById(req: Request, res: Response): Promise<Response<void>> {

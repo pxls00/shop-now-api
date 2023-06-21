@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import corsOptions from '../configs/cors-options'
-import config from '../configs/default'
+// import config from '../configs/default'
 
 // import routes from '../../routes';
 import router from '../../router/index'
