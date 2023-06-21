@@ -32,12 +32,14 @@ class CompanyServices {
 
   public async getCompanyById(
     query: FilterQuery<ICompanyDocument>
-  ): Promise<IGetCompanyByIdRes> {
-    const data = await Companies.findById(query.id)
+  ): Promise<Partial<IGetCompanyByIdRes>> {
+    const data = (await Companies.findById(query.id)) as
+      | ICompanyDocument
+      | undefined
     return {
       data,
     }
   }
 }
 
-export default CompanyServices
+export default new CompanyServices()

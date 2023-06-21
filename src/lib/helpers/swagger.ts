@@ -1,4 +1,4 @@
-import type { Express, Request, Response } from 'express'
+import type { Request, Response } from 'express'
 import { Router } from 'express'
 import swaggerJsdoc from 'swagger-jsdoc'
 import type { Options } from 'swagger-jsdoc'

@@ -5,16 +5,15 @@ module.exports = {
     'plugin:@typescript-eslint/recommended'
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'jest'],
   parserOptions: {
     ecmaVersion: 'latest',
     tsconfigRootDir: __dirname,
     project: ['./packages/*/tsconfig.json']
   },
-  // 'plugins': ['jest'],
-  // 'env': {
-  //   'jest': true
-  // },
+  "env": {
+    'jest': true
+  },
   rules: {
     'no-console': ['error', { allow: ['warn', 'error', 'debug'] }],
     'no-extra-boolean-cast': 0,
