@@ -9,7 +9,7 @@
     "outDir": "dist",
     "strict": true,
     "module": "commonjs",
-    "types": ["node", "express", "mongoose", "swagger-jsdoc", "swagger-ui-express", "jest", "supertest"],
+    "types": ["node", "express", "mongoose", "swagger-jsdoc", "swagger-ui-express", "jest", "supertest", "nodemailer"],
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "baseUrl": "./src",
