@@ -2,6 +2,8 @@ import { Schema, model } from 'mongoose'
 
 import type { ICompanyDocument } from './company.types'
 
+import autopopulate from 'mongoose-autopopulate'
+
 const CompanySchema = new Schema({
   name: {
     required: true,
@@ -29,6 +31,7 @@ const CompanySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users',
         required: true,
+        autopopulate: true,
       },
       rate: {
         type: String,
@@ -41,6 +44,7 @@ const CompanySchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'users',
       required: true,
+      autopopulate: true,
     },
   ],
   review_comments: [
@@ -49,6 +53,7 @@ const CompanySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users',
         required: true,
+        autopopulate: true,
       },
       body: String,
       created_at: {
@@ -63,6 +68,8 @@ const CompanySchema = new Schema({
   },
 })
 
-const Company = model<ICompanyDocument>('Companies', CompanySchema)
+CompanySchema.plugin(autopopulate)
+
+const Company = model<ICompanyDocument>('companies', CompanySchema)
 
 export default Company
