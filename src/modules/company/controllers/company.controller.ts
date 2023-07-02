@@ -1,3 +1,6 @@
+import { validationResult } from 'express-validator'
+import CompanyService from '../services/company.services'
+
 import type { Request, Response } from 'express'
 import type {
   IGetCompanyListQuery,
@@ -9,7 +12,8 @@ import type {
   IGetCompanyByIdRes,
   IGetCompanyListRes,
 } from '../services/company.types'
-import CompanyService from '../services/company.services'
+import type { ICompanyFieldsBase } from '../models/company.types'
+import companyServices from '../services/company.services'
 
 const services = CompanyService
 
@@ -73,6 +77,61 @@ class CompanyController {
       return res.status(200).json(response)
     } catch (error) {
       return res.status(404).json({ message: error })
+    }
+  }
+
+  public async createCompany(req: Request, res: Response) {
+    try {
+      const errors = validationResult(req)
+
+      if (!errors.isEmpty()) {
+        return res.status(400).json(errors)
+      }
+
+      const { name, email, description, phone_number } =
+        req.body as ICompanyFieldsBase
+
+      const isCompanyExistsWithGivenEmail =
+        await companyServices.getCompanyByField({
+          email,
+        })
+      const isCompanyExistsWithGivenPhoneNumber =
+        await companyServices.getCompanyByField({
+          phone_number,
+        })
+
+      if (
+        isCompanyExistsWithGivenEmail &&
+        Object.keys(isCompanyExistsWithGivenEmail).length
+      ) {
+        return res
+          .status(409)
+          .json({ message: 'Company with this email already exists' })
+      }
+      if (
+        isCompanyExistsWithGivenPhoneNumber &&
+        Object.keys(isCompanyExistsWithGivenPhoneNumber).length
+      ) {
+        return res
+          .status(409)
+          .json({ message: 'Company with this phone_number already exists' })
+      }
+
+      const companyFields: ICompanyFieldsBase = {
+        name,
+        email,
+        description,
+        phone_number,
+      }
+
+      const createdCompany = await companyServices.createCompany(companyFields)
+
+      return res.status(201).json({
+        message: 'Company has been created succesfully',
+        createdCompany,
+      })
+    } catch (error) {
+      return res.status(500).json({ error })
     }
   }
 
