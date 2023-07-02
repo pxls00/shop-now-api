@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose'
+import autopopulate from 'mongoose-autopopulate'
+import getArhimeticMeanNumber from '../utils/get-arhimetic-mean-number'
 
 import type { ICompanyDocument } from './company.types'
-
-import autopopulate from 'mongoose-autopopulate'
 
 const CompanySchema = new Schema({
   name: {
@@ -10,8 +10,8 @@ const CompanySchema = new Schema({
     type: String,
   },
   logo_img: {
-    required: true,
     type: String,
+    default: '',
   },
   description: {
     required: true,
@@ -23,7 +23,7 @@ const CompanySchema = new Schema({
   },
   orders_count: {
     type: Number,
-    required: true,
+    default: 0,
   },
   rate: [
     {
@@ -33,12 +33,24 @@ const CompanySchema = new Schema({
         required: true,
         autopopulate: true,
       },
-      rate: {
+      comment: {
         type: String,
+        default: '',
+      },
+      rate_number: {
+        type: Number,
         required: true,
+      },
+      created_at: {
+        type: Date,
+        default: Date.now,
       },
     },
   ],
+  rate_base: {
+    type: Number,
+    default: 5.0,
+  },
   followers: [
     {
       type: Schema.Types.ObjectId,
@@ -47,25 +59,30 @@ const CompanySchema = new Schema({
       autopopulate: true,
     },
   ],
-  review_comments: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'users',
-        required: true,
-        autopopulate: true,
-      },
-      body: String,
-      created_at: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
+  followers_count: {
+    type: Number,
+    default: 0,
+  },
   banner_img: {
+    type: String,
+    default: '',
+  },
+  email: {
     type: String,
     required: true,
   },
+  phone_number: {
+    type: String,
+    required: true,
+  },
+})
+
+CompanySchema.post('find', function (docs: ICompanyDocument[]) {
+  for (const doc of docs) {
+    doc.followers_count = doc.followers?.length as number
+    doc.followers = undefined
+    doc.rate_base = getArhimeticMeanNumber(doc.rate)
+  }
 })
 
 CompanySchema.plugin(autopopulate)
