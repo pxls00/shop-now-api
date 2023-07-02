@@ -4,10 +4,13 @@ import type {
   IGetCompanyListRes,
   IGetCompanyByIdRes,
 } from './company.types'
-import type { ICompanyDocument } from '../models/company.types'
-import type { FilterQuery } from 'mongoose'
+import type {
+  ICompanyDocument,
+  ICompanyFieldsBase,
+} from '../models/company.types'
+import type { Document, FilterQuery } from 'mongoose'
 
-import Companies from '../models/company.model'
+import Company from '../models/company.model'
 
 class CompanyServices {
   public async getCompanyList(
@@ -15,7 +18,7 @@ class CompanyServices {
   ): Promise<IGetCompanyListRes> {
     const sortOption = {} as ISortOption
     sortOption[query.sortOption.key] = query.sortOption.value
-    const result: ICompanyDocument[] = await Companies.find({
+    const result: ICompanyDocument[] = await Company.find({
       name: new RegExp(query.search, 'i'),
     })
       .sort(sortOption)
@@ -33,12 +36,27 @@ class CompanyServices {
   public async getCompanyById(
     query: FilterQuery<ICompanyDocument>
   ): Promise<Partial<IGetCompanyByIdRes>> {
-    const data = (await Companies.findById(query.id)) as
+    const data = (await Company.findById(query.id)) as
       | ICompanyDocument
       | undefined
     return {
       data,
     }
+  }
+
+  public async getCompanyByField(
+    field: Partial<ICompanyFieldsBase>
+  ): Promise<ICompanyDocument | undefined | null> {
+    return await Company.findOne(field)
+  }
+
+  public async createCompany(
+    fields: ICompanyFieldsBase
+  ): Promise<ICompanyDocument> {
+    const newCompany = { ...fields } as ICompanyFieldsBase
+    const company = new Company(newCompany)
+    ;(await company.save()) as Document<ICompanyDocument>
+    return company
   }
 }
 

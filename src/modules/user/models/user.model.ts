@@ -42,12 +42,10 @@ const UserSchema = new Schema({
 UserSchema.post('find', function (docs) {
   for (const doc of docs) {
     doc.token = undefined
+    doc.followings = undefined
+    doc.password = undefined
   }
 })
-
-// UserSchema.post('findOne', function(doc) {
-//   doc.token = undefined
-// });
 
 const User = model<IUserDocument>('users', UserSchema)
 

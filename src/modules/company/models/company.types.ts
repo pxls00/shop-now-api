@@ -1,40 +1,32 @@
 import type { Document } from 'mongoose'
+import type { IUserDocument } from '../../user/models/user.types'
 
 // Enums
 
 // Types
 
 // Interfaces
+export interface ICompanyFieldsBase {
+  name: string
+  email: string
+  phone_number: string
+  description: string
+}
+
 export interface IRateItem {
-  name: string
-  rate: number
-  user_id: string | number
-}
-
-export interface IUserItem {
-  name: string
-  user_id: string | number
-  logo_img: string
-}
-
-export interface IReviewCommentItem {
-  user: {
-    name: string
-    user_id: string | number
-    logo_img: string
-  }
-  body: string
+  user: IUserDocument
+  comment: string
+  rate_number: number
   created_at: Date
 }
 
-export interface ICompanyDocument extends Document {
-  name: string
+export interface ICompanyDocument extends ICompanyFieldsBase, Document {
   logo_img: string
-  description: string
   created_at: Date
   orders_count: number
   rate: Array<IRateItem>
-  followers: Array<IUserItem>
-  review_comments: Array<IReviewCommentItem>
+  rate_base: number
+  followers?: Array<IUserDocument>
+  followers_count: number
   banner_img: string
 }
