@@ -50,10 +50,7 @@ class AuthController {
 
       const authenticatedUser = await authServices.setTokenUser(tokenPayload)
 
-      return res.status(201).json({
-        message: 'User has been created succesfully',
-        authenticatedUser,
-      })
+      return res.status(201).json(authenticatedUser)
     } catch (error) {
       return res.status(400).json({ message: 'Registration error', error })
     }

@@ -16,6 +16,20 @@ const options: Options = {
       title: `API Shop-now docs`,
       version,
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
   apis: ['./src/modules/*/swagger/*/*.swagger.ts'],
 }
