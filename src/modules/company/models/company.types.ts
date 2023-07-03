@@ -24,7 +24,7 @@ export interface ICompanyDocument extends ICompanyFieldsBase, Document {
   logo_img: string
   created_at: Date
   orders_count: number
-  rate: Array<IRateItem>
+  rate?: Array<IRateItem>
   rate_base: number
   followers?: Array<IUserDocument>
   followers_count: number

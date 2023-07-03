@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose'
 import autopopulate from 'mongoose-autopopulate'
 import getArhimeticMeanNumber from '../utils/get-arhimetic-mean-number'
 
-import type { ICompanyDocument } from './company.types'
+import type { ICompanyDocument, IRateItem } from './company.types'
 
 const CompanySchema = new Schema({
   name: {
@@ -77,11 +77,16 @@ const CompanySchema = new Schema({
   },
 })
 
+// CompanySchema.pre<ICompanyDocument>('save', function (next) {
+//   this.followers_count = this.followers?.length as number;
+//   this.rate_base = getArhimeticMeanNumber(this.rate as IRateItem[]);
+//   next();
+// });
+
 CompanySchema.post('find', function (docs: ICompanyDocument[]) {
   for (const doc of docs) {
-    doc.followers_count = doc.followers?.length as number
     doc.followers = undefined
-    doc.rate_base = getArhimeticMeanNumber(doc.rate)
+    doc.rate = undefined
   }
 })
 

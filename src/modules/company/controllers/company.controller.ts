@@ -43,12 +43,6 @@ class CompanyController {
         },
       }
       let sortOption = {} as ISortOption
-      const queryOption: IQueryOptions = {
-        skip,
-        search,
-        limit,
-        sortOption: sortOption,
-      }
 
       if (by_order_count) {
         sortOption = sortOptions['by_order_count']
@@ -57,6 +51,20 @@ class CompanyController {
       } else {
         sortOption = sortOptions['by_popular']
       }
+
+      const queryOption: IQueryOptions = {
+        skip,
+        search,
+        limit,
+        sortOption: sortOption,
+      }
+
+      if (isNaN(skip)) {
+        queryOption.skip = 0
+      } else if (isNaN(limit)) {
+        queryOption.limit = 0
+      }
+
       const response = await services.getCompanyList(queryOption)
 
       return res.json(response)
