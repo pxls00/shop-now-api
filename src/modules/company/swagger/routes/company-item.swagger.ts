@@ -16,7 +16,7 @@
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/Company'
+ *                $ref: '#/components/schemas/Company-detail'
  *        404:
  *          description: Company not found
  */
