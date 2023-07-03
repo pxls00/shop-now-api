@@ -21,7 +21,7 @@
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/CreateUserResponse'
+ *                $ref: '#/components/schemas/Company'
  *        409:
  *          description: Conflict
  *        400:

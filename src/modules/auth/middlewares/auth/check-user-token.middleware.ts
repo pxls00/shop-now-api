@@ -30,6 +30,7 @@ export default async function (
       req.user = decodeToken
       next()
     } else if (user?.token?.token !== token || !token) {
+      req.user = undefined
       return res.status(403).json('User unauthorized')
     } else if (
       checkTime(
@@ -39,6 +40,7 @@ export default async function (
       )
     ) {
       authServices.clearTokenUser(user.id)
+      req.user = undefined
       return res.status(403).json('User unauthorized')
     }
   } catch (error) {
