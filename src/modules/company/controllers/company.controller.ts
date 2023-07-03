@@ -14,8 +14,11 @@ import type {
 } from '../services/company.types'
 import type { ICompanyFieldsBase } from '../models/company.types'
 import companyServices from '../services/company.services'
+import { UserServices } from '../../user'
+import type { IRequestAuthenticated } from '../../../types/index.types'
 
 const services = CompanyService
+const userServices = UserServices
 
 class CompanyController {
   public async getCompanyList(
@@ -69,10 +72,9 @@ class CompanyController {
   ): Promise<Response<IGetCompanyByIdRes>> {
     try {
       const { company_id } = req.params
-      const query = { id: company_id }
-      const response = await services.getCompanyById(query)
+      const response = await services.getCompanyById(company_id)
       if (!response) {
-        return res.status(404).json('Company is not defined')
+        return res.status(404).json({ message: 'Company is not defined' })
       }
       return res.status(200).json(response)
     } catch (error) {
@@ -132,6 +134,36 @@ class CompanyController {
       })
     } catch (error) {
       return res.status(500).json({ error })
+    }
+  }
+
+  public async followCompany(req: IRequestAuthenticated, res: Response) {
+    try {
+      if (!req.user) {
+        return res.status(403).json({ message: 'User unauthorized' })
+      }
+      const { company_id } = req.params
+      const currentUser = await userServices.getUserById(req.user.id as string)
+      const company = await services.getCompanyById(company_id as string)
+
+      if (!company) {
+        return res.status(404).json({ message: 'Company is not defined' })
+      }
+
+      const isUserExistsInFollowersListOfCompany = company.followers?.find(
+        (item) => item._id.toString() === currentUser?._id.toString()
+      )
+      if (isUserExistsInFollowersListOfCompany) {
+        return res.status(409).json({ message: 'User already followed' })
+      }
+
+      company.followers?.push(currentUser?._id)
+      await company.save()
+      return res
+        .status(201)
+        .json({ message: 'User has been followed succesfully' })
+    } catch (error) {
+      return res.status(500).json(error)
     }
   }
 
