@@ -14,14 +14,26 @@ class CompanyServices {
   ): Promise<IGetCompanyListRes> {
     const sortOption = {} as ISortOption
     sortOption[query.sortOption.key] = query.sortOption.value
-    const result: ICompanyDocument[] = await Company.find({
-      name: new RegExp(query.search, 'i'),
-    })
-      .sort(sortOption)
-      .skip(Number(query.skip))
-      .limit(Number(query.limit))
-      .exec()
-    const count: number = result.length
+
+    const pagination = []
+    if (!isNaN(query.limit)) {
+      pagination.push({ $limit: Number(query.limit) })
+    } else if (!isNaN(query.skip)) {
+      pagination.push({ $skip: Number(query.skip) })
+    }
+
+    const aggregation = await Company.aggregate([
+      { $match: { name: new RegExp(query.search, 'i') } },
+      { $sort: sortOption },
+      {
+        $facet: {
+          metadata: [{ $count: 'total' }],
+          data: pagination,
+        },
+      },
+    ])
+    const count = aggregation[0].metadata[0].total
+    const result = aggregation[0].data
     return {
       data: result,
       total_count: count,
