@@ -22,7 +22,7 @@
  *          description:
  *            type: string
  *            default: "The most popular dress store"
- *      CreateUserResponse:
+ *      Company:
  *        type: object
  *        properties:
  *          _id:

@@ -1,9 +1,5 @@
 import type { IQueryOptions } from '../controllers/company.types'
-import type {
-  ISortOption,
-  IGetCompanyListRes,
-  IGetCompanyByIdRes,
-} from './company.types'
+import type { ISortOption, IGetCompanyListRes } from './company.types'
 import type {
   ICompanyDocument,
   ICompanyFieldsBase,
@@ -34,14 +30,9 @@ class CompanyServices {
   }
 
   public async getCompanyById(
-    query: FilterQuery<ICompanyDocument>
-  ): Promise<Partial<IGetCompanyByIdRes>> {
-    const data = (await Company.findById(query.id)) as
-      | ICompanyDocument
-      | undefined
-    return {
-      data,
-    }
+    id: string
+  ): Promise<ICompanyDocument | undefined | null> {
+    return await Company.findById(id)
   }
 
   public async getCompanyByField(

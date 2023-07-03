@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import config from '../lib/config'
+import { AuthMiddleware } from '../../auth'
 
 import CompanyController from '../controllers/company.controller'
 import createBodyValidator from '../middlewares/validators/create-company-body.validator'
@@ -17,6 +18,11 @@ router.post(
   `${config.moduleRouteBaseURL}`,
   createBodyValidator(),
   controller.createCompany
+)
+router.post(
+  `${config.moduleRouteBaseURL}/:${config.moduleRouteItemIdURL}${config.moduleRouteItemFollow}`,
+  AuthMiddleware,
+  controller.followCompany
 )
 
 export default router
