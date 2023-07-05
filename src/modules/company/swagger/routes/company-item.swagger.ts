@@ -1,12 +1,12 @@
 /**
  *  @openapi
- *  /api/companies/{companyId}:
+ *  /api/companies/{company_id}:
  *    get:
  *      tags:
  *      - Company
  *      summary: Get Company by Id
  *      parameters:
- *      - name: companyId
+ *      - name: company_id
  *        in: path
  *        description: The id of the company
  *        required: true

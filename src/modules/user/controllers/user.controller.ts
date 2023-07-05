@@ -22,7 +22,7 @@ class CompanyController {
       const { user_id } = req.params
       const user = await userServices.getUserById(user_id)
       if (!user) {
-        return res.status(404).json('User is not defined')
+        return res.status(404).json('User not found')
       }
       res.status(200).json(user)
     } catch (error) {
