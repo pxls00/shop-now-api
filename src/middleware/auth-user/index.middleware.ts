@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken'
-import config from '../../../../lib/default'
-import { UserServices } from '../../../user/index'
-import AuthServices from '../../services/auth.services'
-import checkTime from '../../utils/check-time'
+import config from '../../lib/default'
+import { UserServices } from '../../modules/user/index'
+import AuthServices from '../../modules/auth/services/auth.services'
+import checkTime from '../../modules/auth/utils/check-time'
 
 import type { Request, Response, NextFunction } from 'express'
-import type { IGenerateAccessTokenPayload } from '../../services/auth.types'
+import type { IGenerateAccessTokenPayload } from '../../modules/auth/services/auth.types'
 
 const userServices = UserServices
 const authServices = AuthServices

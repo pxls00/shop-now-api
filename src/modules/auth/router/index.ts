@@ -5,7 +5,7 @@ import CompanyController from '../controllers/auth.controller'
 import registerBodyValidator from '../middlewares/validators/register-body.validator'
 import loginBodyValidator from '../middlewares/validators/login-body.validator'
 
-import authMiddleware from '../middlewares/auth/check-user-token.middleware'
+import authMiddleware from '../../../middleware/auth-user/index.middleware'
 
 const router = Router()
 
