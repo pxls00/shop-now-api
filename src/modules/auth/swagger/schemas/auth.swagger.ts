@@ -18,25 +18,6 @@
  *          password:
  *            type: string
  *            default: testpassword
- *      RegisteredUser:
- *        type: object
- *        properties:
- *          _id:
- *            type: string
- *          email:
- *            type: string
- *          name:
- *            type: string
- *          password:
- *            type: string
- *          logo_img:
- *            type: string
- *          created_at:
- *            type: Date
- *          followings:
- *            type: array
- *          token:
- *            type: object
  *      LoginUserFields:
  *        type: object
  *        required:
