@@ -38,7 +38,7 @@
  *          logo_img:
  *            type: string
  *          created_at:
- *            type: Date
+ *            type: string
  *          orders_count:
  *            type: number
  *          rate:
@@ -67,7 +67,7 @@
  *          logo_img:
  *            type: string
  *          created_at:
- *            type: Date
+ *            type: string
  *          orders_count:
  *            type: number
  *          rate_base:

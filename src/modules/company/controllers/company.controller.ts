@@ -80,7 +80,7 @@ class CompanyController {
       const { company_id } = req.params
       const response = await services.getCompanyById(company_id)
       if (!response) {
-        return res.status(404).json({ message: 'Company is not defined' })
+        return res.status(404).json({ message: 'Company not found' })
       }
       return res.status(200).json(response)
     } catch (error) {
@@ -152,7 +152,7 @@ class CompanyController {
       const company = await services.getCompanyById(company_id as string)
 
       if (!company) {
-        return res.status(404).json({ message: 'Company is not defined' })
+        return res.status(404).json({ message: 'Company not found' })
       }
 
       const isUserExistsInFollowersListOfCompany = company.followers?.find(
