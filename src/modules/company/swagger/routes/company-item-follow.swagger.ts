@@ -1,12 +1,12 @@
 /**
  *  @openapi
- *  /api/companies/{companyId}/follow:
+ *  /api/companies/{company_id}/follow:
  *    post:
  *      tags:
  *      - Company
  *      summary: Follow Company
  *      parameters:
- *      - name: companyId
+ *      - name: company_id
  *        in: path
  *        description: The id of the company
  *        required: true

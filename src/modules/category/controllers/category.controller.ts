@@ -5,6 +5,7 @@ import generateKey from '../utils/generate-key'
 import type { Request, Response } from 'express'
 import type { IGetCategoryItemParam } from './category.types'
 import type { ICategoryFieldsBase } from '../models/category.types'
+import type { IGetCategoryRecursivelyById } from '../utils/get-category-recursively.types'
 
 const categoryServices = CategoryService
 
@@ -25,9 +26,11 @@ class CategoryController {
   public async getCategoryById(req: Request, res: Response) {
     try {
       const { category_id } = req.params as unknown as IGetCategoryItemParam
-      const category = await categoryServices.getCategoryById(category_id)
+      const { category } = (await categoryServices.getCategoryById(
+        category_id
+      )) as IGetCategoryRecursivelyById
       if (!category) {
-        return res.status(404).json({ message: 'Category is not defined' })
+        return res.status(404).json({ message: 'Category not found' })
       }
       return res.status(200).json(category)
     } catch (error) {
@@ -52,7 +55,7 @@ class CategoryController {
       )
 
       if (!createdCategory) {
-        return res.status(404).json({ message: 'Category is not defined' })
+        return res.status(404).json({ message: 'Category not found' })
       }
       return res.status(201).json(createdCategory)
     } catch (error) {
@@ -77,7 +80,7 @@ class CategoryController {
         newCategoryfields
       )
       if (!category) {
-        return res.status(404).json({ message: 'Category is not defined' })
+        return res.status(404).json({ message: 'Category not found' })
       }
       return res.status(201).json(category)
     } catch (error) {
@@ -92,7 +95,7 @@ class CategoryController {
       const category = await categoryServices.deleteCategoryById(category_id)
 
       if (!category) {
-        return res.status(404).json({ message: 'Category is not defined' })
+        return res.status(404).json({ message: 'Category not found' })
       }
       return res.status(201).json('Category deleted successfuly')
     } catch (error) {
