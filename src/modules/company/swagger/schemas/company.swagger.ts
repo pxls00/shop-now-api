@@ -76,4 +76,5 @@
  *            type: number
  *          banner_img:
  *            type: string
+ * 
  */
