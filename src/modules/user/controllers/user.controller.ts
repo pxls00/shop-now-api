@@ -11,7 +11,7 @@ class CompanyController {
       const users = await userServices.getUserList()
       res.status(200).json({
         data: users,
-        count: users.length,
+        total_count: users.length,
       })
     } catch (error: any) {
       res.status(500).json({ message: error.message })
