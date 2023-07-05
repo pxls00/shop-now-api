@@ -17,7 +17,7 @@
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/RegisteredUser'
+ *                $ref: '#/components/schemas/User-detail'
  *        409:
  *          description: Conflict
  *        400:
