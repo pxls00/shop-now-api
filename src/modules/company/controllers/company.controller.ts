@@ -13,7 +13,6 @@ import type {
   IGetCompanyListRes,
 } from '../services/company.types'
 import type { ICompanyFieldsBase } from '../models/company.types'
-import companyServices from '../services/company.services'
 import { UserServices } from '../../user'
 import type { IRequestAuthenticated } from '../../../types/index.types'
 
@@ -67,9 +66,8 @@ class CompanyController {
 
       const response = await services.getCompanyList(queryOption)
 
-      return res.json(response)
+      return res.status(200).json(response)
     } catch (error) {
-      console.error(error)
       return res.json({ message: error })
     }
   }
@@ -101,12 +99,11 @@ class CompanyController {
       const { name, email, description, phone_number } =
         req.body as ICompanyFieldsBase
 
-      const isCompanyExistsWithGivenEmail =
-        await companyServices.getCompanyByField({
-          email,
-        })
+      const isCompanyExistsWithGivenEmail = await services.getCompanyByField({
+        email,
+      })
       const isCompanyExistsWithGivenPhoneNumber =
-        await companyServices.getCompanyByField({
+        await services.getCompanyByField({
           phone_number,
         })
 
@@ -134,7 +131,7 @@ class CompanyController {
         phone_number,
       }
 
-      const createdCompany = await companyServices.createCompany(companyFields)
+      const createdCompany = await services.createCompany(companyFields)
 
       return res.status(201).json({
         message: 'Company has been created succesfully',
