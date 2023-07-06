@@ -6,7 +6,7 @@
   "author": "Abdurahim <89141756+pxls00@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --project ./",
+    "build": "rimraf ./dist && tsc --project ./tsconfig.json",
     "dev": "nodemon --config nodemon.json src/main.ts",
     "prod": "node dist/main.js",
     "lint:check": "eslint src/ --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore",
@@ -42,6 +42,7 @@
     "mongodb-memory-server": "^8.13.0",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
+    "rimraf": "^5.0.1",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
