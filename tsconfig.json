@@ -6,7 +6,8 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "strict": true,
     "module": "commonjs",
     "types": ["node", "express", "mongoose", "swagger-jsdoc", "swagger-ui-express", "jest", "supertest", "nodemailer"],
@@ -17,5 +18,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["package.json"]
 }

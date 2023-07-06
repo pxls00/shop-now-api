@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import config from '../lib/config'
-import { AuthMiddleware } from '../../auth'
+import AuthMiddleware from '../../../middleware/auth-user/index.middleware'
 
 import CompanyController from '../controllers/company.controller'
 import createBodyValidator from '../middlewares/validators/create-company-body.validator'
