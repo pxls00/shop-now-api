@@ -1,7 +1,7 @@
 import type { Document } from 'mongoose'
-import type {IFilterBrandDocument} from './brands/filter-brands.type' 
+import type {IFilterBrandDocument} from './brands/filter-brands.types' 
 import type {IFilterColorDocument} from './colors/filter-color.type'
-import type {IFilterOptionDocument} from './options/filter-option.type' 
+import type {IFilterOptionDocument} from './options/filter-option.types' 
 
 // Enums
 
