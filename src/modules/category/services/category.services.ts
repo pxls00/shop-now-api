@@ -1,4 +1,3 @@
-import logger from '../../../utils/logger'
 import Category from '../models/category.model'
 import getCategoryRecursivelyById from '../utils/get-category-recursively'
 import getCategoryParentRecursivelyById from '../utils/get-category-parent-recursively'
@@ -129,6 +128,32 @@ class CategoryServices {
 
     category.name = updatePayload.name
     category.key = updatePayload.key
+
+    if (main_category) {
+      await main_category.save()
+      const model = await Category.findByIdAndUpdate(
+        main_category._id,
+        main_category,
+        { new: true }
+      )
+
+      return model
+    }
+
+    await category.save()
+    return category
+  }
+
+  public async addFilterToCategoryById(id: string, add_filter: boolean) {
+    const { category, main_category } = (await this.getCategoryById(
+      id
+    )) as IGetCategoryRecursivelyById
+
+    if (!category) {
+      return undefined
+    }
+
+    category.has_filter = add_filter
 
     if (main_category) {
       await main_category.save()

@@ -14,4 +14,5 @@ export interface ICategoryFieldsBase {
 export interface ICategoryDocument extends ICategoryFieldsBase, Document {
   nested_categories: ICategoryDocument[]
   created_at: Date
+  has_filter: boolean
 }
