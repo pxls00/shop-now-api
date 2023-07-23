@@ -1,6 +1,8 @@
 import { Router } from 'express'
 import config from '../../lib/config'
 import FilterBrandsController from '../../controllers/brands/brands.controller'
+import filterFieldsValidator from '../../middlewares/validators/create-filter-color-and-brand'
+
 
 const router = Router()
 
@@ -13,10 +15,12 @@ router.get(
 )
 router.post(
   `${config.moduleRouteBaseURL}/${config.moduleRouteBrandURL}`,
+  filterFieldsValidator(),
   controller.getFilterBrandById
 )
 router.patch(
   `${config.moduleRouteBaseURL}/${config.moduleRouteBrandURL}/:${config.moduleRouteBrandItemIdURL}`,
+  filterFieldsValidator(),
   controller.updateFilterBrandById
 )
 router.delete(

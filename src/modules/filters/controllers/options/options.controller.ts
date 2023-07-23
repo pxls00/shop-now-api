@@ -1,4 +1,5 @@
-// import CategoryService from '../services/category.services'
+import optionsServices from '../../services/options/options.services'
+import { valida } from 'express-validator'
 
 import type { Request, Response } from 'express'
 // const filterServices = FilterService
@@ -6,6 +7,7 @@ import type { Request, Response } from 'express'
 class FilterOptionsController {
   public async getFilterOptionList(req: Request, res: Response) {
     try {
+      const filterOptions = await filterOpt
     } catch (error) {
       return res.json(error)
     }
