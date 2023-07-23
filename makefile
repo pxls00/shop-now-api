@@ -1,5 +1,5 @@
 create:
-	docker build . -t shopnowapi_image
+	docker buildx build --platform linux/amd64,linux/arm64 . -t shopnowapi_image
 delete:
 	docker rmi shopnowapi_image
 run:
