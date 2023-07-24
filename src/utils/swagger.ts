@@ -3,11 +3,13 @@ import { Router } from 'express'
 import swaggerJsdoc from 'swagger-jsdoc'
 import type { Options } from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
 
-const packageJson = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../package.json'), 'utf8'));
-const { version } = packageJson;
+const packageJson = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, '../../package.json'), 'utf8')
+)
+const { version } = packageJson
 import config from '../lib/default'
 import log from './logger'
 

@@ -10,28 +10,29 @@ const FilterSchema = new Schema({
     required: true,
     type: String,
   },
-  categories: [{
-    required: true,
-    type: String,
-  }],
+  categories: [
+    {
+      required: true,
+      type: String,
+    },
+  ],
   filter_options: {
     colors: {
       type: [{ type: Schema.Types.ObjectId, ref: 'filter_colors' }],
-      default: []
+      default: [],
     },
     brands: {
       type: [{ type: Schema.Types.ObjectId, ref: 'filter_brands' }],
-      default: []
+      default: [],
     },
     custom_options: {
       type: Array,
-      default: []
-    }
-  }
+      default: [],
+    },
+  },
 })
 
 FilterSchema.plugin(autopopulate)
-
 
 const Filter = model<IFilterDocument>('filters', FilterSchema)
 
