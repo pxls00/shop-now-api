@@ -1,4 +1,3 @@
-import categoryConfig from '../../category/lib/config'
 import type { IConfigModule } from './config.types'
 
 const config: IConfigModule = {

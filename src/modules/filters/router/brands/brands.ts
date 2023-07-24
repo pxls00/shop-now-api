@@ -3,7 +3,6 @@ import config from '../../lib/config'
 import FilterBrandsController from '../../controllers/brands/brands.controller'
 import filterFieldsValidator from '../../middlewares/validators/create-filter-color-and-brand'
 
-
 const router = Router()
 
 const controller = new FilterBrandsController()

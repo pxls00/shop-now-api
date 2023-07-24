@@ -17,12 +17,24 @@ class FilterServices {
     return filterOption
   }
 
-  public async getFilterOptionByCategoryId(id: string): Promise<IFilterOptionDocument | undefined | null> {
-    const filterOption = await FilterOption.findOne({category_id: {$in: [id]}})
+  public async getFilterOptionByCategoryId(
+    id: string
+  ): Promise<IFilterOptionDocument | undefined | null> {
+    const filterOption = await FilterOption.findOne({
+      category_id: { $in: [id] },
+    })
     return filterOption
   }
 
-  public async createFilterOption(fields: IFilterOptionBaseFields): Promise<IFilterOptionDocument>  {    
+  public async createFilterOption(
+    fields: IFilterOptionBaseFields
+  ): Promise<IFilterOptionDocument | undefined> {
+    const isFilterColorExists = await FilterOption.findOne({
+      value: fields.value,
+    })
+    if (isFilterColorExists) {
+      return undefined
+    }
     const filterOption = new FilterOption(fields)
     await filterOption.save()
     return filterOption
@@ -34,7 +46,7 @@ class FilterServices {
   ) {
     const filterOption = await FilterOption.findByIdAndUpdate(
       id,
-      {name: updatePayload.name, category_id: updatePayload.category_id},
+      { name: updatePayload.name, category_id: updatePayload.category_id },
       { new: true }
     )
     if (!filterOption) {

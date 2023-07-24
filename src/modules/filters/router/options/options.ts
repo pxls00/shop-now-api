@@ -32,7 +32,7 @@ router.post(
 router.patch(
   `${config.moduleRouteBaseURL}/${config.moduleRouteOptionURL}/:${config.moduleRouteOptionItemIdURL}`,
   filterFieldsValidator(),
-  controller.updateFilterOptionById 
+  controller.updateFilterOptionById
 )
 
 router.delete(
