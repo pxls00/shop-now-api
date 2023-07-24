@@ -1,18 +1,22 @@
 import Filter from '../models/filter.model'
 
-import type {IFilterDocument} from '../models/filter.type'
+import type { IFilterDocument } from '../models/filter.type'
 
 class FilterServices {
   public async getFilterList(): Promise<IFilterDocument[]> {
     return await Filter.find({})
   }
 
-  public async getFilterByCategoryId(id: string): Promise<IFilterDocument | undefined | null> {
-    const filter = await Filter.findOne({categories: {$in: [id]}})
+  public async getFilterByCategoryId(
+    id: string
+  ): Promise<IFilterDocument | undefined | null> {
+    const filter = await Filter.findOne({ categories: { $in: [id] } })
     return filter
   }
 
-  public async getFilterById(id: string): Promise<IFilterDocument | undefined | null> {
+  public async getFilterById(
+    id: string
+  ): Promise<IFilterDocument | undefined | null> {
     const filter = await Filter.findById(id)
     return filter
   }

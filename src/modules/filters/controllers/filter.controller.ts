@@ -12,7 +12,7 @@ class FilterController {
       const filters = await filterServices.getFilterList()
       res.status(200).json({
         data: filters,
-        total_count: filters.length
+        total_count: filters.length,
       })
     } catch (error) {
       return res.json(error)
@@ -21,10 +21,10 @@ class FilterController {
 
   public async getFilterByCategoryId(req: Request, res: Response) {
     try {
-      const {category_id} = req.params as unknown as IGetCategoryItemParam
+      const { category_id } = req.params as unknown as IGetCategoryItemParam
       const filter = await filterServices.getFilterByCategoryId(category_id)
-      if(!filter) {
-        return res.status(404).json({message: 'Filter is not defined'})
+      if (!filter) {
+        return res.status(404).json({ message: 'Filter is not defined' })
       }
       return res.status(200).json(filter)
     } catch (error) {
@@ -34,10 +34,10 @@ class FilterController {
 
   public async getFilterById(req: Request, res: Response) {
     try {
-      const {filter_id} = req.params as unknown as IGetFilterItemParam
+      const { filter_id } = req.params as unknown as IGetFilterItemParam
       const filter = await filterServices.getFilterById(filter_id)
-      if(!filter) {
-        return res.status(404).json({message: 'Filter is not defined'})
+      if (!filter) {
+        return res.status(404).json({ message: 'Filter is not defined' })
       }
       return res.status(200).json(filter)
     } catch (error) {

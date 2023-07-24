@@ -21,8 +21,8 @@ const CategorySchema = new Schema({
   },
   has_filter: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 
 const Category = model<ICategoryDocument>('category', CategorySchema)
