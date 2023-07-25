@@ -3,7 +3,9 @@ import { validationResult } from 'express-validator'
 
 import type { Request, Response } from 'express'
 import type { IGetFilterOptionItemParam } from './options.types'
+import type { IGetFilterItemParam } from '../filter.types'
 import type { IFilterOptionBaseFields } from '../../models/options/filter-option.types'
+import type { IGetCategoryItemParam } from '../../../category/controllers/category.types'
 const filterOptionsServices = optionsServices
 
 class FilterOptionsController {
@@ -29,6 +31,18 @@ class FilterOptionsController {
       if (!filterOptions) {
         res.status(404).json('Options is not defined')
       }
+      return res.status(200).json(filterOptions)
+    } catch (error) {
+      res.json(error)
+    }
+  }
+
+  public async getFilterOptionByCategoryId(req: Request, res: Response) {
+    try {
+      const { filter_id } = req.params as unknown as IGetFilterItemParam
+
+      const filterOptions =
+        await filterOptionsServices.getFilterOptionByCategoryId(filter_id)
       return res.status(200).json(filterOptions)
     } catch (error) {
       res.json(error)

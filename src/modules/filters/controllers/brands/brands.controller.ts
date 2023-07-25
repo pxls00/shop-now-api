@@ -2,8 +2,11 @@ import brandsServices from '../../services/brands/brands.services'
 import { validationResult } from 'express-validator'
 
 import type { IGetFilterBrandItemParam } from './brands.types'
+import type { IGetFilterItemParam } from '../filter.types'
 import type { Request, Response } from 'express'
 import type { IFilterBrandBaseFields } from '../../models/brands/filter-brands.types'
+import type { IGetCategoryItemParam } from '../../../category/controllers/category.types'
+
 const filterBrandServices = brandsServices
 
 class FilterBrandsController {
@@ -21,12 +24,26 @@ class FilterBrandsController {
 
   public async getFilterBrandById(req: Request, res: Response) {
     try {
-      const { brand_id } = req.params as unknown as IGetFilterBrandItemParam
-      const filterBrand = await filterBrandServices.getFilterBrandById(brand_id)
+      const { filter_id } = req.params
+      const filterBrand = await filterBrandServices.getFilterBrandById(
+        filter_id
+      )
       if (!filterBrand) {
         res.status(404).json('Brand is not defined')
       }
       return res.status(200).json(filterBrand)
+    } catch (error) {
+      res.json(error)
+    }
+  }
+
+  public async getFilterOptionByCategoryId(req: Request, res: Response) {
+    try {
+      const { filter_id } = req.params as unknown as IGetFilterItemParam
+
+      const filterOptions =
+        await filterBrandServices.getFilterBrandByCategoryId(filter_id)
+      return res.status(200).json(filterOptions)
     } catch (error) {
       res.json(error)
     }
@@ -40,9 +57,13 @@ class FilterBrandsController {
         return res.status(400).json(errors)
       }
 
-      const newFilterBrand = await filterBrandServices.createFilterBrand(
-        req.body as IFilterBrandBaseFields
-      )
+      const { name, key, category_id } = req.body as IFilterBrandBaseFields
+
+      const newFilterBrand = await filterBrandServices.createFilterBrand({
+        name,
+        key,
+        category_id,
+      })
       if (!newFilterBrand) {
         return res
           .status(409)

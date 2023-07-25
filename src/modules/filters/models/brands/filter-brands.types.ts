@@ -8,6 +8,7 @@ import type { Document } from 'mongoose'
 export interface IFilterBrandBaseFields {
   name: string
   key: string
+  category_id: string[]
 }
 
 export interface IFilterBrandDocument

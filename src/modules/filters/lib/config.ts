@@ -3,11 +3,11 @@ import type { IConfigModule } from './config.types'
 const config: IConfigModule = {
   moduleRouteBaseURL: '/filters',
   moduleRouteItemIdURL: 'filter_id',
-  moduleRouteBrandURL: '/brands',
+  moduleRouteBrandURL: '/filters_brands',
   moduleRouteBrandItemIdURL: 'brand_id',
-  moduleRouteColorURL: '/colors',
+  moduleRouteColorURL: '/filters_colors',
   moduleRouteColorItemIdURL: 'color_id',
-  moduleRouteOptionURL: '/options',
+  moduleRouteOptionURL: '/filters_options',
   moduleRouteOptionItemIdURL: 'option_id',
 }
 

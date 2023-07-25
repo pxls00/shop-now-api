@@ -13,6 +13,10 @@ const FilterProducts = new Schema({
       required: true,
     },
   ],
+  key: {
+    type: String,
+    required: true,
+  },
   value: [
     {
       type: String,
