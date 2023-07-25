@@ -1,4 +1,5 @@
 import FilterOption from '../../models/options/filter-option.model'
+import { Types } from 'mongoose'
 
 import type {
   IFilterOptionDocument,
@@ -19,9 +20,10 @@ class FilterServices {
 
   public async getFilterOptionByCategoryId(
     id: string
-  ): Promise<IFilterOptionDocument | undefined | null> {
-    const filterOption = await FilterOption.findOne({
-      category_id: { $in: [id] },
+  ): Promise<IFilterOptionDocument[] | undefined | null> {
+    const categoryId = new Types.ObjectId(id)
+    const filterOption = await FilterOption.find({
+      category_id: { $in: [categoryId] },
     })
     return filterOption
   }
@@ -30,7 +32,7 @@ class FilterServices {
     fields: IFilterOptionBaseFields
   ): Promise<IFilterOptionDocument | undefined> {
     const isFilterColorExists = await FilterOption.findOne({
-      value: fields.value,
+      key: fields.key,
     })
     if (isFilterColorExists) {
       return undefined

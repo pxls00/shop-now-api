@@ -1,4 +1,5 @@
 import FilterBrand from '../../models/brands/filter-brands.model'
+import { Types } from 'mongoose'
 
 import type {
   IFilterBrandDocument,
@@ -17,7 +18,26 @@ class FilterServices {
     return filterBrand
   }
 
+  public async getFilterBrandByCategoryId(
+    id: string
+  ): Promise<IFilterBrandDocument[] | undefined | null> {
+    const categoryId = new Types.ObjectId(id)
+    const filterOption = await FilterBrand.find({
+      category_id: { $in: [categoryId] },
+    })
+
+    return filterOption
+  }
+
   public async createFilterBrand(fields: IFilterBrandBaseFields) {
+    const isFilterBrandExists = await FilterBrand.findOne({
+      key: fields.key,
+    })
+
+    if (isFilterBrandExists) {
+      return undefined
+    }
+
     const filterBrand = new FilterBrand(fields)
     await filterBrand.save()
     return filterBrand
@@ -29,7 +49,7 @@ class FilterServices {
   ) {
     const filterBrand = await FilterBrand.findByIdAndUpdate(
       id,
-      { name: updatePayload.name },
+      { name: updatePayload.name, category_id: updatePayload.category_id },
       { new: true }
     )
     if (!filterBrand) {

@@ -11,6 +11,12 @@ const FilterBrands = new Schema({
     type: String,
     required: true,
   },
+  category_id: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
 })
 
 const FilterBrand = model<IFilterBrandDocument>('filter_brands', FilterBrands)

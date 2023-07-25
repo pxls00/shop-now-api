@@ -9,6 +9,7 @@ export interface IFilterOptionBaseFields {
   name: string
   category_id: [string]
   value: string[]
+  key: string
 }
 
 export interface IFilterOptionDocument
