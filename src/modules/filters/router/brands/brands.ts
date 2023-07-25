@@ -1,29 +1,34 @@
 import { Router } from 'express'
 import config from '../../lib/config'
+import categoryConfig from '../../../category/lib/config'
 import FilterBrandsController from '../../controllers/brands/brands.controller'
-import filterFieldsValidator from '../../middlewares/validators/create-filter-color-and-brand'
+import {
+  checkKeyBodyRequest,
+  checkNameBodyRequest,
+} from '../../middlewares/validators/filter-option'
 
 const router = Router()
 
 const controller = new FilterBrandsController()
 
 // brands
+router.get(`${config.moduleRouteBrandURL}`, controller.getFilterBrandList)
 router.get(
-  `${config.moduleRouteBaseURL}/${config.moduleRouteBrandURL}`,
-  controller.getFilterBrandList
+  `${config.moduleRouteBrandURL}/:${config.moduleRouteItemIdURL}`,
+  controller.getFilterOptionByCategoryId
 )
 router.post(
-  `${config.moduleRouteBaseURL}/${config.moduleRouteBrandURL}`,
-  filterFieldsValidator(),
-  controller.getFilterBrandById
+  `${config.moduleRouteBrandURL}`,
+  [checkKeyBodyRequest(), checkNameBodyRequest()],
+  controller.createFilterBrand
 )
 router.patch(
-  `${config.moduleRouteBaseURL}/${config.moduleRouteBrandURL}/:${config.moduleRouteBrandItemIdURL}`,
-  filterFieldsValidator(),
+  `${config.moduleRouteBrandURL}/:${config.moduleRouteBrandItemIdURL}`,
+  [checkNameBodyRequest()],
   controller.updateFilterBrandById
 )
 router.delete(
-  `${config.moduleRouteBaseURL}/${config.moduleRouteBrandURL}/:${config.moduleRouteBrandItemIdURL}`,
+  `${config.moduleRouteBrandURL}/:${config.moduleRouteBrandItemIdURL}`,
   controller.deleteFilterBrandById
 )
 
