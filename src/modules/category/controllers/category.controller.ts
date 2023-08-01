@@ -1,6 +1,6 @@
 import { validationResult } from 'express-validator'
 import CategoryService from '../services/category.services'
-import generateKey from '../utils/generate-key'
+import generateKey from '../../../utils/generate-key'
 
 import type { Request, Response } from 'express'
 import type { IGetCategoryItemParam } from './category.types'
