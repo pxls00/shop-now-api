@@ -23,6 +23,11 @@
  *      tags:
  *      - Category
  *      summary: Create Category by Id
+ *      parameters:
+ *      - name: category_id
+ *        in: path
+ *        description: The id of the Category
+ *        required: true
  *      requestBody:
  *        required: true
  *        content:
@@ -46,6 +51,11 @@
  *      tags:
  *      - Category
  *      summary: Edit Category by Id
+ *      parameters:
+ *      - name: category_id
+ *        in: path
+ *        description: The id of the Category
+ *        required: true
  *      requestBody:
  *        required: true
  *        content:
@@ -69,6 +79,11 @@
  *      tags:
  *      - Category
  *      summary: Delete Category by Id
+ *      parameters:
+ *      - name: category_id
+ *        in: path
+ *        description: The id of the Category
+ *        required: true
  *      responses:
  *        201:
  *          description: Category deleted successfully
