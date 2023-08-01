@@ -19,10 +19,6 @@ const CategorySchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  has_filter: {
-    type: Boolean,
-    default: false,
-  },
 })
 
 const Category = model<ICategoryDocument>('category', CategorySchema)
