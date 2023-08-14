@@ -1,94 +1,123 @@
-// import { Schema, model } from 'mongoose'
-// import autopopulate from 'mongoose-autopopulate'
-// // import getArhimeticMeanNumber from '../utils/get-arhimetic-mean-number'
-// // import logger from '../../../utils/logger'
+import { Schema, model } from 'mongoose'
+import autopopulate from 'mongoose-autopopulate'
+// import getArhimeticMeanNumber from '../utils/get-arhimetic-mean-number'
+// import logger from '../../../utils/logger'
 
-// import type { ICompanyDocument } from './product.type'
+import type { IProductDocument } from './product.types'
 
-// const CompanySchema = new Schema({
-//   name: {
-//     required: true,
-//     type: String,
-//   },
-//   logo_img: {
-//     type: String,
-//     default: '',
-//   },
-//   description: {
-//     required: true,
-//     type: String,
-//   },
-//   created_at: {
-//     type: Date,
-//     default: Date.now,
-//   },
-//   orders_count: {
-//     type: Number,
-//     default: 0,
-//   },
-//   rate: [
-//     {
-//       user: {
-//         type: Schema.Types.ObjectId,
-//         ref: 'users',
-//         required: true,
-//         autopopulate: true,
-//       },
-//       comment: {
-//         type: String,
-//         default: '',
-//       },
-//       rate_number: {
-//         type: Number,
-//         required: true,
-//       },
-//       created_at: {
-//         type: Date,
-//         default: Date.now,
-//       },
-//     },
-//   ],
-//   rate_base: {
-//     type: Number,
-//     default: 5.0,
-//   },
-//   followers: [
-//     {
-//       type: Schema.Types.ObjectId,
-//       ref: 'users',
-//       required: true,
-//       autopopulate: true,
-//     },
-//   ],
-//   followers_count: {
-//     type: Number,
-//     default: 0,
-//   },
-//   banner_img: {
-//     type: String,
-//     default: '',
-//   },
-//   email: {
-//     type: String,
-//     required: true,
-//   },
-//   phone_number: {
-//     type: String,
-//     required: true,
-//   },
-// })
+const ProductSchema = new Schema(
+  {
+    name: {
+      required: true,
+      type: String,
+    },
+    price: {
+      required: true,
+      type: Number,
+    },
+    sale_price: {
+      type: Number,
+      default: -1,
+    },
+    brand: {
+      type: String,
+      required: true,
+    },
+    in_sale: {
+      type: Boolean,
+      default: false,
+    },
+    delivery_time_to_reseive_point: {
+      type: String,
+      required: true,
+    },
+    tag_names: {
+      type: Array,
+      required: true,
+    },
+    short_desc: {
+      type: String,
+      required: true,
+    },
+    full_desc: {
+      type: String,
+      required: true,
+    },
+    images: {
+      type: Array,
+      required: true,
+    },
+    amount_by_option: [
+      {
+        amount: {
+          required: true,
+          type: Number,
+        },
+        color: {
+          type: String,
+          default: '',
+        },
+        img: {
+          type: String,
+          default: '',
+        },
+        custom_options: {
+          type: Object,
+          default: {},
+        },
+      },
+    ],
+    sales_company: {
+      required: true,
+      type: Schema.Types.ObjectId,
+      ref: 'companies',
+    },
+    rate: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: 'users',
+          required: true,
+        },
+        comment: {
+          type: String,
+          default: '',
+        },
+        rate_number: {
+          type: Number,
+          required: true,
+        },
+        created_at: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
+    rate_base: {
+      type: Number,
+      default: 5.0,
+    },
+    created_at: {
+      type: Date,
+      default: Date.now,
+    },
+    orders_count: {
+      type: Number,
+      default: 0,
+    },
+    category_id: {
+      type: Array,
+      default: [],
+    },
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+)
 
-// CompanySchema.post('find', function (docs: ICompanyDocument[]) {
-//   for (const doc of docs) {
-//     // doc.followers_count = doc.followers?.length as number
-//     doc.followers = undefined
-//     // doc.rate_base = getArhimeticMeanNumber(doc.rate as IRateItem[])
-//     doc.rate = undefined
-//   }
-// })
+ProductSchema.plugin(autopopulate)
 
-// CompanySchema.plugin(autopopulate)
+const Product = model<IProductDocument>('products', ProductSchema)
 
-// const Company = model<ICompanyDocument>('products', CompanySchema)
-
-// export default Company
+export default Product
