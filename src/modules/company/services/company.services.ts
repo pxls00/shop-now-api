@@ -16,24 +16,25 @@ class CompanyServices {
     sortOption[query.sortOption.key] = query.sortOption.value
 
     const pagination = []
-  if (!isNaN(query.limit)) {
+    if (!isNaN(query.limit)) {
       pagination.push({ $limit: Number(query.limit) })
-    } 
+    }
     if (!isNaN(query.skip)) {
       pagination.push({ $skip: Number(query.skip) })
     }
 
     const aggregation = await Company.aggregate([
       { $match: { name: new RegExp(query.search, 'i') } },
-      { $addFields: { 
-          followers_count: { $size: "$followers" }, 
-          rate_base: { 
-            $ifNull: [{ $avg: "$rate.rate_base" }, 5]
-        }
-        } 
+      {
+        $addFields: {
+          followers_count: { $size: '$followers' },
+          rate_base: {
+            $ifNull: [{ $avg: '$rate.rate_base' }, 5],
+          },
+        },
       },
       { $sort: sortOption },
-      { $unset: ["followers", "rate"] },
+      { $unset: ['followers', 'rate'] },
       {
         $facet: {
           metadata: [{ $count: 'total' }],
@@ -42,7 +43,7 @@ class CompanyServices {
       },
     ])
     const count = aggregation[0].metadata[0].total
-    const result  = aggregation[0].data
+    const result = aggregation[0].data
     return {
       data: result,
       total_count: count,
