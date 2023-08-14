@@ -18,13 +18,23 @@ class CompanyServices {
     const pagination = []
     if (!isNaN(query.limit)) {
       pagination.push({ $limit: Number(query.limit) })
-    } else if (!isNaN(query.skip)) {
+    }
+    if (!isNaN(query.skip)) {
       pagination.push({ $skip: Number(query.skip) })
     }
 
     const aggregation = await Company.aggregate([
       { $match: { name: new RegExp(query.search, 'i') } },
+      {
+        $addFields: {
+          followers_count: { $size: '$followers' },
+          rate_base: {
+            $ifNull: [{ $avg: '$rate.rate_base' }, 5],
+          },
+        },
+      },
       { $sort: sortOption },
+      { $unset: ['followers', 'rate'] },
       {
         $facet: {
           metadata: [{ $count: 'total' }],

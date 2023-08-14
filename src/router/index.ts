@@ -8,6 +8,7 @@ import {
   ProductOptionRouter,
   ProductBrandRouter,
 } from '../modules/product-options'
+import { ProductRouter } from '../modules/product'
 import config from '../lib/default'
 
 const router = Router()
@@ -17,6 +18,7 @@ router.use(config.apiBaseURL, UserRouter)
 router.use(config.apiBaseURL, CategoryRouter)
 router.use(config.apiBaseURL, ProductOptionRouter)
 router.use(config.apiBaseURL, ProductBrandRouter)
+router.use(config.apiBaseURL, ProductRouter)
 
 // Swager page
 router.use(SwaggerDocs())
