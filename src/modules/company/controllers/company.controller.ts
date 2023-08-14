@@ -33,7 +33,7 @@ class CompanyController {
           value: -1,
         },
         by_popular: {
-          key: 'followers',
+          key: 'followers_count',
           value: -1,
         },
         by_rate: {
@@ -66,7 +66,7 @@ class CompanyController {
 
       const response = await services.getCompanyList(queryOption)
 
-      return res.status(200).json(response)
+      return res.status(200).send(response)
     } catch (error) {
       return res.json({ message: error })
     }
