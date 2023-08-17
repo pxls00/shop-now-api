@@ -12,7 +12,7 @@ export {
   ProductBrandModel,
   ProductOptionModel,
   ProductTagModel,
-  
+
   // Router
   ProductBrandRouter,
   ProductTagRouter,
