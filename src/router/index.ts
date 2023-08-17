@@ -7,6 +7,7 @@ import { CategoryRouter } from '../modules/category'
 import {
   ProductOptionRouter,
   ProductBrandRouter,
+  ProductTagRouter,
 } from '../modules/product-options'
 import { ProductRouter } from '../modules/product'
 import config from '../lib/default'
@@ -18,6 +19,7 @@ router.use(config.apiBaseURL, UserRouter)
 router.use(config.apiBaseURL, CategoryRouter)
 router.use(config.apiBaseURL, ProductOptionRouter)
 router.use(config.apiBaseURL, ProductBrandRouter)
+router.use(config.apiBaseURL, ProductTagRouter)
 router.use(config.apiBaseURL, ProductRouter)
 
 // Swager page
