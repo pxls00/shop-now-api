@@ -43,8 +43,8 @@ class ProductServices {
     // Query
     const queryFilter = {} as FilterQuery<TQueryGetOptions>
 
-    if(queryOption.search) {
-      queryFilter['tag_names'] = { $in: [new RegExp(queryOption.search, "i")] }
+    if (queryOption.search) {
+      queryFilter['tag_names'] = { $in: [new RegExp(queryOption.search, 'i')] }
     }
 
     // Check existable of filters
