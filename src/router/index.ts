@@ -9,6 +9,7 @@ import {
   ProductBrandRouter,
   ProductTagRouter,
 } from '../modules/product-options'
+import { ProductSearchTagsRouter } from '../modules/saeach-systems'
 import { ProductRouter } from '../modules/product'
 import config from '../lib/default'
 
@@ -21,6 +22,7 @@ router.use(config.apiBaseURL, ProductOptionRouter)
 router.use(config.apiBaseURL, ProductBrandRouter)
 router.use(config.apiBaseURL, ProductTagRouter)
 router.use(config.apiBaseURL, ProductRouter)
+router.use(config.apiBaseURL, ProductSearchTagsRouter)
 
 // Swager page
 router.use(SwaggerDocs())
