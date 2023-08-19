@@ -24,7 +24,11 @@ class CompanyServices {
     }
 
     const aggregation = await Company.aggregate([
-      { $match: { name: new RegExp(query.search, 'i') } },
+      { 
+        $match: { 
+          tag_names: { $regex: new RegExp(query.search, 'i') }
+        }
+      },
       {
         $addFields: {
           followers_count: { $size: '$followers' },
