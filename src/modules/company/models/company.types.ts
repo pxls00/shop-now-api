@@ -11,6 +11,7 @@ export interface ICompanyFieldsBase {
   email: string
   phone_number: string
   description: string
+  tag_names: string[]
 }
 
 export interface IRateItem {

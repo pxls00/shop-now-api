@@ -20,6 +20,10 @@ const CompanySchema = new Schema(
       required: true,
       type: String,
     },
+    tag_names: {
+      type: Array,
+      required: true,
+    },
     created_at: {
       type: Date,
       default: Date.now,

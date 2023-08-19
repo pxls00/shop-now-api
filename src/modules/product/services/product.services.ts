@@ -15,8 +15,6 @@ import type {
 } from '../controllers/product.types'
 import type {
   TQueryGetOptions,
-  IQueryGetOptionCustom,
-  IQueryGetOption,
 } from './product.types'
 
 class ProductServices {
@@ -26,7 +24,7 @@ class ProductServices {
     'logo_img',
   ]
 
-  public async getProductList(queryOption: IQueryOptions): Promise<any> {
+  public async getProductList(queryOption: IQueryOptions): Promise<IGetProductListRes> {
     // Pagination
     const pagination = []
     if (!isNaN(queryOption.limit)) {
