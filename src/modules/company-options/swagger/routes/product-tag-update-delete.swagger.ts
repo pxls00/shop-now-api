@@ -3,36 +3,36 @@
  *  /api/product_tags/{tag_id}:
  *    patch:
  *      tags:
- *      - Product Options
- *      summary: Edit Product Tag by Id
+ *      - Company Options
+ *      summary: Edit Company Tag by Id
  *      parameters:
  *      - name: tag_id
  *        in: path
- *        description: The id of the category for sort tags
+ *        description: The id of tag
  *        required: true
  *      requestBody:
  *        required: true
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/CreateProductTagFields'
+ *              $ref: '#/components/schemas/CreateCompanyTagFields'
  *      responses:
  *        201:
  *          description: Success
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/ProductTag'
+ *                $ref: '#/components/schemas/CompanyTag'
  *        409:
  *          description: Conflict
  *        400:
  *          description: Bad Request
  *        404:
- *          description: Product Tag not found
+ *          description: Company Tag not found
  *    delete:
  *      tags:
- *      - Product Options
- *      summary: Delete Product Tag by Id
+ *      - Company Options
+ *      summary: Delete Company Tag by Id
  *      parameters:
  *      - name: tag_id
  *        in: path
@@ -40,9 +40,9 @@
  *        required: true
  *      responses:
  *        201:
- *          description: Product Tag deleted successfully
+ *          description: Company Tag deleted successfully
  *        400:
  *          description: Bad Request
  *        404:
- *          description: Product Tag not found
+ *          description: Company Tag not found
  */

@@ -1,10 +1,10 @@
 /**
  *  @openapi
- *  /api/product_tags:
+ *  /api/company_tags:
  *    get:
  *      tags:
- *      - Product Options
- *      summary: Get Product tag list
+ *      - Company Options
+ *      summary: Get Company tag list
  *      responses:
  *        200:
  *          description: Success
@@ -13,24 +13,24 @@
  *               schema:
  *                type: 'array'
  *                items:
- *                  $ref: '#/components/schemas/ProductTag'
+ *                  $ref: '#/components/schemas/CompanyTag'
  *    post:
  *      tags:
- *      - Product Options
- *      summary: Create Product Tag
+ *      - Company Options
+ *      summary: Create Company Tag
  *      requestBody:
  *        required: true
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/CreateProductTagFields'
+ *              $ref: '#/components/schemas/CreateCompanyTagFields'
  *      responses:
  *        201:
  *          description: Success
  *          content:
  *            application/json:
  *               schema:
- *                 $ref: '#/components/schemas/ProductTag'
+ *                 $ref: '#/components/schemas/CompanyTag'
  *        409:
  *          description: Conflict
  *        400:
