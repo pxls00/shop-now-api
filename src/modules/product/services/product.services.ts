@@ -13,9 +13,7 @@ import type {
   ISortOptionPipe,
   IGetProductListRes,
 } from '../controllers/product.types'
-import type {
-  TQueryGetOptions,
-} from './product.types'
+import type { TQueryGetOptions } from './product.types'
 
 class ProductServices {
   private removableFields: Array<keyof IProductSalesCompany> = [
@@ -24,7 +22,9 @@ class ProductServices {
     'logo_img',
   ]
 
-  public async getProductList(queryOption: IQueryOptions): Promise<IGetProductListRes> {
+  public async getProductList(
+    queryOption: IQueryOptions
+  ): Promise<IGetProductListRes> {
     // Pagination
     const pagination = []
     if (!isNaN(queryOption.limit)) {

@@ -129,7 +129,7 @@ class CompanyController {
         email,
         description,
         phone_number,
-        tag_names
+        tag_names,
       }
 
       const createdCompany = await services.createCompany(companyFields)
