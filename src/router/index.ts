@@ -9,7 +9,10 @@ import {
   ProductBrandRouter,
   ProductTagRouter,
 } from '../modules/product-options'
-import { ProductSearchTagsRouter } from '../modules/saeach-systems'
+import {
+  ProductSearchTagsRouter,
+  CompanySearchTagsRouter,
+} from '../modules/search-systems'
 import { ProductRouter } from '../modules/product'
 import { CompanyTagRouter } from '../modules/company-options'
 import config from '../lib/default'
@@ -24,6 +27,7 @@ router.use(config.apiBaseURL, ProductBrandRouter)
 router.use(config.apiBaseURL, ProductTagRouter)
 router.use(config.apiBaseURL, ProductRouter)
 router.use(config.apiBaseURL, ProductSearchTagsRouter)
+router.use(config.apiBaseURL, CompanySearchTagsRouter)
 router.use(config.apiBaseURL, CompanyTagRouter)
 
 // Swager page

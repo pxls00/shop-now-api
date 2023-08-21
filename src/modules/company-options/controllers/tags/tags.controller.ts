@@ -44,7 +44,7 @@ class CompanyTagsController {
       const { name } = req.body as ICompanyTagBaseFields
 
       const newCompanyTag = await companyTagServices.createCompanyTag({
-        name
+        name,
       })
       if (!newCompanyTag) {
         return res
