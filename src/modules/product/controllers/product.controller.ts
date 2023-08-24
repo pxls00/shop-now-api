@@ -27,6 +27,7 @@ class ProductController {
         fl_color,
         fl_category_id,
         fl_custom_options,
+        fl_in_sale,
         by_added_recenly,
         by_cheaper,
         by_more_expensive,
@@ -39,6 +40,7 @@ class ProductController {
         fl_color,
         fl_custom_options,
         fl_price,
+        fl_in_sale
       }
 
       const sortOptions: TSortOptions = {
@@ -128,6 +130,44 @@ class ProductController {
       return res.status(201).json(newProduct)
     } catch (error) {
       return res.status(500).json({ error })
+    }
+  }
+
+  public async updateProduct(req: Request, res: Response) {
+    try {
+      const errors = validationResult(req)
+
+      if (!errors.isEmpty()) {
+        return res.status(400).json(errors)
+      }
+
+      const { product_id } = req.params as unknown as IGetProductItemParam
+
+      const body = req.body as IProducFieldsBase
+      const newProduct = await services.updateProduct(body, product_id)
+
+      if (!newProduct) {
+        return res.status(404).json({ message: 'Product not found' })
+      }
+
+      return res.status(201).json(newProduct)
+    } catch (error) {
+      return res.status(500).json({ error })
+    }
+  }
+
+  public async deleteProductById(req: Request, res: Response) {
+    try {
+      const { product_id } = req.params as unknown as IGetProductItemParam
+      const response = await services.deleteProduct(product_id)
+
+      if (!response) {
+        return res.status(404).json({ message: 'Product not found' })
+      }
+
+      return res.status(200).json('Product deleted successfuly')
+    } catch (error) {
+      return res.status(404).json({ message: error })
     }
   }
 }

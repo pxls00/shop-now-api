@@ -41,7 +41,7 @@ const ProductSchema = new Schema(
     },
     full_desc: {
       type: String,
-      required: true,
+      required: false,
     },
     images: {
       type: Array,
@@ -71,28 +71,9 @@ const ProductSchema = new Schema(
       required: true,
       type: Schema.Types.ObjectId,
       ref: 'companies',
+      autopopulate: true
     },
-    rate: [
-      {
-        user: {
-          type: Schema.Types.ObjectId,
-          ref: 'users',
-          required: true,
-        },
-        comment: {
-          type: String,
-          default: '',
-        },
-        rate_number: {
-          type: Number,
-          required: true,
-        },
-        created_at: {
-          type: Date,
-          default: Date.now,
-        },
-      },
-    ],
+    rate: [String],
     rate_base: {
       type: Number,
       default: 5.0,
@@ -115,6 +96,8 @@ const ProductSchema = new Schema(
     toObject: { virtuals: true },
   }
 )
+
+
 
 ProductSchema.plugin(autopopulate)
 

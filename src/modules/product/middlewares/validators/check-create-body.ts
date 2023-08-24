@@ -12,6 +12,7 @@ export function checkFieldLengthBodyRequest(
       max || 255
     } characters`
   )
+    .optional()
     .isString()
     .isLength({ min, max })
 }
@@ -19,11 +20,14 @@ export function checkFieldLengthBodyRequest(
 export function checkFieldIsNumbericBodyRequest(
   field: string
 ): ValidationChain {
-  return check(field, `${field} of the product must be number`).isNumeric()
+  return check(field, `${field} of the product must be number`)
+    .optional()
+    .isNumeric()
 }
 
 export function checkTagNamesBodyRequest(): ValidationChain {
   return check('tag_names')
+    .optional()
     .isArray()
     .withMessage('Items must be an array')
     .custom((tag_names) => {
@@ -38,6 +42,7 @@ export function checkTagNamesBodyRequest(): ValidationChain {
 
 export function checkAmountByOptionFieldBodyRequest(): ValidationChain {
   return check('amount_by_option')
+    .optional()
     .isArray()
     .withMessage('Items must be an array')
     .custom((amount_by_option) => {
@@ -70,9 +75,13 @@ export function checkAmountByOptionFieldBodyRequest(): ValidationChain {
 }
 
 export function checkFieldIsArrayRequest(field: string): ValidationChain {
-  return check(field, `${field} of the product must be an array`).isArray()
+  return check(field, `${field} of the product must be an array`)
+    .optional()
+    .isArray()
 }
 
 export function checkFieldIsBooleanRequest(field: string): ValidationChain {
-  return check(field, `${field} of the product must be an boolean`).isBoolean()
+  return check(field, `${field} of the product must be an boolean`)
+    .optional()
+    .isBoolean()
 }
