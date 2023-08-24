@@ -45,9 +45,9 @@ export interface IProducFieldsBase {
   tag_names: string[]
   short_desc: string
   category_id: string[]
-  full_desc: string
+  full_desc?: string
   images: string[]
-  amount_by_option: IProductAmountByOption[]
+  amount_by_option?: IProductAmountByOption[]
   brand: IProductOptionBrand
 }
 
@@ -62,7 +62,7 @@ export interface IProductDocument extends IProducFieldsBase, Document {
   sales_company: ICompanyDocument
   created_at: Date
   orders_count: number
-  rate?: Array<IRateItem>
+  rate?: Array<string>
   rate_base: number
   category: string[]
   amount: number
