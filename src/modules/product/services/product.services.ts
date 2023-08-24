@@ -16,11 +16,13 @@ import type {
 import type { TQueryGetOptions } from './product.types'
 
 class ProductServices {
-  private removableFields: Array<keyof IProductSalesCompany> = [
-    '_id',
+  private removableFieldsOfCompany: Array<keyof IProductSalesCompany> = [
     'rate_base',
-    'logo_img',
+    '_id',
+    'name',
+    'logo_img'    
   ]
+  private removableFields: Array<keyof IProductDocument> = ['rate', 'amount_by_option', 'tag_names', 'id']
 
   public async getProductList(
     queryOption: IQueryOptions
@@ -72,6 +74,10 @@ class ProductServices {
       if (itemValue && key === 'fl_brand') {
         queryFilter['brand'] = { $in: [queryOption.filter_options.fl_brand] }
       }
+
+      if (itemValue && key === 'fl_in_sale') {
+        queryFilter['in_sale'] = { $in: queryOption.filter_options.fl_in_sale }
+      }
     }
 
     // Get paginated data
@@ -87,7 +93,7 @@ class ProductServices {
       )
       const filteredWithCustomOptionsData = productsFitlered.filter(
         (item: IProductDocument) => {
-          if (item.amount_by_option.length) {
+          if (item.amount_by_option && item.amount_by_option.length) {
             return item.amount_by_option.some(
               (amountItem: IProductAmountByOption) => {
                 const customOptionKeys = Object.keys(customOptions)
@@ -116,8 +122,9 @@ class ProductServices {
           return false
         }
       )
+      const removedFields = removeFieldsFromData(filteredWithCustomOptionsData, this.removableFieldsOfCompany, this.removableFields)
       return {
-        data: filteredWithCustomOptionsData,
+        data: removedFields,
         total_count: filteredWithCustomOptionsData.length,
         has_next_page:
           filteredWithCustomOptionsData.length >
@@ -127,8 +134,9 @@ class ProductServices {
       // Get total count
       const totalCount = await Product.countDocuments(queryFilter)
 
+      const removedFields = removeFieldsFromData(productsFitlered, this.removableFieldsOfCompany, this.removableFields)
       return {
-        data: productsFitlered,
+        data: removedFields,
         total_count: totalCount,
         has_next_page:
           totalCount > Number(queryOption.skip) + Number(queryOption.limit),
@@ -138,13 +146,14 @@ class ProductServices {
 
   public async getProductById(
     id: string
-  ): Promise<IProductDocument | undefined | null> {
+  ): Promise<any> {
     const product = (await Product.findById(id)) as IProductDocument
     const clearedProducts = removeFieldsFromData(
       [product],
-      this.removableFields
+      this.removableFieldsOfCompany, 
+      []
     )
-    return clearedProducts[-1]
+    return clearedProducts
   }
 
   // public async getProductByField() {}
@@ -156,16 +165,40 @@ class ProductServices {
     ;(await product.save()) as Document<IProductDocument>
     return product
   }
+
+  public async updateProduct(fields: IProducFieldsBase, id: string): Promise<IProductDocument | undefined | null> {
+    const newProduct = await Product.findByIdAndUpdate(id, fields, { new: true })
+    return newProduct
+  }
+
+  public async deleteProduct(id: string): Promise<undefined | null | number> {
+    const product = await Product.findById(id)
+
+    if(!product) {
+      return undefined
+    }else {
+      await Product.findByIdAndDelete(id)
+      return 1
+    }
+  }
 }
 
 function removeFieldsFromData(
   data: IProductDocument[],
-  fields: Array<keyof IProductSalesCompany>
+  fieldsOfCompany: Array<keyof IProductSalesCompany>,
+  fields: Array<keyof IProductDocument>
 ): IProductDocument[] {
   const compiedData = data.map((item: IProductDocument) => {
     const newItem = { ...item.toObject() } as IProductDocument
 
-    newItem.sales_company = fields.reduce((acc: any, field) => {
+    newItem.rate = ["asdasdasd"]
+    // delete newItem.amount_by_option
+    for(let i = 0; i < fields.length; i++) {
+      const fieldItem = fields[i] as keyof IProductDocument
+      delete newItem[fieldItem]
+    }
+
+    newItem.sales_company = fieldsOfCompany.reduce((acc: any, field) => {
       acc[field] = item.sales_company[field]
       return acc
     }, {})
