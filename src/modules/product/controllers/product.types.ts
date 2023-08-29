@@ -58,7 +58,7 @@ export interface IProductFilterOptionsQuery {
   fl_price: string
   fl_color: string
   fl_brand: string
-  fl_custom_options: IProductAmountCustomOption,
+  fl_custom_options: IProductAmountCustomOption
   fl_in_sale: boolean
 }
 

@@ -40,7 +40,7 @@ class ProductController {
         fl_color,
         fl_custom_options,
         fl_price,
-        fl_in_sale
+        fl_in_sale,
       }
 
       const sortOptions: TSortOptions = {
