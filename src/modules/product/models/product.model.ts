@@ -71,7 +71,7 @@ const ProductSchema = new Schema(
       required: true,
       type: Schema.Types.ObjectId,
       ref: 'companies',
-      autopopulate: true
+      autopopulate: true,
     },
     rate: [String],
     rate_base: {
@@ -96,8 +96,6 @@ const ProductSchema = new Schema(
     toObject: { virtuals: true },
   }
 )
-
-
 
 ProductSchema.plugin(autopopulate)
 
