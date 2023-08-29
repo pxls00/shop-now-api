@@ -66,7 +66,7 @@
  *          type: boolean
  *      - name: fl_custom_options
  *        in: query
- *        description: Get Products by custom filter options 
+ *        description: Get Products by custom filter options
  *        required: false
  *        schema:
  *          type: object

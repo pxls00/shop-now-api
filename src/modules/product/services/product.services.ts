@@ -20,9 +20,14 @@ class ProductServices {
     'rate_base',
     '_id',
     'name',
-    'logo_img'    
+    'logo_img',
   ]
-  private removableFields: Array<keyof IProductDocument> = ['rate', 'amount_by_option', 'tag_names', 'id']
+  private removableFields: Array<keyof IProductDocument> = [
+    'rate',
+    'amount_by_option',
+    'tag_names',
+    'id',
+  ]
 
   public async getProductList(
     queryOption: IQueryOptions
@@ -122,7 +127,11 @@ class ProductServices {
           return false
         }
       )
-      const removedFields = removeFieldsFromData(filteredWithCustomOptionsData, this.removableFieldsOfCompany, this.removableFields)
+      const removedFields = removeFieldsFromData(
+        filteredWithCustomOptionsData,
+        this.removableFieldsOfCompany,
+        this.removableFields
+      )
       return {
         data: removedFields,
         total_count: filteredWithCustomOptionsData.length,
@@ -134,7 +143,11 @@ class ProductServices {
       // Get total count
       const totalCount = await Product.countDocuments(queryFilter)
 
-      const removedFields = removeFieldsFromData(productsFitlered, this.removableFieldsOfCompany, this.removableFields)
+      const removedFields = removeFieldsFromData(
+        productsFitlered,
+        this.removableFieldsOfCompany,
+        this.removableFields
+      )
       return {
         data: removedFields,
         total_count: totalCount,
@@ -144,13 +157,11 @@ class ProductServices {
     }
   }
 
-  public async getProductById(
-    id: string
-  ): Promise<any> {
+  public async getProductById(id: string): Promise<any> {
     const product = (await Product.findById(id)) as IProductDocument
     const clearedProducts = removeFieldsFromData(
       [product],
-      this.removableFieldsOfCompany, 
+      this.removableFieldsOfCompany,
       []
     )
     return clearedProducts
@@ -166,17 +177,22 @@ class ProductServices {
     return product
   }
 
-  public async updateProduct(fields: IProducFieldsBase, id: string): Promise<IProductDocument | undefined | null> {
-    const newProduct = await Product.findByIdAndUpdate(id, fields, { new: true })
+  public async updateProduct(
+    fields: IProducFieldsBase,
+    id: string
+  ): Promise<IProductDocument | undefined | null> {
+    const newProduct = await Product.findByIdAndUpdate(id, fields, {
+      new: true,
+    })
     return newProduct
   }
 
   public async deleteProduct(id: string): Promise<undefined | null | number> {
     const product = await Product.findById(id)
 
-    if(!product) {
+    if (!product) {
       return undefined
-    }else {
+    } else {
       await Product.findByIdAndDelete(id)
       return 1
     }
@@ -191,9 +207,9 @@ function removeFieldsFromData(
   const compiedData = data.map((item: IProductDocument) => {
     const newItem = { ...item.toObject() } as IProductDocument
 
-    newItem.rate = ["asdasdasd"]
+    newItem.rate = ['asdasdasd']
     // delete newItem.amount_by_option
-    for(let i = 0; i < fields.length; i++) {
+    for (let i = 0; i < fields.length; i++) {
       const fieldItem = fields[i] as keyof IProductDocument
       delete newItem[fieldItem]
     }
