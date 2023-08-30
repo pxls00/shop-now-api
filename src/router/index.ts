@@ -15,9 +15,12 @@ import {
 } from '../modules/search-systems'
 import { ProductRouter } from '../modules/product'
 import { CompanyTagRouter } from '../modules/company-options'
+import { WishRouter } from '../modules/wishes'
+
 import config from '../lib/default'
 
 const router = Router()
+
 router.use(config.apiBaseURL, CompanyRouter)
 router.use(config.apiBaseURL, AuthRouter)
 router.use(config.apiBaseURL, UserRouter)
@@ -29,6 +32,7 @@ router.use(config.apiBaseURL, ProductRouter)
 router.use(config.apiBaseURL, ProductSearchTagsRouter)
 router.use(config.apiBaseURL, CompanySearchTagsRouter)
 router.use(config.apiBaseURL, CompanyTagRouter)
+router.use(config.apiBaseURL, WishRouter)
 
 // Swager page
 router.use(SwaggerDocs())

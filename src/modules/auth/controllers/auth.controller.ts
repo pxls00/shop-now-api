@@ -1,5 +1,7 @@
 import { validationResult } from 'express-validator'
 import { UserServices } from '../../user/index'
+import { WishServices } from '../../wishes'
+
 import AuthServices from '../services/auth.services'
 
 import type { Request, Response } from 'express'
@@ -11,6 +13,8 @@ import { comparePassword } from '../../../utils/hashPassword'
 
 const userServices = UserServices
 const authServices = AuthServices
+const wishServices = WishServices
+
 class AuthController {
   public async register(req: Request, res: Response) {
     try {
@@ -41,6 +45,7 @@ class AuthController {
       }
 
       const createdUser = await userServices.createUser(userFields)
+      
 
       const tokenPayload: IGenerateAccessTokenPayload = {
         id: createdUser.id,
@@ -49,6 +54,8 @@ class AuthController {
       }
 
       const authenticatedUser = await authServices.setTokenUser(tokenPayload)
+
+      await wishServices.createWish(createdUser.id)
 
       return res.status(201).json(authenticatedUser)
     } catch (error) {
