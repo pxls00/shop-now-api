@@ -1,3 +1,6 @@
 import ProductRouter from './router'
 
-export { ProductRouter }
+// Services
+import ProductServices from './services/product.services'
+
+export { ProductRouter, ProductServices }
