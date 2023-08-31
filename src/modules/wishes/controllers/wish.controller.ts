@@ -100,7 +100,7 @@ class WishController {
 
       const {
         wish_id
-      } = req.query as unknown as IGetWishItemParam
+      } = req.params as unknown as IGetWishItemParam
 
       const newWish = await services.addProductToWishes(req.user.id as string, wish_id) as undefined | { message: string }
 
@@ -108,7 +108,7 @@ class WishController {
         return res.status(404).json(newWish)        
       }
 
-      return res.status(201).json({message: "Successfuly added"})
+      return res.status(201).json(newWish)
     } catch (error) {
       return res.status(500).json({ error })
     }
@@ -122,7 +122,7 @@ class WishController {
 
       const {
         wish_id
-      } = req.query as unknown as IGetWishItemParam
+      } = req.params as unknown as IGetWishItemParam
 
       const newWish = await services.removeProductFromWishes(req.user.id as string, wish_id) as undefined | { message: string }
 

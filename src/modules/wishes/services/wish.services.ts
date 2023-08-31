@@ -102,17 +102,16 @@ class WishServices {
     if(!wish) {
       return {message: "User is not defined"}
     } else {
-      const product = await productServices.getProductById(idOfProduct)
       const isExistProduct = wish.wishes.find(item => item._id.toString() === idOfProduct.toString())
       
-      if(!product) {
-        return {message: "Product is not defined"} 
-      } else if(isExistProduct) {
+      if(isExistProduct) {
         return {message: "Product already exists"} 
       } else {
-        wish.wishes.push(product)
+        wish.wishes.push(idOfProduct as any)
 
         await wish.save()
+
+        return {message: "Product added successfuly"}
       }
     }
   }
