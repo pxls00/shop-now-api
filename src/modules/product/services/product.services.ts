@@ -157,14 +157,14 @@ class ProductServices {
     }
   }
 
-  public async getProductById(id: string): Promise<any> {
+  public async getProductById(id: string): Promise<IProductDocument> {
     const product = (await Product.findById(id)) as IProductDocument
     const clearedProducts = removeFieldsFromData(
       [product],
       this.removableFieldsOfCompany,
       []
     )
-    return clearedProducts
+    return clearedProducts[clearedProducts.length - 1]
   }
 
   // public async getProductByField() {}
