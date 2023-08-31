@@ -15,7 +15,6 @@ const Wishes = new Schema(
     },
     wishes: [
       {
-        required: true,
         type: Schema.Types.ObjectId,
         ref: 'products',
         autopopulate: true,
