@@ -4,13 +4,14 @@ import type { Request, Response } from 'express'
 import type { IWishDocument } from '../models/wish.types'
 import type { IRequestAuthenticated } from '../../../types/index.types'
 
+
 import type {
   IGetWishItemParam,
   IQueryOptions,
   IGetWishListQuery,
   ISortOption,
   TSortOptions,
-  IGetWishListRes,
+  IGetWishListRes
 } from './wish.types'
 
 const services = WishService
@@ -26,7 +27,7 @@ class WishController {
         skip,
         limit,
         search,
-        by_added_recently,
+        by_added_recenly,
         by_cheaper,
         by_more_expensive,
         by_order_count,
@@ -34,7 +35,7 @@ class WishController {
       } = req.query as unknown as IGetWishListQuery
 
       const sortOptions: TSortOptions = {
-        by_added_recently: {
+        by_added_recenly: {
           key: 'created_at',
           value: -1,
         },
@@ -66,8 +67,8 @@ class WishController {
         sortOption = sortOptions['by_more_expensive']
       } else if (by_cheaper) {
         sortOption = sortOptions['by_cheaper']
-      } else if (by_added_recently) {
-        sortOption = sortOptions['by_added_recently']
+      } else if (by_added_recenly) {
+        sortOption = sortOptions['by_added_recenly']
       }
 
       const queryOption = {
@@ -83,10 +84,7 @@ class WishController {
         queryOption.limit = 0
       }
 
-      const response = await services.getWishList(
-        req.user.id as string,
-        queryOption
-      )
+      const response = await services.getWishList(req.user.id as string, queryOption)
 
       return res.status(200).send(response)
     } catch (error) {
@@ -100,15 +98,14 @@ class WishController {
         return res.status(403).json({ message: 'User unauthorized' })
       }
 
-      const { wish_id } = req.params as unknown as IGetWishItemParam
-
-      const newWish = (await services.addProductToWishes(
-        req.user.id as string,
+      const {
         wish_id
-      )) as undefined | { message: string }
+      } = req.params as unknown as IGetWishItemParam
 
-      if (newWish && (newWish['message'] as unknown as { message: string })) {
-        return res.status(404).json(newWish)
+      const newWish = await services.addProductToWishes(req.user.id as string, wish_id) as undefined | { message: string }
+
+      if(newWish && newWish['message'] as unknown as { message: string }) {
+        return res.status(404).json(newWish)        
       }
 
       return res.status(201).json(newWish)
@@ -117,27 +114,23 @@ class WishController {
     }
   }
 
-  public async removeProductFromWishes(
-    req: IRequestAuthenticated,
-    res: Response
-  ) {
+  public async removeProductFromWishes(req: IRequestAuthenticated, res: Response) {
     try {
       if (!req.user) {
         return res.status(403).json({ message: 'User unauthorized' })
       }
 
-      const { wish_id } = req.params as unknown as IGetWishItemParam
-
-      const newWish = (await services.removeProductFromWishes(
-        req.user.id as string,
+      const {
         wish_id
-      )) as undefined | { message: string }
+      } = req.params as unknown as IGetWishItemParam
 
-      if (newWish && (newWish['message'] as unknown as { message: string })) {
-        return res.status(404).json(newWish)
+      const newWish = await services.removeProductFromWishes(req.user.id as string, wish_id) as undefined | { message: string }
+
+      if(newWish && newWish['message'] as unknown as { message: string }) {
+        return res.status(404).json(newWish)        
       }
 
-      return res.status(201).json({ message: 'Successfuly removed' })
+      return res.status(201).json({message: "Successfuly removed"})
     } catch (error) {
       return res.status(404).json({ message: error })
     }

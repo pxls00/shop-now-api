@@ -45,6 +45,7 @@ class AuthController {
       }
 
       const createdUser = await userServices.createUser(userFields)
+      
 
       const tokenPayload: IGenerateAccessTokenPayload = {
         id: createdUser.id,
