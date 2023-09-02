@@ -101,7 +101,11 @@ class WishServices {
       queryOption.skip + queryOption.limit
     )
 
-    const removedFields = removeFieldsFromData(wishList.wishes, this.removableFieldsOfCompany, this.removableFields)
+    const removedFields = removeFieldsFromData(
+      wishList.wishes,
+      this.removableFieldsOfCompany,
+      this.removableFields
+    )
 
     return {
       data: removedFields,
