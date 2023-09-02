@@ -54,37 +54,25 @@ class WishServices {
     sortOption[queryOption.sort_options.key as TWishKey] =
       queryOption.sort_options.value
 
-    // Get paginated data
-    const wishes = await Wish.aggregate([
-      { $match: { user: new Types.ObjectId(id) } },
-      { $unwind: '$wishes' },
-      { $sort: sortOption },
-      { $skip: queryOption.skip },
-      { $limit: queryOption.limit },
-      { $group: {
-          _id: '$_id',
-          user: { $first: '$user' },
-          wishes: { $push: '$wishes' }
-        }
-      },
-      {
-        $facet: {
-          metadata: [{ $count: 'total' }],
-          data: pagination,
-        },
-      }
-    ])
 
-    const count = wishes[0].metadata[0].total as number
-    const result = wishes[0].data as IProductDocument[]
-
-    return {
-      data: result,
-      total_count: count,
-      has_next_page:
-        count > Number(queryOption.skip) + Number(queryOption.limit),
-    }
     
+    const query = {
+      user: id,
+      wishes: { $elemMatch: { name: {$regex: queryOption.search, $options: 'i'}} }
+    };
+
+    const wishListResult = await Wish.find(query)
+      .skip(Number(queryOption.skip))
+      .limit(Number(queryOption.limit))
+    //   .exec();
+    
+    // const wishListCount = await Wish.countDocuments(query).exec();
+    
+    return {
+      data: wishListResult as any,
+      total_count: wishListResult.length,
+      has_next_page: wishListResult.length > Number(queryOption.skip) + Number(queryOption.limit)
+    };
   }
 
   public async getUserWishById(id: string | number): Promise<IWishDocument | undefined | null> {
