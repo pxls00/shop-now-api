@@ -27,7 +27,7 @@ class WishController {
         skip,
         limit,
         search,
-        by_added_recenly,
+        by_added_recently,
         by_cheaper,
         by_more_expensive,
         by_order_count,
@@ -35,7 +35,7 @@ class WishController {
       } = req.query as unknown as IGetWishListQuery
 
       const sortOptions: TSortOptions = {
-        by_added_recenly: {
+        by_added_recently: {
           key: 'created_at',
           value: -1,
         },
@@ -67,8 +67,8 @@ class WishController {
         sortOption = sortOptions['by_more_expensive']
       } else if (by_cheaper) {
         sortOption = sortOptions['by_cheaper']
-      } else if (by_added_recenly) {
-        sortOption = sortOptions['by_added_recenly']
+      } else if (by_added_recently) {
+        sortOption = sortOptions['by_added_recently']
       }
 
       const queryOption = {
