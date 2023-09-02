@@ -6,7 +6,7 @@ export enum ESortOptions {
   by_rate,
   by_cheaper,
   by_more_expensive,
-  by_added_recently,
+  by_added_recenly,
 }
 
 // Types
@@ -44,8 +44,7 @@ export interface IQueryOptions extends IPaginationOptionsQuery {
 }
 
 export interface IGetWishListQuery
-  extends TSortOptionsQuery,
-    IPaginationOptionsQuery {}
+  extends TSortOptionsQuery, IPaginationOptionsQuery {}
 
 export interface IAddProductToWishBody {
   product_id: string

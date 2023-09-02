@@ -18,8 +18,8 @@ const Wishes = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'products',
         autopopulate: true,
-      },
-    ],
+      }
+    ]
   },
   {
     toJSON: { virtuals: true },

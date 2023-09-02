@@ -8,6 +8,6 @@ import type { IProductDocument } from '../../product/models/product.types'
 // Interfaces
 
 export interface IWishDocument extends Document {
-  user: IUserDocument
+  user: IUserDocument,
   wishes: IProductDocument[]
 }
