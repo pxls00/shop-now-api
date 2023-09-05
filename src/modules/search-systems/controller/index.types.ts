@@ -1,5 +1,3 @@
-import type { IProductTagDocument } from '../../product-options/models/tags/product-tag.types'
-
 // Interfaces
 export interface IPaginationOptionsQuery {
   skip: number
