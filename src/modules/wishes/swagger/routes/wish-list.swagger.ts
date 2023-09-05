@@ -4,7 +4,7 @@
  *    get:
  *      tags:
  *      - Wishes
- *      summary: Get wishes list of authorized user 
+ *      summary: Get wishes list of authorized user
  *      parameters:
  *      - name: sortOption
  *        in: query

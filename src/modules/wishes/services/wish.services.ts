@@ -1,10 +1,6 @@
 import Wish from '../models/wish.model'
-import { ProductServices } from '../../product'
-
-import { Types } from 'mongoose'
 
 import type { IWishDocument } from '../models/wish.types'
-import type { Document, FilterQuery } from 'mongoose'
 import type {
   IQueryOptions,
   TWishKey,
@@ -16,8 +12,6 @@ import type {
   IProductSalesCompany,
   IProductDocument,
 } from '../../product/models/product.types'
-
-const productServices = ProductServices
 
 class WishServices {
   private removableFieldsOfCompany: Array<keyof IProductSalesCompany> = [
