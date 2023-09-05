@@ -1,7 +1,6 @@
 import WishService from '../services/wish.services'
 
-import type { Request, Response } from 'express'
-import type { IWishDocument } from '../models/wish.types'
+import type { Response } from 'express'
 import type { IRequestAuthenticated } from '../../../types/index.types'
 
 
@@ -11,7 +10,6 @@ import type {
   IGetWishListQuery,
   ISortOption,
   TSortOptions,
-  IGetWishListRes
 } from './wish.types'
 
 const services = WishService
