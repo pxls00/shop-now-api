@@ -44,6 +44,6 @@ export default async function (
       return res.status(403).json('User unauthorized')
     }
   } catch (error) {
-    res.status(500).json({ message: error })
+    res.status(403).json('User unauthorized')
   }
 }
