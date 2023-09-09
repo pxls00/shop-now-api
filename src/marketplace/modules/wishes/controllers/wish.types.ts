@@ -44,7 +44,8 @@ export interface IQueryOptions extends IPaginationOptionsQuery {
 }
 
 export interface IGetWishListQuery
-  extends TSortOptionsQuery, IPaginationOptionsQuery {}
+  extends TSortOptionsQuery,
+    IPaginationOptionsQuery {}
 
 export interface IAddProductToWishBody {
   product_id: string
