@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/wishes:
+ * /api-marketplace/wishes:
  *    get:
  *      tags:
  *      - Wishes

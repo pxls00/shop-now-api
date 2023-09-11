@@ -1,4 +1,4 @@
-import type { IProductDocument } from '../../product/models/product.types'
+import type { IProductDocument } from '../../../../models/product/index.types'
 
 // Enums
 export enum ESortOptions {

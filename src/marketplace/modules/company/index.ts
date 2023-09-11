@@ -1,5 +1,7 @@
+import CompanyModel from '../../../models/company/index.model'
+import { UserServices } from '../user'
+
 import CompanyRouter from './router/index'
 import CompanyConfig from './lib/config'
-import CompanyModel from './models/company.model'
 
-export { CompanyRouter, CompanyConfig, CompanyModel }
+export { CompanyRouter, CompanyConfig, CompanyModel, UserServices }

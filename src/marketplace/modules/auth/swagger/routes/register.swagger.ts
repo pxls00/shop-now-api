@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/auth/register:
+ * /api-marketplace/auth/register:
  *    post:
  *      tags:
  *      - Auth

@@ -4,7 +4,7 @@ import generateKey from '../../../../../utils/generate-key'
 
 import type { Request, Response } from 'express'
 import type { IGetProductOptionItemParam } from './options.types'
-import type { IProductOptionBaseFields } from '../../models/options/product-option.types'
+import type { IProductOptionBaseFields } from '../../../../../models/product-options/options/product-option.types'
 const productOptionsServices = optionsServices
 
 class ProductOptionsController {

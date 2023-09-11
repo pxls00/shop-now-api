@@ -1,11 +1,11 @@
-import { CompanyTagModel } from '../../../company-options'
+import { CompanyTagModel } from '../..'
 
 import type { FilterQuery } from 'mongoose'
 import type {
   IPaginationOptionsQuery,
   ISearchSystemTagsRes,
 } from '../../controller/index.types'
-import type { ICompanyTagDocument } from '../../../company-options/models/tags/company-tag.types'
+import type { ICompanyTagDocument } from '../../../../../models/company-tag/index.types'
 
 class SearchSystemCompanyService {
   public async getCompanyTagList(

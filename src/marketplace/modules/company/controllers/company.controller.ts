@@ -1,4 +1,4 @@
-import { validationResult } from 'express-validator'
+// import { validationResult } from 'express-validator'
 import CompanyService from '../services/company.services'
 
 import type { Request, Response } from 'express'
@@ -12,8 +12,8 @@ import type {
   IGetCompanyByIdRes,
   IGetCompanyListRes,
 } from '../services/company.types'
-import type { ICompanyFieldsBase } from '../models/company.types'
-import { UserServices } from '../../user'
+// import type { ICompanyFieldsBase } from '../models/company.types'
+import { UserServices } from '..'
 import type { IRequestAuthenticated } from '../../../types/index.types'
 
 const services = CompanyService
@@ -88,60 +88,60 @@ class CompanyController {
     }
   }
 
-  public async createCompany(req: Request, res: Response) {
-    try {
-      const errors = validationResult(req)
+  // public async createCompany(req: Request, res: Response) {
+  //   try {
+  //     const errors = validationResult(req)
 
-      if (!errors.isEmpty()) {
-        return res.status(400).json(errors)
-      }
+  //     if (!errors.isEmpty()) {
+  //       return res.status(400).json(errors)
+  //     }
 
-      const { name, email, description, phone_number, tag_names } =
-        req.body as ICompanyFieldsBase
+  //     const { name, email, description, phone_number, tag_names } =
+  //       req.body as ICompanyFieldsBase
 
-      const isCompanyExistsWithGivenEmail = await services.getCompanyByField({
-        email,
-      })
-      const isCompanyExistsWithGivenPhoneNumber =
-        await services.getCompanyByField({
-          phone_number,
-        })
+  //     const isCompanyExistsWithGivenEmail = await services.getCompanyByField({
+  //       email,
+  //     })
+  //     const isCompanyExistsWithGivenPhoneNumber =
+  //       await services.getCompanyByField({
+  //         phone_number,
+  //       })
 
-      if (
-        isCompanyExistsWithGivenEmail &&
-        Object.keys(isCompanyExistsWithGivenEmail).length
-      ) {
-        return res
-          .status(409)
-          .json({ message: 'Company with this email already exists' })
-      }
-      if (
-        isCompanyExistsWithGivenPhoneNumber &&
-        Object.keys(isCompanyExistsWithGivenPhoneNumber).length
-      ) {
-        return res
-          .status(409)
-          .json({ message: 'Company with this phone_number already exists' })
-      }
+  //     if (
+  //       isCompanyExistsWithGivenEmail &&
+  //       Object.keys(isCompanyExistsWithGivenEmail).length
+  //     ) {
+  //       return res
+  //         .status(409)
+  //         .json({ message: 'Company with this email already exists' })
+  //     }
+  //     if (
+  //       isCompanyExistsWithGivenPhoneNumber &&
+  //       Object.keys(isCompanyExistsWithGivenPhoneNumber).length
+  //     ) {
+  //       return res
+  //         .status(409)
+  //         .json({ message: 'Company with this phone_number already exists' })
+  //     }
 
-      const companyFields: ICompanyFieldsBase = {
-        name,
-        email,
-        description,
-        phone_number,
-        tag_names,
-      }
+  //     const companyFields: ICompanyFieldsBase = {
+  //       name,
+  //       email,
+  //       description,
+  //       phone_number,
+  //       tag_names,
+  //     }
 
-      const createdCompany = await services.createCompany(companyFields)
+  //     const createdCompany = await services.createCompany(companyFields)
 
-      return res.status(201).json({
-        message: 'Company has been created succesfully',
-        createdCompany,
-      })
-    } catch (error) {
-      return res.status(500).json({ error })
-    }
-  }
+  //     return res.status(201).json({
+  //       message: 'Company has been created succesfully',
+  //       createdCompany,
+  //     })
+  //   } catch (error) {
+  //     return res.status(500).json({ error })
+  //   }
+  // }
 
   public async followCompany(req: IRequestAuthenticated, res: Response) {
     try {

@@ -37,13 +37,17 @@ const options: Options = {
       },
     ],
   },
-  apis: ['./src/modules/*/swagger/*/*.swagger.ts'],
+  apis: ['./src/marketplace/modules/*/swagger/*/*.swagger.ts'],
 }
 
 const swaggerSpec = swaggerJsdoc(options)
 
 // Swagger page
-router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+router.use(
+  `${config.apiBaseDocsUrl}`,
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec)
+)
 
 // Docs in JSON format
 router.get('/docs.json', (req: Request, res: Response) => {
@@ -53,7 +57,7 @@ router.get('/docs.json', (req: Request, res: Response) => {
 
 function swaggerDocs() {
   log.info(
-    `Docs available at http://${config.host}:${config.port}${config.apiMarketplaceDocsURL}`
+    `Docs available at http://${config.host}:${config.port}${config.apiBaseDocsUrl}`
   )
 
   return router

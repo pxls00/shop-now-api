@@ -1,4 +1,4 @@
-import type { ICompanyDocument } from '../models/company.types'
+import type { ICompanyDocument } from '../../../../models/company/index.types'
 
 // Enums
 export enum ESortOptions {

@@ -19,8 +19,9 @@ import { WishRouter } from '../modules/wishes'
 
 const router = Router()
 
-router.use(CompanyRouter)
 router.use(AuthRouter)
+router.use(WishRouter)
+router.use(CompanyRouter)
 router.use(UserRouter)
 router.use(CategoryRouter)
 router.use(ProductOptionRouter)
@@ -30,7 +31,6 @@ router.use(ProductRouter)
 router.use(ProductSearchTagsRouter)
 router.use(CompanySearchTagsRouter)
 router.use(CompanyTagRouter)
-router.use(WishRouter)
 
 // Swager page
 router.use(SwaggerDocs())

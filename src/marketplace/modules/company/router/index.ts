@@ -3,7 +3,7 @@ import config from '../lib/config'
 import AuthMiddleware from '../../../middleware/auth-user/index.middleware'
 
 import CompanyController from '../controllers/company.controller'
-import createBodyValidator from '../middlewares/validators/create-company-body.validator'
+// import createBodyValidator from '../middlewares/validators/create-company-body.validator'
 
 const router = Router()
 
@@ -14,11 +14,11 @@ router.get(
   `${config.moduleRouteBaseURL}/:${config.moduleRouteItemIdURL}`,
   controller.getCompanyById
 )
-router.post(
-  `${config.moduleRouteBaseURL}`,
-  createBodyValidator(),
-  controller.createCompany
-)
+// router.post(
+//   `${config.moduleRouteBaseURL}`,
+//   createBodyValidator(),
+//   controller.createCompany
+// )
 router.post(
   `${config.moduleRouteBaseURL}/:${config.moduleRouteItemIdURL}${config.moduleRouteItemFollow}`,
   AuthMiddleware,

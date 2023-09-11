@@ -1,6 +1,6 @@
-import Wish from '../models/wish.model'
+import { WishModel } from '..'
 
-import type { IWishDocument } from '../models/wish.types'
+import type { IWishDocument } from '../../../../models/wish/index.types'
 import type {
   IQueryOptions,
   TWishKey,
@@ -11,7 +11,7 @@ import type {
 import type {
   IProductSalesCompany,
   IProductDocument,
-} from '../../product/models/product.types'
+} from '../../../../models/product/index.types'
 
 class WishServices {
   private removableFieldsOfCompany: Array<keyof IProductSalesCompany> = [
@@ -49,7 +49,7 @@ class WishServices {
     sortOption[queryOption.sort_options.key as TWishKey] =
       queryOption.sort_options.value
 
-    const wishList = await Wish.findOne({ user: id })
+    const wishList = await WishModel.findOne({ user: id })
 
     if (!wishList) return { message: 'To your wish list anything added yet' }
 
@@ -112,7 +112,7 @@ class WishServices {
   public async getUserWishById(
     id: string | number
   ): Promise<IWishDocument | undefined | null> {
-    return await Wish.findOne({ user: id })
+    return await WishModel.findOne({ user: id })
   }
 
   // public async getWishByField() {}
@@ -143,7 +143,7 @@ class WishServices {
   }
 
   public async createWish(id: string) {
-    const wish = new Wish({ user: id })
+    const wish = new WishModel({ user: id })
     await wish.save()
   }
 

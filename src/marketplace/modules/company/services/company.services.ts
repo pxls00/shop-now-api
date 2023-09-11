@@ -3,10 +3,10 @@ import type { ISortOption, IGetCompanyListRes } from './company.types'
 import type {
   ICompanyDocument,
   ICompanyFieldsBase,
-} from '../models/company.types'
-import type { Document, FilterQuery } from 'mongoose'
+} from '../../../../models/company/index.types'
+import type { FilterQuery } from 'mongoose'
 
-import Company from '../models/company.model'
+import { CompanyModel } from '..'
 
 class CompanyServices {
   public async getCompanyList(
@@ -23,7 +23,7 @@ class CompanyServices {
       pagination.push({ $skip: Number(query.skip) })
     }
 
-    const aggregation = await Company.aggregate([
+    const aggregation = await CompanyModel.aggregate([
       {
         $match: {
           tag_names: { $regex: new RegExp(query.search, 'i') },
@@ -58,23 +58,23 @@ class CompanyServices {
   public async getCompanyById(
     id: string
   ): Promise<ICompanyDocument | undefined | null> {
-    return await Company.findById(id)
+    return await CompanyModel.findById(id)
   }
 
   public async getCompanyByField(
     field: Partial<ICompanyFieldsBase>
   ): Promise<ICompanyDocument | undefined | null> {
-    return await Company.findOne(field)
+    return await CompanyModel.findOne(field)
   }
 
-  public async createCompany(
-    fields: ICompanyFieldsBase
-  ): Promise<ICompanyDocument> {
-    const newCompany = { ...fields } as ICompanyFieldsBase
-    const company = new Company(newCompany)
-    ;(await company.save()) as Document<ICompanyDocument>
-    return company
-  }
+  // public async createCompany(
+  //   fields: ICompanyFieldsBase
+  // ): Promise<ICompanyDocument> {
+  //   const newCompany = { ...fields } as ICompanyFieldsBase
+  //   const company = new CompanyModel(newCompany)
+  //   ;(await company.save()) as Document<ICompanyDocument>
+  //   return company
+  // }
 }
 
 export default new CompanyServices()

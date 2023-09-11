@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken'
 import config from '../../../../lib/default'
-import { UserServices } from '../../user/index'
+import { UserServices } from '..'
 
 import type { SignOptions } from 'jsonwebtoken'
 import type { IGenerateAccessTokenPayload } from './auth.types'
 import type {
   IUserTokenField,
   IUserDocument,
-} from '../../user/models/user.types'
+} from '../../../../models/user/index.types'
 
 const userServices = UserServices
 

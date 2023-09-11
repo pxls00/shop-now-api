@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/wishes/{wish_id}:
+ * /api-marketplace/wishes/{wish_id}:
  *    post:
  *      tags:
  *      - Wishes

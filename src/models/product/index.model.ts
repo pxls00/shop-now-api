@@ -3,7 +3,7 @@ import autopopulate from 'mongoose-autopopulate'
 // import getArhimeticMeanNumber from '../utils/get-arhimetic-mean-number'
 // import logger from '../../../utils/logger'
 
-import type { IProductDocument } from './product.types'
+import type { IProductDocument } from './index.types'
 
 const ProductSchema = new Schema(
   {

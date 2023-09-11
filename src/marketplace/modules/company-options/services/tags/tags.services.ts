@@ -1,24 +1,24 @@
-import CompanyTag from '../../models/tags/company-tag.model'
+import { CompanyTagModel } from '../..'
 
 import type {
   ICompanyTagDocument,
   ICompanyTagBaseFields,
-} from '../../models/tags/company-tag.types'
+} from '../../../../../models/company-tag/index.types'
 
 class CompanyTagService {
   public async getCompanyTagList(): Promise<ICompanyTagDocument[]> {
-    return await CompanyTag.find({})
+    return await CompanyTagModel.find({})
   }
 
   public async getCompanyTagById(
     id: string
   ): Promise<ICompanyTagDocument | undefined | null> {
-    const companyTag = await CompanyTag.findById(id)
+    const companyTag = await CompanyTagModel.findById(id)
     return companyTag
   }
 
   public async createCompanyTag(fields: ICompanyTagBaseFields) {
-    const isCompanyTagExists = await CompanyTag.findOne({
+    const isCompanyTagExists = await CompanyTagModel.findOne({
       name: fields.name,
     })
 
@@ -26,7 +26,7 @@ class CompanyTagService {
       return undefined
     }
 
-    const companyTag = new CompanyTag(fields)
+    const companyTag = new CompanyTagModel(fields)
     await companyTag.save()
     return companyTag
   }
@@ -35,7 +35,7 @@ class CompanyTagService {
     id: string,
     updatePayload: ICompanyTagBaseFields
   ) {
-    const companyTag = await CompanyTag.findByIdAndUpdate(
+    const companyTag = await CompanyTagModel.findByIdAndUpdate(
       id,
       { name: updatePayload.name },
       { new: true }
@@ -47,7 +47,7 @@ class CompanyTagService {
   }
 
   public async deleteCompanyTagById(id: string) {
-    const tagItem = await CompanyTag.findByIdAndDelete(id)
+    const tagItem = await CompanyTagModel.findByIdAndDelete(id)
     if (tagItem) {
       return tagItem
     }

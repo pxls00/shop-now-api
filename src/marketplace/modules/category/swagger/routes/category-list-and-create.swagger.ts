@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/categories:
+ * /api-marketplace/categories:
  *    get:
  *      tags:
  *      - Category

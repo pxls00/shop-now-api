@@ -3,7 +3,7 @@ import { validationResult } from 'express-validator'
 
 import type { IGetCompanyTagItemParam } from './tags.types'
 import type { Request, Response } from 'express'
-import type { ICompanyTagBaseFields } from '../../models/tags/company-tag.types'
+import type { ICompanyTagBaseFields } from '../../../../../models/company-tag/index.types'
 
 const companyTagServices = tagsServices
 

@@ -9,7 +9,7 @@ const controller = new UserController()
 
 /**
  *  @openapi
- *  /api/users
+ * /api-marketplace/users
  */
 
 router.get(`${config.moduleRouteBaseURL}`, controller.getUserList)

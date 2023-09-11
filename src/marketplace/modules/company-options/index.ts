@@ -1,5 +1,5 @@
 // Models
-import CompanyTagModel from './models/tags/company-tag.model'
+import CompanyTagModel from '../../../models/company-tag/index.model'
 
 // Routers
 import CompanyTagRouter from './router/tags/tags'

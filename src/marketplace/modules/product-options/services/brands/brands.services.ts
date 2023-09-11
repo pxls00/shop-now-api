@@ -1,20 +1,20 @@
-import ProductBrand from '../../models/brands/product-brand.model'
+import { ProductBrandModel } from '../..'
 import { Types } from 'mongoose'
 
 import type {
   IProductBrandDocument,
   IProductBrandBaseFields,
-} from '../../models/brands/product-brand.types'
+} from '../../../../../models/product-options/brands/product-brand.types'
 
 class ProductBrandService {
   public async getProductBrandList(): Promise<IProductBrandDocument[]> {
-    return await ProductBrand.find({})
+    return await ProductBrandModel.find({})
   }
 
   public async getProductBrandById(
     id: string
   ): Promise<IProductBrandDocument | undefined | null> {
-    const productBrand = await ProductBrand.findById(id)
+    const productBrand = await ProductBrandModel.findById(id)
     return productBrand
   }
 
@@ -22,7 +22,7 @@ class ProductBrandService {
     id: string
   ): Promise<IProductBrandDocument[] | undefined | null> {
     const categoryId = new Types.ObjectId(id)
-    const productOption = await ProductBrand.find({
+    const productOption = await ProductBrandModel.find({
       category_id: { $in: [categoryId] },
     })
 
@@ -30,7 +30,7 @@ class ProductBrandService {
   }
 
   public async createProductBrand(fields: IProductBrandBaseFields) {
-    const isProductBrandExists = await ProductBrand.findOne({
+    const isProductBrandExists = await ProductBrandModel.findOne({
       key: fields.key,
     })
 
@@ -38,7 +38,7 @@ class ProductBrandService {
       return undefined
     }
 
-    const productBrand = new ProductBrand(fields)
+    const productBrand = new ProductBrandModel(fields)
     await productBrand.save()
     return productBrand
   }
@@ -47,7 +47,7 @@ class ProductBrandService {
     id: string,
     updatePayload: IProductBrandBaseFields
   ) {
-    const productBrand = await ProductBrand.findByIdAndUpdate(
+    const productBrand = await ProductBrandModel.findByIdAndUpdate(
       id,
       { name: updatePayload.name, category_id: updatePayload.category_id },
       { new: true }
@@ -59,7 +59,7 @@ class ProductBrandService {
   }
 
   public async deleteProductBrandById(id: string) {
-    const brandItem = await ProductBrand.findByIdAndDelete(id)
+    const brandItem = await ProductBrandModel.findByIdAndDelete(id)
     if (brandItem) {
       return brandItem
     }

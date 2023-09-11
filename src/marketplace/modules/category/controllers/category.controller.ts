@@ -4,7 +4,7 @@ import generateKey from '../../../../utils/generate-key'
 
 import type { Request, Response } from 'express'
 import type { IGetCategoryItemParam } from './category.types'
-import type { ICategoryFieldsBase } from '../models/category.types'
+import type { ICategoryFieldsBase } from '../../../../models/category/index.types'
 import type { IGetCategoryRecursivelyById } from '../utils/get-category-recursively.types'
 
 const categoryServices = CategoryService

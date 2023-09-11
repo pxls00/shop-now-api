@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/product_brands:
+ * /api-marketplace/product_brands:
  *    get:
  *      tags:
  *      - Product Options

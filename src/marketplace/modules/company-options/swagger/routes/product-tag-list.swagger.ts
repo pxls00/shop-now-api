@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/company_tags:
+ * /api-marketplace/company_tags:
  *    get:
  *      tags:
  *      - Company Options

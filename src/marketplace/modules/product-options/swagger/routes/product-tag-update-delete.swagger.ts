@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/product_tags/{tag_id}:
+ * /api-marketplace/product_tags/{tag_id}:
  *    patch:
  *      tags:
  *      - Product Options

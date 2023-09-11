@@ -1,20 +1,20 @@
-import ProductTag from '../../models/tags/product-tag.model'
+import { ProductTagModel } from '../..'
 import { Types } from 'mongoose'
 
 import type {
   IProductTagDocument,
   IProductTagBaseFields,
-} from '../../models/tags/product-tag.types'
+} from '../../../../../models/product-options/tags/product-tag.types'
 
 class ProductTagService {
   public async getProductTagList(): Promise<IProductTagDocument[]> {
-    return await ProductTag.find({})
+    return await ProductTagModel.find({})
   }
 
   public async getProductTagById(
     id: string
   ): Promise<IProductTagDocument | undefined | null> {
-    const productTag = await ProductTag.findById(id)
+    const productTag = await ProductTagModel.findById(id)
     return productTag
   }
 
@@ -22,7 +22,7 @@ class ProductTagService {
     id: string
   ): Promise<IProductTagDocument[] | undefined | null> {
     const categoryId = new Types.ObjectId(id)
-    const productOption = await ProductTag.find({
+    const productOption = await ProductTagModel.find({
       category_id: { $in: [categoryId] },
     })
 
@@ -30,7 +30,7 @@ class ProductTagService {
   }
 
   public async createProductTag(fields: IProductTagBaseFields) {
-    const isProductTagExists = await ProductTag.findOne({
+    const isProductTagExists = await ProductTagModel.findOne({
       name: fields.name,
     })
 
@@ -38,7 +38,7 @@ class ProductTagService {
       return undefined
     }
 
-    const productTag = new ProductTag(fields)
+    const productTag = new ProductTagModel(fields)
     await productTag.save()
     return productTag
   }
@@ -47,7 +47,7 @@ class ProductTagService {
     id: string,
     updatePayload: IProductTagBaseFields
   ) {
-    const productTag = await ProductTag.findByIdAndUpdate(
+    const productTag = await ProductTagModel.findByIdAndUpdate(
       id,
       { name: updatePayload.name, category_id: updatePayload.category_id },
       { new: true }
@@ -59,7 +59,7 @@ class ProductTagService {
   }
 
   public async deleteProductTagById(id: string) {
-    const tagItem = await ProductTag.findByIdAndDelete(id)
+    const tagItem = await ProductTagModel.findByIdAndDelete(id)
     if (tagItem) {
       return tagItem
     }

@@ -5,7 +5,7 @@ import CompanyController from '../controllers/auth.controller'
 import registerBodyValidator from '../middlewares/validators/register-body.validator'
 import loginBodyValidator from '../middlewares/validators/login-body.validator'
 
-import authMiddleware from '../../../middleware/auth-user/index.middleware'
+import AuthMiddleware from '../../../middleware/auth-user/index.middleware'
 
 const router = Router()
 
@@ -13,7 +13,7 @@ const controller = new CompanyController()
 
 /**
  *  @openapi
- *  /api/auth
+ * /api-marketplace/auth
  */
 router.post(
   `${config.moduleRouteBaseURL}${config.moduleRegisterRoute}`,
@@ -25,10 +25,10 @@ router.post(
   loginBodyValidator(),
   controller.login
 )
-router.delete(
-  `${config.moduleRouteBaseURL}${config.moduleLogoutRoute}`,
-  authMiddleware,
-  controller.logout
-)
+// router.delete(
+//   `${config.moduleRouteBaseURL}${config.moduleLogoutRoute}`,
+//   AuthMiddleware,
+//   controller.logout
+// )
 
 export default router

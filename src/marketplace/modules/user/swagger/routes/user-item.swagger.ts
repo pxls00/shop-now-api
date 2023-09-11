@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/users/{user_id}:
+ * /api-marketplace/users/{user_id}:
  *    get:
  *      tags:
  *      - User

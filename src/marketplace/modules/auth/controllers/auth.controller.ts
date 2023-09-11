@@ -1,6 +1,5 @@
 import { validationResult } from 'express-validator'
-import { UserServices } from '../../user/index'
-import { WishServices } from '../../wishes'
+import { UserServices, WishServices } from '..'
 
 import AuthServices from '../services/auth.services'
 
@@ -8,7 +7,7 @@ import type { Request, Response } from 'express'
 import type { IRequestAuthenticated } from '../../../types/index.types'
 import type { IRegisterBodyRequest } from './auth.types'
 import type { IGenerateAccessTokenPayload } from '../services/auth.types'
-import type { IUserFieldsBase } from '../../user/models/user.types'
+import type { IUserFieldsBase } from '../../../../models/user/index.types'
 import { comparePassword } from '../../../../utils/hashPassword'
 
 const userServices = UserServices
@@ -111,9 +110,6 @@ class AuthController {
       return res.status(500).json({ message: error })
     }
   }
-
-  // public logOut(req: Request, res: Response) {}
-  // public delete
 }
 
 export default AuthController

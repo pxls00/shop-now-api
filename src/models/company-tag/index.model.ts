@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-import type { ICompanyTagDocument } from './company-tag.types'
+import type { ICompanyTagDocument } from './index.types'
 
 const CompanyTags = new Schema({
   name: {

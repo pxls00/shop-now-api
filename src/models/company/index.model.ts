@@ -1,10 +1,8 @@
 import { Schema, model } from 'mongoose'
 import autopopulate from 'mongoose-autopopulate'
 // import getArhimeticMeanNumber from '../utils/get-arhimetic-mean-number'
-// import logger from '../../../utils/logger'
 
-import type { ICompanyDocument } from './company.types'
-// import { IRateItem } from './company.types'
+import type { ICompanyDocument } from './index.types'
 
 const CompanySchema = new Schema(
   {

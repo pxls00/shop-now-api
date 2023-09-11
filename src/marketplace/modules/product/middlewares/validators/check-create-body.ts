@@ -1,5 +1,5 @@
 import { check, type ValidationChain } from 'express-validator'
-import type { IProductAmountByOption } from '../../models/product.types'
+import type { IProductAmountByOption } from '../../../../../models/product/index.types'
 
 export function checkFieldLengthBodyRequest(
   field: string,

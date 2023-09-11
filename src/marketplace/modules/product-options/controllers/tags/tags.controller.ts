@@ -3,7 +3,7 @@ import { validationResult } from 'express-validator'
 
 import type { IGetProductTagItemParam } from './tags.types'
 import type { Request, Response } from 'express'
-import type { IProductTagBaseFields } from '../../models/tags/product-tag.types'
+import type { IProductTagBaseFields } from '../../../../../models/product-options/tags/product-tag.types'
 
 const productTagServices = tagsServices
 

@@ -1,11 +1,11 @@
-import Product from '../models/product.model'
+import { ProductModel } from '..'
 
 import type {
   IProducFieldsBase,
   IProductDocument,
   IProductSalesCompany,
   IProductAmountByOption,
-} from '../models/product.types'
+} from '../../../../models/product/index.types'
 import type { Document, FilterQuery } from 'mongoose'
 import type {
   IQueryOptions,
@@ -86,7 +86,7 @@ class ProductServices {
     }
 
     // Get paginated data
-    const productsFitlered = (await Product.find(queryFilter)
+    const productsFitlered = (await ProductModel.find(queryFilter)
       .sort(sortOption)
       .skip(queryOption.skip)
       .limit(queryOption.limit)) as IProductDocument[]
@@ -141,7 +141,7 @@ class ProductServices {
       }
     } else {
       // Get total count
-      const totalCount = await Product.countDocuments(queryFilter)
+      const totalCount = await ProductModel.countDocuments(queryFilter)
 
       const removedFields = removeFieldsFromData(
         productsFitlered,
@@ -158,7 +158,7 @@ class ProductServices {
   }
 
   public async getProductById(id: string): Promise<IProductDocument> {
-    const product = (await Product.findById(id)) as IProductDocument
+    const product = (await ProductModel.findById(id)) as IProductDocument
     const clearedProducts = removeFieldsFromData(
       [product],
       this.removableFieldsOfCompany,
@@ -172,7 +172,7 @@ class ProductServices {
   public async createProduct(
     fields: IProducFieldsBase
   ): Promise<IProductDocument> {
-    const product = new Product(fields)
+    const product = new ProductModel(fields)
     ;(await product.save()) as Document<IProductDocument>
     return product
   }
@@ -181,19 +181,19 @@ class ProductServices {
     fields: IProducFieldsBase,
     id: string
   ): Promise<IProductDocument | undefined | null> {
-    const newProduct = await Product.findByIdAndUpdate(id, fields, {
+    const newProduct = await ProductModel.findByIdAndUpdate(id, fields, {
       new: true,
     })
     return newProduct
   }
 
   public async deleteProduct(id: string): Promise<undefined | null | number> {
-    const product = await Product.findById(id)
+    const product = await ProductModel.findById(id)
 
     if (!product) {
       return undefined
     } else {
-      await Product.findByIdAndDelete(id)
+      await ProductModel.findByIdAndDelete(id)
       return 1
     }
   }

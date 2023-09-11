@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 // import autopopulateimport from 'mongoose-autopopulate';
-import type { ICategoryDocument } from './category.types'
+import type { ICategoryDocument } from './index.types'
 
 const CategorySchema = new Schema({
   name: {

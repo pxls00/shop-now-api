@@ -1,20 +1,20 @@
-import ProductOption from '../../models/options/product-option.model'
+import { ProductOptionModel } from '../..'
 import { Types } from 'mongoose'
 
 import type {
   IProductOptionDocument,
   IProductOptionBaseFields,
-} from '../../models/options/product-option.types'
+} from '../../../../../models/product-options/options/product-option.types'
 
 class ProductOptionService {
   public async getProductOptionList(): Promise<IProductOptionDocument[]> {
-    return await ProductOption.find({})
+    return await ProductOptionModel.find({})
   }
 
   public async getProductOptionById(
     id: string
   ): Promise<IProductOptionDocument | undefined | null> {
-    const productOption = await ProductOption.findById(id)
+    const productOption = await ProductOptionModel.findById(id)
     return productOption
   }
 
@@ -22,7 +22,7 @@ class ProductOptionService {
     id: string
   ): Promise<IProductOptionDocument[] | undefined | null> {
     const categoryId = new Types.ObjectId(id)
-    const productOption = await ProductOption.find({
+    const productOption = await ProductOptionModel.find({
       category_id: { $in: [categoryId] },
     })
     return productOption
@@ -31,13 +31,13 @@ class ProductOptionService {
   public async createProductOption(
     fields: IProductOptionBaseFields
   ): Promise<IProductOptionDocument | undefined> {
-    const isProductBrandExists = await ProductOption.findOne({
+    const isProductBrandExists = await ProductOptionModel.findOne({
       key: fields.key,
     })
     if (isProductBrandExists) {
       return undefined
     }
-    const productOption = new ProductOption(fields)
+    const productOption = new ProductOptionModel(fields)
     await productOption.save()
     return productOption
   }
@@ -46,7 +46,7 @@ class ProductOptionService {
     id: string,
     updatePayload: IProductOptionBaseFields
   ) {
-    const productOption = await ProductOption.findByIdAndUpdate(
+    const productOption = await ProductOptionModel.findByIdAndUpdate(
       id,
       {
         name: updatePayload.name,
@@ -62,7 +62,7 @@ class ProductOptionService {
   }
 
   public async deleteProductOptionById(id: string) {
-    const productOptionItem = await ProductOption.findByIdAndDelete(id)
+    const productOptionItem = await ProductOptionModel.findByIdAndDelete(id)
     if (productOptionItem) {
       return productOptionItem
     }

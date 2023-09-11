@@ -3,12 +3,10 @@ export interface IDefaultConfig {
   host: Readonly<string>
   dbPassowrd: Readonly<string>
   dbUri: Readonly<string>
-  apiBaseURL: Readonly<string>
-  apiMarketplaceDocsURL: Readonly<string>
+  apiBaseDocsUrl: Readonly<string>
+  apiMarketPlaceURL: Readonly<string>
   apiMarketplaceDocsInfoTitle: Readonly<string>
-  apiMainAdminDocsURL: Readonly<string>
   apiMainAdminDocsInfoTitle: Readonly<string>
-  apiCompanyAdminDocsURL: Readonly<string>
   apiCompanyAdminDocsInfoTitle: Readonly<string>
   emailHostUser: Readonly<string>
   emailHostPassword: Readonly<string>

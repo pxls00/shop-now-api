@@ -1,4 +1,4 @@
-import type { ICategoryDocument } from '../models/category.types'
+import type { ICategoryDocument } from '../../../../models/category/index.types'
 import type { IGetCategoryRecursivelyById } from './get-category-recursively.types'
 
 function getCategoryRecursivelyById(

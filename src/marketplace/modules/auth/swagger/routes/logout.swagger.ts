@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/auth/logout:
+ * /api-marketplace/auth/logout:
  *    delete:
  *      tags:
  *      - Auth

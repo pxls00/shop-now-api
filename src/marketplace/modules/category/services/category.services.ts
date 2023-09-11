@@ -1,4 +1,4 @@
-import Category from '../models/category.model'
+import { CategoryModel } from '..'
 import getCategoryRecursivelyById from '../utils/get-category-recursively'
 import getCategoryParentRecursivelyById from '../utils/get-category-parent-recursively'
 
@@ -6,14 +6,14 @@ import getCategoryParentRecursivelyById from '../utils/get-category-parent-recur
 import type {
   ICategoryDocument,
   ICategoryFieldsBase,
-} from '../models/category.types'
+} from '../../../../models/category/index.types'
 import type { IGetCategoryRecursivelyById } from '../utils/get-category-recursively.types'
 import type { IGetCategoryParentRecursivelyById } from '../utils/get-category-parent-recursively.types'
 import mongoose from 'mongoose'
 
 class CategoryServices {
   public async getCategoryList(): Promise<ICategoryDocument[]> {
-    return await Category.find({})
+    return await CategoryModel.find({})
   }
 
   public async getCategoryById(
@@ -96,7 +96,7 @@ class CategoryServices {
 
       if (main_category) {
         await main_category.save()
-        const model = await Category.findByIdAndUpdate(
+        const model = await CategoryModel.findByIdAndUpdate(
           main_category._id,
           main_category,
           { new: true }
@@ -108,7 +108,7 @@ class CategoryServices {
       await category.save()
       return category
     } else {
-      const category = new Category(newCategoryFields)
+      const category = new CategoryModel(newCategoryFields)
       await category.save()
       return category
     }
@@ -131,7 +131,7 @@ class CategoryServices {
 
     if (main_category) {
       await main_category.save()
-      const model = await Category.findByIdAndUpdate(
+      const model = await CategoryModel.findByIdAndUpdate(
         main_category._id,
         main_category,
         { new: true }
@@ -160,7 +160,7 @@ class CategoryServices {
           (item) => item._id.toString() !== id.toString()
         )
       await main_category.save()
-      const model = await Category.findByIdAndUpdate(
+      const model = await CategoryModel.findByIdAndUpdate(
         main_category._id,
         main_category,
         { new: true }
@@ -169,7 +169,7 @@ class CategoryServices {
       return model
     }
 
-    await Category.findByIdAndDelete(parent_category.id)
+    await CategoryModel.findByIdAndDelete(parent_category.id)
     return parent_category
   }
 

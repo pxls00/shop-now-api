@@ -1,7 +1,7 @@
 // Models
-import ProductBrandModel from './models/brands/product-brand.model'
-import ProductTagModel from './models/tags/product-tag.model'
-import ProductOptionModel from './models/options/product-option.model'
+import ProductBrandModel from '../../../models/product-options/brands/product-brand.model'
+import ProductTagModel from '../../../models/product-options/tags/product-tag.model'
+import ProductOptionModel from '../../../models/product-options/options/product-option.model'
 
 // Routers
 import ProductBrandRouter from './router/brands/brands'

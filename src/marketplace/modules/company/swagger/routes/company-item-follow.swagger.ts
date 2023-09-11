@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/companies/{company_id}/follow:
+ * /api-marketplace/companies/{company_id}/follow:
  *    post:
  *      tags:
  *      - Company

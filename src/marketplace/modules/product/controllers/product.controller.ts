@@ -3,7 +3,7 @@ import { validationResult } from 'express-validator'
 import ProductService from '../services/product.services'
 
 import type { Request, Response } from 'express'
-import type { IProducFieldsBase } from '../models/product.types'
+import type { IProducFieldsBase } from '../../../../models/product/index.types'
 import type {
   IGetProductItemParam,
   IQueryOptions,

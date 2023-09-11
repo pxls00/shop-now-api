@@ -1,7 +1,7 @@
 import type {
   IProductDocument,
   IProductAmountCustomOption,
-} from '../models/product.types'
+} from '../../../../models/product/index.types'
 
 // Enums
 export enum ESortOptions {

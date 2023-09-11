@@ -1,6 +1,6 @@
 /**
  *  @openapi
- *  /api/products:
+ * /api-marketplace/products:
  *    get:
  *      tags:
  *      - Product
