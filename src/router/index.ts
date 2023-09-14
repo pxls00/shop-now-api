@@ -1,40 +1,18 @@
 import { Router } from 'express'
-import SwaggerDocs from '../utils/swagger'
-import { CompanyRouter } from '../modules/company'
-import { AuthRouter } from '../modules/auth'
-import { UserRouter } from '../modules/user'
-import { CategoryRouter } from '../modules/category'
-import {
-  ProductOptionRouter,
-  ProductBrandRouter,
-  ProductTagRouter,
-} from '../modules/product-options'
-import {
-  ProductSearchTagsRouter,
-  CompanySearchTagsRouter,
-} from '../modules/search-systems'
-import { ProductRouter } from '../modules/product'
-import { CompanyTagRouter } from '../modules/company-options'
-import { WishRouter } from '../modules/wishes'
-
 import config from '../lib/default'
+
+// Marketplace
+import MarketPlaceRouter from '../marketplace/router/index'
+
+// Company Admin
+import CompanyAdminRouter from '../company-admin/router/index'
 
 const router = Router()
 
-router.use(config.apiBaseURL, CompanyRouter)
-router.use(config.apiBaseURL, AuthRouter)
-router.use(config.apiBaseURL, UserRouter)
-router.use(config.apiBaseURL, CategoryRouter)
-router.use(config.apiBaseURL, ProductOptionRouter)
-router.use(config.apiBaseURL, ProductBrandRouter)
-router.use(config.apiBaseURL, ProductTagRouter)
-router.use(config.apiBaseURL, ProductRouter)
-router.use(config.apiBaseURL, ProductSearchTagsRouter)
-router.use(config.apiBaseURL, CompanySearchTagsRouter)
-router.use(config.apiBaseURL, CompanyTagRouter)
-router.use(config.apiBaseURL, WishRouter)
+// MarketPlace router
+router.use(config.apiMarketPlaceURL, MarketPlaceRouter)
 
-// Swager page
-router.use(SwaggerDocs())
+// CompanyAdmin router
+router.use(config.apiCompanyAdminURL, CompanyAdminRouter)
 
 export default router
