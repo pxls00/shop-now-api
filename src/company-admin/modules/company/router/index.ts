@@ -7,7 +7,6 @@ import CompanyController from '../controllers/company.controller'
 
 const router = Router()
 
-
 const controller = new CompanyController()
 
 router.get(`${config.moduleRouteBaseURL}`, controller.getCompanyList)

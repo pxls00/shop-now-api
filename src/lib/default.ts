@@ -13,7 +13,7 @@ const {
   API_DOCS_COMPANY_ADMIN_TITLE,
   EMAIL_HOST_PASSWORD,
   EMAIL_HOST_USER,
-  API_COMPANY_BASE_URL
+  API_COMPANY_BASE_URL,
 } = process.env
 
 const config: IDefaultConfig = {
