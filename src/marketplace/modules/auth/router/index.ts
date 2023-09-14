@@ -25,10 +25,10 @@ router.post(
   loginBodyValidator(),
   controller.login
 )
-// router.delete(
-//   `${config.moduleRouteBaseURL}${config.moduleLogoutRoute}`,
-//   AuthMiddleware,
-//   controller.logout
-// )
+router.delete(
+  `${config.moduleRouteBaseURL}${config.moduleLogoutRoute}`,
+  AuthMiddleware,
+  controller.logout
+)
 
 export default router

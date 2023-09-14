@@ -1,3 +1,4 @@
+// import logger from '../../../../utils/logger'
 import { Router } from 'express'
 import config from '../lib/config'
 import WishController from '../controllers/wish.controller'
@@ -5,6 +6,7 @@ import AuthMiddleware from '../../../middleware/auth-user/index.middleware'
 
 const router = Router()
 const controller = new WishController()
+
 
 router.get(
   `${config.moduleRouteBaseURL}`,

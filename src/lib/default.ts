@@ -13,6 +13,7 @@ const {
   API_DOCS_COMPANY_ADMIN_TITLE,
   EMAIL_HOST_PASSWORD,
   EMAIL_HOST_USER,
+  API_COMPANY_BASE_URL
 } = process.env
 
 const config: IDefaultConfig = {
@@ -25,6 +26,7 @@ const config: IDefaultConfig = {
   apiMarketplaceDocsInfoTitle: API_DOCS_MARKETPLACE_TITLE as string,
   apiMainAdminDocsInfoTitle: API_DOCS_POINT_ADMIN_TITLE as string,
   apiCompanyAdminDocsInfoTitle: API_DOCS_COMPANY_ADMIN_TITLE as string,
+  apiCompanyAdminURL: API_COMPANY_BASE_URL as string,
   emailHostUser: EMAIL_HOST_USER as string,
   emailHostPassword: EMAIL_HOST_PASSWORD as string,
   passwordSalt: 7 as number,

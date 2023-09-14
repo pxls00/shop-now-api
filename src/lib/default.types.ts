@@ -8,6 +8,7 @@ export interface IDefaultConfig {
   apiMarketplaceDocsInfoTitle: Readonly<string>
   apiMainAdminDocsInfoTitle: Readonly<string>
   apiCompanyAdminDocsInfoTitle: Readonly<string>
+  apiCompanyAdminURL: Readonly<string>
   emailHostUser: Readonly<string>
   emailHostPassword: Readonly<string>
   passwordSalt: Readonly<number>
