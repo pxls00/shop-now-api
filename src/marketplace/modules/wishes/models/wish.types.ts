@@ -1,6 +1,6 @@
 import type { Document } from 'mongoose'
-import type { IUserDocument } from '../../user/models/user.types'
-import type { IProductDocument } from '../../product/models/product.types'
+import type { IUserDocument } from '../../../../models/user/index.types'
+import type { IProductDocument } from '../../../../models/product/index.types'
 // Enums
 
 // Types

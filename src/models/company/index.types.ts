@@ -1,5 +1,5 @@
 import type { Document } from 'mongoose'
-import type { IUserDocument } from '../../user/models/user.types'
+import type { IUserDocument } from '../../models/user/index.types'
 
 // Enums
 
