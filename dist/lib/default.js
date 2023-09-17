@@ -5,14 +5,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const { API_PORT, API_HOST, MONGODB_PASSWORD, API_BASE_URL, API_DOCS_URL, EMAIL_HOST_PASSWORD, EMAIL_HOST_USER, } = process.env;
+const { API_PORT, API_HOST, MONGODB_PASSWORD, API_MARKETPLACE_BASE_URL, API_DOCS_MARKETPLACE_TITLE, API_DOCS_POINT_ADMIN_TITLE, API_DOCS_BASE_URL, API_DOCS_COMPANY_ADMIN_TITLE, EMAIL_HOST_PASSWORD, EMAIL_HOST_USER, API_COMPANY_BASE_URL, } = process.env;
 const config = {
     port: API_PORT,
     host: API_HOST,
     dbPassowrd: MONGODB_PASSWORD,
     dbUri: `mongodb+srv://Abdurahim:${MONGODB_PASSWORD}@shop-now-api.pikjhdq.mongodb.net/`,
-    apiBaseURL: API_BASE_URL,
-    apiDocsURL: API_DOCS_URL,
+    apiBaseDocsUrl: API_DOCS_BASE_URL,
+    apiMarketPlaceURL: API_MARKETPLACE_BASE_URL,
+    apiMarketplaceDocsInfoTitle: API_DOCS_MARKETPLACE_TITLE,
+    apiMainAdminDocsInfoTitle: API_DOCS_POINT_ADMIN_TITLE,
+    apiCompanyAdminDocsInfoTitle: API_DOCS_COMPANY_ADMIN_TITLE,
+    apiCompanyAdminURL: API_COMPANY_BASE_URL,
     emailHostUser: EMAIL_HOST_USER,
     emailHostPassword: EMAIL_HOST_PASSWORD,
     passwordSalt: 7,

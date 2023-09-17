@@ -3,7 +3,7 @@ import config from '../lib/default'
 import log from './logger'
 
 function connect(): Promise<void> {
-  const dbUri = config.dbUri as string
+  const dbUri = "mongodb://localhost:5000/admin" as string
 
   return mongoose
     .connect(dbUri)
@@ -11,7 +11,7 @@ function connect(): Promise<void> {
       log.info('DB connected')
     })
     .catch((error) => {
-      log.error('DB error', error)
+      log.error(error)
     })
 }
 

@@ -57,7 +57,7 @@ router.get('/docs.json', (req: Request, res: Response) => {
 
 function swaggerDocs() {
   log.info(
-    `Docs available at http://${config.host}:${config.port}${config.apiBaseDocsUrl}`
+    `Docs available at http://${config.host}:${config.port}/${config.apiMarketPlaceURL}/${config.apiBaseDocsUrl}`
   )
 
   return router

@@ -1,4 +1,4 @@
-import type { IRateItem } from '../models/company.types'
+import type { IRateItem } from '../../../../models/company/index.types'
 
 export default function (rate: IRateItem[]): number {
   return parseFloat(
