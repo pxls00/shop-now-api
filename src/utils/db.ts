@@ -3,7 +3,7 @@ import config from '../lib/default'
 import log from './logger'
 
 function connect(): Promise<void> {
-  const dbUri = "mongodb://localhost:5000/admin" as string
+  const dbUri = config.dbUri
 
   return mongoose
     .connect(dbUri)
