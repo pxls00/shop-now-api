@@ -1,4 +1,4 @@
-FROM node:16.16.0
+FROM node:16.16.0-alpine
 
 RUN mkdir /app
 
@@ -25,9 +25,10 @@ ENV API_DOCS_POINT_ADMIN_TITLE="API Point Admin Shop-now docs"
 ENV API_DOCS_COMPANY_ADMIN_TITLE="API Company Admin Shop-now docs"
 ENV EMAIL_HOST_PASSWORD="jsvykhgicjlghwmc"
 ENV EMAIL_HOST_USER="shopnowhello@gmail.com"
+ENV MONGO_URI="localhost"
 
 RUN yarn build
 
 EXPOSE 3000
 
-CMD ["node", "dist/main.js"]
+CMD ["yarn", "prod"]
