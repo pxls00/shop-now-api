@@ -567,7 +567,49 @@
         
         token
         
-    - for orders list (orders-list)
+    - for orders list (orders-list-base)
+        
+        price
+        
+        get-product: deliver-to-door, pick-up-point
+        
+        status: [cancelled, sold, ordered, ready]
+        
+        delivery-time: 1day (default)
+        
+        order-id
+        
+        has-been-paid: false, true (when sold or get-product equals to deliver-to-door, it must be true!!)
+        
+        user(userRef):
+        
+        products-length
+        
+    - for orders list (order-detail-products)
+        
+        orderId
+        
+        products (ref to product):
+        
+        - productid
+        - amount
+        - price
+        - options
+        - savedoptions
+        - totalprice
+        - other info like image, company, other, name, all others without detailf into get by productId (productref)
+    - for orders list (order-detail-info)
+        
+        orderId
+        
+        get-product: deliver-to-door, pick-up-point
+        
+        payment-info (if deliver-to-door!!)
+        
+        - card type [visa, mastercard …]
+        - card name
+        - card id
+        - transaction …
         
         price:
         
@@ -590,25 +632,28 @@
         - name
         - coordinates?
         
-        delivery-time: 1day (default)
+        point ?: which point id and get it by ref (point)
         
-        order-id
+    - for advertisement look (advertisement)
         
-        payment-status: false (must be true if client wants to deliver it to door!!)
+        key
         
-        payment-info (if deliver-to-door!!)
+        image
         
-        - card type [visa, mastercard …]
-        - card name
-        - card id
-        - transaction …
+        duration time
         
-        user(userRef):
+        created_at
         
-        products-length
-        
+    - 
     - for companies
         
+        name (unique in english letters)
+        
+        key
+        
+        id
+        
+        created_at
         
     
     companies
