@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import config from '../../../lib/default'
 import { UserServices } from '../../modules/user/index'
-import { AuthServices } from '../../modules/auth'
+import AuthServices from '../../services/auth/auth.services'
 import checkTime from '../../modules/auth/utils/check-time'
 
 import type { Request, Response, NextFunction } from 'express'
@@ -20,26 +20,32 @@ export default async function (
   next: NextFunction
 ) {
   try {
-    const token = req.headers.authorization?.split(' ')[1] as string
-    const decodeToken = jwt.verify(
-      token,
-      config.secret_key_for_auth
-    ) as IGenerateAccessTokenPayload
-    const user = await userServices.getUserById(decodeToken.id)
-    if (user?.token?.token === token) {
-      req.user = decodeToken
+    const pureToken = req.headers.authorization?.split(' ')[1] as string
+
+    const decodedTokenUser = await authServices.decodeTokenUser(pureToken) as IGenerateAccessTokenPayload
+    
+    const userByTokenUserId = await userServices.getUserById(decodedTokenUser.id) 
+    
+    if (!userByTokenUserId) {
+      return res.status(404).json('User is not defined')
+    }
+
+    const comparedToken = authServices.checkTokenUser(pureToken, userByTokenUserId.token.token as string | undefined)
+    
+    if (comparedToken) {
+      req.user = decodedTokenUser
       next()
-    } else if (user?.token?.token !== token || !token) {
+    } else if (userByTokenUserId?.token?.token !== pureToken || !pureToken) {
       req.user = undefined
       return res.status(403).json('User unauthorized')
     } else if (
       checkTime(
-        new Date(user.token.created_at),
+        new Date(userByTokenUserId.token.created_at),
         new Date(),
         config.user_token_expiress_time
       )
     ) {
-      authServices.clearTokenUser(user.id)
+      authServices.clearTokenUser(userByTokenUserId.id)
       req.user = undefined
       return res.status(403).json('User unauthorized')
     }
@@ -47,3 +53,6 @@ export default async function (
     res.status(403).json('User unauthorized')
   }
 }
+
+
+// Fix token.token problem then i was changing current code to cleaner code 
