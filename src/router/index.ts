@@ -5,7 +5,7 @@ import config from '../lib/default'
 import MarketPlaceRouter from '../marketplace/router/index'
 
 // Company Admin
-import CompanyAdminRouter from '../company-admin/router/index'
+// import CompanyAdminRouter from '../company-admin/router/index'
 
 const router = Router()
 
@@ -13,6 +13,6 @@ const router = Router()
 router.use(config.apiMarketPlaceURL, MarketPlaceRouter)
 
 // CompanyAdmin router
-router.use(config.apiCompanyAdminURL, CompanyAdminRouter)
+// router.use(config.apiCompanyAdminURL, CompanyAdminRouter)
 
 export default router
