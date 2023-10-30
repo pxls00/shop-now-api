@@ -11,11 +11,11 @@ import type {
 // const userServices = UserServices
 
 class AuthServices {
-  public async geenrateAccessToken({
+  public geenrateAccessToken({
     id,
     name,
     email,
-  }: IGenerateAccessTokenPayload): Promise<string> {
+  }: IGenerateAccessTokenPayload): string {
     const payload = {
       id,
       name,
@@ -26,12 +26,12 @@ class AuthServices {
     })
   }
 
-  public async setTokenUser(
+  public setTokenUser(
     payload: IGenerateAccessTokenPayload
   // ): Promise<IUserDocument | undefined | null> {
-  ): Promise<IUserTokenField> {
+  ): IUserTokenField {
     const token: IUserTokenField = {
-      token: await this.geenrateAccessToken(payload),
+      token: this.geenrateAccessToken(payload),
       created_at: new Date(),
     }
 

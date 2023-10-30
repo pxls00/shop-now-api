@@ -1,11 +1,11 @@
-import jwt from 'jsonwebtoken'
 import config from '../../../lib/default'
-import { UserServices } from '../../modules/user/index'
+import UserServices from '../../services/user/user.services'
 import AuthServices from '../../services/auth/auth.services'
 import checkTime from '../../modules/auth/utils/check-time'
 
+// Types
 import type { Request, Response, NextFunction } from 'express'
-import type { IGenerateAccessTokenPayload } from '../../modules/auth/services/auth.types'
+import type { IGenerateAccessTokenPayload } from '../../services/auth/auth.types'
 
 const userServices = UserServices
 const authServices = AuthServices
@@ -26,33 +26,42 @@ export default async function (
     
     const userByTokenUserId = await userServices.getUserById(decodedTokenUser.id) 
     
-    if (!userByTokenUserId) {
-      return res.status(404).json('User is not defined')
+    // if user doesn't exist or his token 
+    if (!userByTokenUserId || !userByTokenUserId.token) {
+      return res.status(403).json('User unauthorized')
     }
 
-    const comparedToken = authServices.checkTokenUser(pureToken, userByTokenUserId.token.token as string | undefined)
-    
+    // check user's token and pure token
+    const comparedToken = authServices.checkTokenUser(pureToken, userByTokenUserId.token.token as string)
+
     if (comparedToken) {
+      // if token is correct set local user
       req.user = decodedTokenUser
+
       next()
-    } else if (userByTokenUserId?.token?.token !== pureToken || !pureToken) {
+    } else if (!comparedToken || !pureToken) {
+      // clear local user
       req.user = undefined
+
       return res.status(403).json('User unauthorized')
     } else if (
+      // check expires time
       checkTime(
         new Date(userByTokenUserId.token.created_at),
         new Date(),
         config.user_token_expiress_time
       )
     ) {
-      authServices.clearTokenUser(userByTokenUserId.id)
+      // clear token of user
+      userServices.clearTokenUser(userByTokenUserId.id)
+
+      // clear local user
       req.user = undefined
+
       return res.status(403).json('User unauthorized')
     }
+    
   } catch (error) {
     res.status(403).json('User unauthorized')
   }
 }
-
-
-// Fix token.token problem then i was changing current code to cleaner code 

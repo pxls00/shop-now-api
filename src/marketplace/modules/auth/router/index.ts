@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import config from '../lib/config'
 
-import CompanyController from '../controllers/auth.controller'
+import authController from '../../../controllers/auth/auth.controller'
 import registerBodyValidator from '../middlewares/validators/register-body.validator'
 import loginBodyValidator from '../middlewares/validators/login-body.validator'
 
@@ -9,7 +9,7 @@ import AuthMiddleware from '../../../middleware/auth-user/index.middleware'
 
 const router = Router()
 
-const controller = new CompanyController()
+const controller = new authController()
 
 /**
  *  @openapi

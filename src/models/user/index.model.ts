@@ -47,9 +47,9 @@ UserSchema.post('find', function (docs) {
   }
 })
 
-UserSchema.post('findOne', function (doc) {
-  doc.password = undefined
-})
+// UserSchema.post('findOne', function (doc) {
+//   doc.password = undefined
+// })
 
 const User = model<IUserDocument>('users', UserSchema)
 
