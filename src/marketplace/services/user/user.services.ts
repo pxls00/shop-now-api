@@ -4,7 +4,7 @@ import { hashPassword } from '../../../utils/hashPassword'
 import type {
   IUserFieldsBase,
   IUserDocument,
-  IUserTokenField
+  IUserTokenField,
 } from '../../../models/user/index.types'
 import type { Document } from 'mongoose'
 import { IUpdateUserModel } from './user.types'
@@ -43,12 +43,14 @@ class UserSevices {
     return await UserModel.findOne(field)
   }
 
-  public async clearTokenUser(id: string): Promise<IUserDocument | null | undefined> {
-    return await UserModel.findByIdAndUpdate(id, {token: undefined})
+  public async clearTokenUser(
+    id: string
+  ): Promise<IUserDocument | null | undefined> {
+    return await UserModel.findByIdAndUpdate(id, { token: undefined })
   }
 
   public async setTokenUser(id: string, token: IUserTokenField) {
-    return await UserModel.findByIdAndUpdate(id, {token})
+    return await UserModel.findByIdAndUpdate(id, { token })
   }
 }
 

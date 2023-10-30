@@ -4,18 +4,16 @@ import config from '../../../lib/default'
 
 import type { SignOptions } from 'jsonwebtoken'
 import type { IGenerateAccessTokenPayload } from './auth.types'
-import type {
-  IUserTokenField,
-} from '../../../models/user/index.types'
+import type { IUserTokenField } from '../../../models/user/index.types'
 
 // const userServices = UserServices
 
 class AuthServices {
-  public async geenrateAccessToken({
+  public geenrateAccessToken({
     id,
     name,
     email,
-  }: IGenerateAccessTokenPayload): Promise<string> {
+  }: IGenerateAccessTokenPayload): string {
     const payload = {
       id,
       name,
@@ -26,12 +24,12 @@ class AuthServices {
     })
   }
 
-  public async setTokenUser(
+  public setTokenUser(
     payload: IGenerateAccessTokenPayload
-  // ): Promise<IUserDocument | undefined | null> {
-  ): Promise<IUserTokenField> {
+    // ): Promise<IUserDocument | undefined | null> {
+  ): IUserTokenField {
     const token: IUserTokenField = {
-      token: await this.geenrateAccessToken(payload),
+      token: this.geenrateAccessToken(payload),
       created_at: new Date(),
     }
 
@@ -41,7 +39,9 @@ class AuthServices {
     return token
   }
 
-  public async decodeTokenUser(accessibleToken: string): Promise<IGenerateAccessTokenPayload> {
+  public async decodeTokenUser(
+    accessibleToken: string
+  ): Promise<IGenerateAccessTokenPayload> {
     const decodedToken = jwt.verify(
       accessibleToken,
       config.secret_key_for_auth
@@ -50,7 +50,10 @@ class AuthServices {
     return decodedToken
   }
 
-  public checkTokenUser(accessibleToken: string, currentToken: string | undefined): boolean {
+  public checkTokenUser(
+    accessibleToken: string,
+    currentToken: string | undefined
+  ): boolean {
     return accessibleToken === currentToken
   }
 

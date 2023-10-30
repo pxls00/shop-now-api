@@ -13,7 +13,7 @@ import type {
   IGetCompanyListRes,
 } from '../services/company.types'
 // import type { ICompanyFieldsBase } from '../models/company.types'
-import { UserServices } from '..'
+import UserServices from '../../../services/user/user.services'
 import type { IRequestAuthenticated } from '../../../types/index.types'
 
 const services = CompanyService
