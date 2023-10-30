@@ -9,8 +9,10 @@ import type { Request, Response } from 'express'
 import type { IRequestAuthenticated } from '../../types/index.types'
 import type { IRegisterBodyRequest } from './auth.types'
 import type { IGenerateAccessTokenPayload } from '../../services/auth/auth.types'
-import type { IUserFieldsBase, IUserDocument } from '../../../models/user/index.types'
-
+import type {
+  IUserFieldsBase,
+  IUserDocument,
+} from '../../../models/user/index.types'
 
 const userServices = UserServices
 const authServices = AuthServices
@@ -61,9 +63,13 @@ class AuthController {
       }
 
       // set user token payload
-      const getCreatedTokenByTokenPayload = authServices.setTokenUser(tokenPayload)
+      const getCreatedTokenByTokenPayload =
+        authServices.setTokenUser(tokenPayload)
 
-      const authenticatedUser = await userServices.setTokenUser(tokenPayload.id,  getCreatedTokenByTokenPayload)
+      const authenticatedUser = await userServices.setTokenUser(
+        tokenPayload.id,
+        getCreatedTokenByTokenPayload
+      )
 
       // await wishServices.createWish(createdUser.id)
 
@@ -77,7 +83,7 @@ class AuthController {
   public async login(req: Request, res: Response) {
     try {
       const errors = validationResult(req)
-      
+
       // check errors of body validation
       if (!errors.isEmpty()) {
         return res.status(400).json(errors)
@@ -97,13 +103,11 @@ class AuthController {
         // if exists so compare given password with user.password
         const validPassword = comparePassword(password, user.password)
 
-
         if (!validPassword) {
           return res
             .status(409)
             .json({ message: `User's password is incorrect` })
         } else {
-
           // token steps, create tokenPayload by verificated user's id
           const tokenPayload: IGenerateAccessTokenPayload = {
             id: user.id,
@@ -112,16 +116,20 @@ class AuthController {
           }
 
           // set user token payload
-          const getCreatedTokenByTokenPayload = authServices.setTokenUser(tokenPayload)
+          const getCreatedTokenByTokenPayload =
+            authServices.setTokenUser(tokenPayload)
 
-          const authenticatedUser = await userServices.setTokenUser(tokenPayload.id,  getCreatedTokenByTokenPayload) as IUserDocument
-          
+          const authenticatedUser = (await userServices.setTokenUser(
+            tokenPayload.id,
+            getCreatedTokenByTokenPayload
+          )) as IUserDocument
+
           // token field definitely exists
-          if(!authenticatedUser.token) {
-            throw new Error("Authentication error")
+          if (!authenticatedUser.token) {
+            throw new Error('Authentication error')
           }
 
-          return res.json({ token: authenticatedUser.token.token as string})
+          return res.json({ token: authenticatedUser.token.token as string })
         }
       }
     } catch (error) {

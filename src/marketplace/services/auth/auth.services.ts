@@ -4,9 +4,7 @@ import config from '../../../lib/default'
 
 import type { SignOptions } from 'jsonwebtoken'
 import type { IGenerateAccessTokenPayload } from './auth.types'
-import type {
-  IUserTokenField,
-} from '../../../models/user/index.types'
+import type { IUserTokenField } from '../../../models/user/index.types'
 
 // const userServices = UserServices
 
@@ -28,7 +26,7 @@ class AuthServices {
 
   public setTokenUser(
     payload: IGenerateAccessTokenPayload
-  // ): Promise<IUserDocument | undefined | null> {
+    // ): Promise<IUserDocument | undefined | null> {
   ): IUserTokenField {
     const token: IUserTokenField = {
       token: this.geenrateAccessToken(payload),
@@ -41,7 +39,9 @@ class AuthServices {
     return token
   }
 
-  public async decodeTokenUser(accessibleToken: string): Promise<IGenerateAccessTokenPayload> {
+  public async decodeTokenUser(
+    accessibleToken: string
+  ): Promise<IGenerateAccessTokenPayload> {
     const decodedToken = jwt.verify(
       accessibleToken,
       config.secret_key_for_auth
@@ -50,7 +50,10 @@ class AuthServices {
     return decodedToken
   }
 
-  public checkTokenUser(accessibleToken: string, currentToken: string | undefined): boolean {
+  public checkTokenUser(
+    accessibleToken: string,
+    currentToken: string | undefined
+  ): boolean {
     return accessibleToken === currentToken
   }
 

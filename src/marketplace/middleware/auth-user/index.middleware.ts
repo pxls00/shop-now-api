@@ -22,17 +22,24 @@ export default async function (
   try {
     const pureToken = req.headers.authorization?.split(' ')[1] as string
 
-    const decodedTokenUser = await authServices.decodeTokenUser(pureToken) as IGenerateAccessTokenPayload
-    
-    const userByTokenUserId = await userServices.getUserById(decodedTokenUser.id) 
-    
-    // if user doesn't exist or his token 
+    const decodedTokenUser = (await authServices.decodeTokenUser(
+      pureToken
+    )) as IGenerateAccessTokenPayload
+
+    const userByTokenUserId = await userServices.getUserById(
+      decodedTokenUser.id
+    )
+
+    // if user doesn't exist or his token
     if (!userByTokenUserId || !userByTokenUserId.token) {
       return res.status(403).json('User unauthorized')
     }
 
     // check user's token and pure token
-    const comparedToken = authServices.checkTokenUser(pureToken, userByTokenUserId.token.token as string)
+    const comparedToken = authServices.checkTokenUser(
+      pureToken,
+      userByTokenUserId.token.token as string
+    )
 
     if (comparedToken) {
       // if token is correct set local user
@@ -60,7 +67,6 @@ export default async function (
 
       return res.status(403).json('User unauthorized')
     }
-    
   } catch (error) {
     res.status(403).json('User unauthorized')
   }

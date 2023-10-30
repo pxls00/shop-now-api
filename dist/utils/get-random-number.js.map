@@ -1,1 +1,0 @@
-{"version":3,"file":"get-random-number.js","sourceRoot":"","sources":["../../src/utils/get-random-number.ts"],"names":[],"mappings":";;AAAA,SAAS,eAAe,CAAC,GAAW,EAAE,GAAW;IAC/C,OAAO,IAAI,CAAC,KAAK,CAAC,IAAI,CAAC,MAAM,EAAE,GAAG,CAAC,GAAG,GAAG,GAAG,GAAG,CAAC,CAAC,CAAC,GAAG,GAAG,CAAA;AAC1D,CAAC;AAED,kBAAe,eAAe,CAAA"}

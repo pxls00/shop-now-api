@@ -1,4 +1,4 @@
-import type { IGenerateAccessTokenPayload } from '../modules/auth/services/auth.types'
+import type { IGenerateAccessTokenPayload } from '../services/auth/auth.types'
 import type { Request } from 'express'
 
 export interface IBaseModuleConfig {
