@@ -1,12 +1,17 @@
-import type { IQueryOptions } from '../controllers/company.types'
-import type { ISortOption, IGetCompanyListRes } from './company.types'
+import type { IQueryOptions } from '../../controllers/company/company.types'
+import type {
+  ISortOption,
+  IGetCompanyListRes,
+  IUpdateCompanyModel,
+} from './company.types'
 import type {
   ICompanyDocument,
   ICompanyFieldsBase,
-} from '../../../../models/company/index.types'
+} from '../../../models/company/index.types'
+
 import type { FilterQuery } from 'mongoose'
 
-import { CompanyModel } from '..'
+import CompanyModel from '../../../models/company/index.model'
 
 class CompanyServices {
   public async getCompanyList(
@@ -65,6 +70,13 @@ class CompanyServices {
     field: Partial<ICompanyFieldsBase>
   ): Promise<ICompanyDocument | undefined | null> {
     return await CompanyModel.findOne(field)
+  }
+
+  public async updateCompanyById(
+    id: string,
+    fields: IUpdateCompanyModel
+  ): Promise<ICompanyDocument | undefined | null> {
+    return await CompanyModel.findByIdAndUpdate(id, fields, { new: true })
   }
 
   // public async createCompany(

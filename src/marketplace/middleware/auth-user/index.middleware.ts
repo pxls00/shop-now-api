@@ -32,7 +32,7 @@ export default async function (
 
     // if user doesn't exist or his token
     if (!userByTokenUserId || !userByTokenUserId.token) {
-      return res.status(403).json('User unauthorized')
+      return res.status(403).json({ message: 'User unauthorized' })
     }
 
     // check user's token and pure token
@@ -50,7 +50,7 @@ export default async function (
       // clear local user
       req.user = undefined
 
-      return res.status(403).json('User unauthorized')
+      return res.status(403).json({ message: 'User unauthorized' })
     } else if (
       // check expires time
       checkTime(
@@ -65,9 +65,9 @@ export default async function (
       // clear local user
       req.user = undefined
 
-      return res.status(403).json('User unauthorized')
+      return res.status(403).json({ message: 'User unauthorized' })
     }
   } catch (error) {
-    res.status(403).json('User unauthorized')
+    res.status(403).json({ message: 'User unauthorized' })
   }
 }

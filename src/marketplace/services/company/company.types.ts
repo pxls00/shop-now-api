@@ -1,5 +1,5 @@
-import type { TSortOptionValue } from '../controllers/company.types'
-import type { ICompanyDocument } from '../../../../models/company/index.types'
+import type { TSortOptionValue } from '../../controllers/company/company.types'
+import type { ICompanyDocument } from '../../../models/company/index.types'
 
 export interface ISortOption {
   [$key: string]: TSortOptionValue
@@ -14,3 +14,5 @@ export interface IGetCompanyListRes {
 export interface IGetCompanyByIdRes {
   data: ICompanyDocument
 }
+
+export interface IUpdateCompanyModel extends Partial<ICompanyDocument> {}
