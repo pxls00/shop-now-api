@@ -50,7 +50,7 @@ class UserSevices {
   }
 
   public async setTokenUser(id: string, token: IUserTokenField) {
-    return await UserModel.findByIdAndUpdate(id, { token }, {new: true})
+    return await UserModel.findByIdAndUpdate(id, { token }, { new: true })
   }
 }
 
