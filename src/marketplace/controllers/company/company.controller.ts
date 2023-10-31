@@ -1,5 +1,6 @@
 // import { validationResult } from 'express-validator'
-import CompanyService from '../services/company.services'
+import CompanyService from '../../services/company/company.services'
+import UserServices from '../../services/user/user.services'
 
 import type { Request, Response } from 'express'
 import type {
@@ -11,10 +12,9 @@ import type {
 import type {
   IGetCompanyByIdRes,
   IGetCompanyListRes,
-} from '../services/company.types'
+} from '../../services/company/company.types'
 // import type { ICompanyFieldsBase } from '../models/company.types'
-import UserServices from '../../../services/user/user.services'
-import type { IRequestAuthenticated } from '../../../types/index.types'
+import type { IRequestAuthenticated } from '../../types/index.types'
 
 const services = CompanyService
 const userServices = UserServices
@@ -164,7 +164,10 @@ class CompanyController {
       }
 
       company.followers?.push(currentUser?._id)
-      await company.save()
+      await services.updateCompanyById(company._id, {
+        followers: company.followers,
+      })
+
       return res
         .status(201)
         .json({ message: 'User has been followed succesfully' })

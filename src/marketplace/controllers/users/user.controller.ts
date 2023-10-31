@@ -5,7 +5,7 @@ import type { Request, Response } from 'express'
 
 const userServices = UserServices
 
-class CompanyController {
+class UserController {
   public async getUserList(req: Request, res: Response) {
     try {
       const users = await userServices.getUserList()
@@ -31,4 +31,4 @@ class CompanyController {
   }
 }
 
-export default CompanyController
+export default UserController
