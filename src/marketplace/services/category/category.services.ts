@@ -1,15 +1,15 @@
-import { CategoryModel } from '..'
-import getCategoryRecursivelyById from '../utils/get-category-recursively'
-import getCategoryParentRecursivelyById from '../utils/get-category-parent-recursively'
+import mongoose from 'mongoose'
+import CategoryModel from '../../../models/category/index.model'
+import getCategoryRecursivelyById from '../../modules/category/utils/get-category-recursively'
+import getCategoryParentRecursivelyById from '../../modules/category/utils/get-category-parent-recursively'
 
 // import type {Document} from 'mongoose'
 import type {
   ICategoryDocument,
   ICategoryFieldsBase,
-} from '../../../../models/category/index.types'
-import type { IGetCategoryRecursivelyById } from '../utils/get-category-recursively.types'
-import type { IGetCategoryParentRecursivelyById } from '../utils/get-category-parent-recursively.types'
-import mongoose from 'mongoose'
+} from '../../../models/category/index.types'
+import type { IGetCategoryRecursivelyById } from '../../modules/category/utils/get-category-recursively.types'
+import type { IGetCategoryParentRecursivelyById } from '../../modules/category/utils/get-category-parent-recursively.types'
 
 class CategoryServices {
   public async getCategoryList(): Promise<ICategoryDocument[]> {
