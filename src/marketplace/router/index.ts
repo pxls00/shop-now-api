@@ -3,7 +3,7 @@ import SwaggerDocs from '../utils/swagger'
 import { CompanyRouter } from '../modules/company'
 import { AuthRouter } from '../modules/auth'
 import { UserRouter } from '../modules/user'
-// import { CategoryRouter } from '../modules/category'
+import { CategoryRouter } from '../modules/category'
 // import {
 //   ProductOptionRouter,
 //   ProductBrandRouter,
@@ -23,7 +23,7 @@ router.use(AuthRouter)
 // router.use(WishRouter)
 router.use(CompanyRouter)
 router.use(UserRouter)
-// router.use(CategoryRouter)
+router.use(CategoryRouter)
 // router.use(ProductOptionRouter)
 // router.use(ProductBrandRouter)
 // router.use(ProductTagRouter)

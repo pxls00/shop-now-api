@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import config from '../lib/config'
 
-import CategoryController from '../controllers/category.controller'
+import CategoryController from '../../../controllers/category/category.controller'
 import categoryNameValidator from '../middlewares/validators/category-name.validator'
 
 const router = Router()
@@ -32,7 +32,5 @@ router.delete(
   `${config.moduleRouteBaseURL}/:${config.moduleRouteItemIdURL}`,
   controller.deleteCategoryById
 )
-
-// router.delete(`${config.moduleRouteBaseURL}`)
 
 export default router
