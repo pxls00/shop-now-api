@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import config from '../lib/config'
-import ProductController from '../controllers/product.controller'
+import ProductController from '../../../controllers/product/product.controller'
 import {
   checkFieldLengthBodyRequest,
   checkFieldIsNumbericBodyRequest,

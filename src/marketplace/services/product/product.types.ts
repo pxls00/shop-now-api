@@ -1,4 +1,4 @@
-import type { IProductDocument } from '../../../../models/product/index.types'
+import type { IProductDocument } from '../../../models/product/index.types'
 import type { QuerySelector } from 'mongoose'
 
 // Interfaces
