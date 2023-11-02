@@ -1,18 +1,18 @@
-import { ProductModel } from '..'
+import ProductModel from '../../../models/product/index.model'
 
 import type {
   IProducFieldsBase,
   IProductDocument,
   IProductSalesCompany,
   IProductAmountByOption,
-} from '../../../../models/product/index.types'
+} from '../../../models/product/index.types'
 import type { Document, FilterQuery } from 'mongoose'
 import type {
   IQueryOptions,
   TProductKey,
   ISortOptionPipe,
   IGetProductListRes,
-} from '../controllers/product.types'
+} from '../../controllers/product/product.types'
 import type { TQueryGetOptions } from './product.types'
 
 class ProductServices {
