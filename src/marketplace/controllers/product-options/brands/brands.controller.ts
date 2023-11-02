@@ -1,12 +1,12 @@
-import brandsServices from '../../services/brands/brands.services'
+import BrandsServices from '../../../services/product-options/brands/brands.services'
 import { validationResult } from 'express-validator'
-import generateKey from '../../../../../utils/generate-key'
+import generateKey from '../../../../utils/generate-key'
 
 import type { IGetProductBrandItemParam } from './brands.types'
 import type { Request, Response } from 'express'
-import type { IProductBrandBaseFields } from '../../../../../models/product-options/brands/product-brand.types'
+import type { IProductBrandBaseFields } from '../../../../models/product-options/brands/product-brand.types'
 
-const productBrandServices = brandsServices
+const productBrandServices = BrandsServices
 
 class ProductBrandsController {
   public async getProductBrandList(req: Request, res: Response) {

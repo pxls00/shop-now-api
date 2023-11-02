@@ -1,11 +1,11 @@
-import optionsServices from '../../services/options/options.services'
+import OptionsServices from '../../../services/product-options/options/options.services'
 import { validationResult } from 'express-validator'
-import generateKey from '../../../../../utils/generate-key'
+import generateKey from '../../../../utils/generate-key'
 
 import type { Request, Response } from 'express'
 import type { IGetProductOptionItemParam } from './options.types'
-import type { IProductOptionBaseFields } from '../../../../../models/product-options/options/product-option.types'
-const productOptionsServices = optionsServices
+import type { IProductOptionBaseFields } from '../../../../models/product-options/options/product-option.types'
+const productOptionsServices = OptionsServices
 
 class ProductOptionsController {
   public async getProductOptionList(req: Request, res: Response) {
