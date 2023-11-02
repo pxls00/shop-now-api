@@ -1,10 +1,10 @@
-import { ProductOptionModel } from '../..'
+import ProductOptionModel from '../../../../models/product-options/options/product-option.model'
 import { Types } from 'mongoose'
 
 import type {
   IProductOptionDocument,
   IProductOptionBaseFields,
-} from '../../../../../models/product-options/options/product-option.types'
+} from '../../../../models/product-options/options/product-option.types'
 
 class ProductOptionService {
   public async getProductOptionList(): Promise<IProductOptionDocument[]> {

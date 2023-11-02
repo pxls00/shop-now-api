@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import config from '../../lib/config'
-import ProductTagsController from '../../controllers/tags/tags.controller'
+import ProductTagsController from '../../../../controllers/product-options/tags/tags.controller'
 import { checkNameBodyRequest } from '../../middlewares/validators/product-option'
 
 const router = Router()
