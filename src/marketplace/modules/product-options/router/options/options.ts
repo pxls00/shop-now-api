@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import config from '../../lib/config'
-import ProductOptionsController from '../../controllers/options/options.controller'
+import ProductOptionsController from '../../../../controllers/product-options/options/options.controller'
 import {
   checkNameBodyRequest,
   checkValueBodyRequest,

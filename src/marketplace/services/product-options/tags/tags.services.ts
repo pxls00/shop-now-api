@@ -1,10 +1,10 @@
-import { ProductTagModel } from '../..'
+import ProductTagModel from '../../../../models/product-options/tags/product-tag.model'
 import { Types } from 'mongoose'
 
 import type {
   IProductTagDocument,
   IProductTagBaseFields,
-} from '../../../../../models/product-options/tags/product-tag.types'
+} from '../../../../models/product-options/tags/product-tag.types'
 
 class ProductTagService {
   public async getProductTagList(): Promise<IProductTagDocument[]> {

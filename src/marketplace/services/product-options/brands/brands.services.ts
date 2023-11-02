@@ -1,10 +1,10 @@
-import { ProductBrandModel } from '../..'
+import ProductBrandModel from '../../../../models/product-options/brands/product-brand.model'
 import { Types } from 'mongoose'
 
 import type {
   IProductBrandDocument,
   IProductBrandBaseFields,
-} from '../../../../../models/product-options/brands/product-brand.types'
+} from '../../../../models/product-options/brands/product-brand.types'
 
 class ProductBrandService {
   public async getProductBrandList(): Promise<IProductBrandDocument[]> {
