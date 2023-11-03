@@ -1,22 +1,22 @@
-import productServices from '../../services/product/index.services'
+import companyServices from '../../../services/search-systems/company/index.services'
 
 import type { IPaginationOptionsQuery } from '../index.types'
 import type { Request, Response } from 'express'
 
-const productTagServices = productServices
+const companyTagServices = companyServices
 
 class CompanyTagsController {
-  public async getProductTagList(req: Request, res: Response) {
+  public async getCompanyTagList(req: Request, res: Response) {
     try {
       const { search, limit, skip } =
         req.query as unknown as IPaginationOptionsQuery
-      const productTags = await productTagServices.getProductTagList({
+      const companyTags = await companyTagServices.getCompanyTagList({
         search,
         limit,
         skip,
       })
 
-      return res.status(200).json(productTags)
+      return res.status(200).json(companyTags)
     } catch (error) {
       return res.json(error)
     }

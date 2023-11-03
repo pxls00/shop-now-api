@@ -9,10 +9,10 @@ import {
   ProductBrandRouter,
   ProductTagRouter,
 } from '../modules/product-options'
-// import {
-//   ProductSearchTagsRouter,
-//   CompanySearchTagsRouter,
-// } from '../modules/search-systems'
+import {
+  ProductSearchTagsRouter,
+  CompanySearchTagsRouter,
+} from '../modules/search-systems'
 import { ProductRouter } from '../modules/product'
 import { CompanyTagRouter } from '../modules/company-options'
 // import { WishRouter } from '../modules/wishes'
@@ -28,8 +28,8 @@ router.use(ProductOptionRouter)
 router.use(ProductBrandRouter)
 router.use(ProductTagRouter)
 router.use(ProductRouter)
-// router.use(ProductSearchTagsRouter)
-// router.use(CompanySearchTagsRouter)
+router.use(ProductSearchTagsRouter)
+router.use(CompanySearchTagsRouter)
 router.use(CompanyTagRouter)
 
 // Swager page
