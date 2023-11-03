@@ -1,11 +1,11 @@
-import { ProductTagModel } from '../..'
+import ProductTagModel from '../../../../models/product-options/tags/product-tag.model'
 
 import type { FilterQuery } from 'mongoose'
 import type {
   IPaginationOptionsQuery,
   ISearchSystemTagsRes,
-} from '../../controller/index.types'
-import type { IProductTagDocument } from '../../../../../models/product-options/tags/product-tag.types'
+} from '../../../controllers/search-systems/index.types'
+import type { IProductTagDocument } from '../../../../models/product-options/tags/product-tag.types'
 
 class SearchSystemProductService {
   public async getProductTagList(
