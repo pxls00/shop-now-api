@@ -1,7 +1,7 @@
-import WishService from '../services/wish.services'
+import WishService from '../../services/wishes/wish.services'
 
 import type { Response } from 'express'
-import type { IRequestAuthenticated } from '../../../types/index.types'
+import type { IRequestAuthenticated } from '../../types/index.types'
 
 import type {
   IGetWishItemParam,
