@@ -1,5 +1,5 @@
 import { validationResult } from 'express-validator'
-// import { WishServices } from '..'
+import WishServices from '../../services/wishes/wish.services'
 import UserServices from '../../services/user/user.services'
 import AuthServices from '../../services/auth/auth.services'
 
@@ -16,7 +16,7 @@ import type {
 
 const userServices = UserServices
 const authServices = AuthServices
-// const wishServices = WishServices
+const wishServices = WishServices
 
 class AuthController {
   public async register(req: Request, res: Response) {
@@ -71,7 +71,8 @@ class AuthController {
         getCreatedTokenByTokenPayload
       )
 
-      // await wishServices.createWish(createdUser.id)
+      // created wish basket for each user
+      await wishServices.createWish(createdUser.id)
 
       return res.status(201).json(authenticatedUser)
     } catch (error) {

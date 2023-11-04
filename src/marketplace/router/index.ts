@@ -15,12 +15,12 @@ import {
 } from '../modules/search-systems'
 import { ProductRouter } from '../modules/product'
 import { CompanyTagRouter } from '../modules/company-options'
-// import { WishRouter } from '../modules/wishes'
+import { WishRouter } from '../modules/wishes'
 
 const router = Router()
 
 router.use(AuthRouter)
-// router.use(WishRouter)
+router.use(WishRouter)
 router.use(CompanyRouter)
 router.use(UserRouter)
 router.use(CategoryRouter)
