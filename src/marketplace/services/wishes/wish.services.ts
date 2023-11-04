@@ -1,17 +1,17 @@
-import { WishModel } from '..'
+import WishModel from '../../../models/wish/index.model'
 
-import type { IWishDocument } from '../../../../models/wish/index.types'
+import type { IWishDocument } from '../../../models/wish/index.types'
 import type {
   IQueryOptions,
   TWishKey,
   ISortOptionPipe,
   IGetWishListRes,
-} from '../controllers/wish.types'
+} from '../../controllers/wishes/wish.types'
 
 import type {
   IProductSalesCompany,
   IProductDocument,
-} from '../../../../models/product/index.types'
+} from '../../../models/product/index.types'
 
 class WishServices {
   private removableFieldsOfCompany: Array<keyof IProductSalesCompany> = [
