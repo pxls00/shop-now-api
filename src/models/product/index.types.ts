@@ -36,11 +36,15 @@ export interface IProductOptionBrand {
   name: string
 }
 
-export interface IProducFieldsBase {
-  name: string
-  price: number
-  sale_price?: number
-  in_sale: boolean
+export interface IProductEmpty {
+  name: string,
+  price: number,
+  sale_price?: number,
+  in_sale: boolean,
+  brand: IProductOptionBrand,
+}
+
+export interface IProducFieldsBase extends IProductEmpty {
   delivery_time_to_reseive_point: string
   tag_names: string[]
   short_desc: string
@@ -48,7 +52,6 @@ export interface IProducFieldsBase {
   full_desc?: string
   images: string[]
   amount_by_option?: IProductAmountByOption[]
-  brand: IProductOptionBrand
 }
 
 export interface IRateItem {
@@ -66,4 +69,12 @@ export interface IProductDocument extends IProducFieldsBase, Document {
   rate_base: number
   category: string[]
   amount: number
+}
+
+
+export interface IOrderedProductDocument extends IProductEmpty{ 
+  amount: number,
+  img: string,
+  color? : string,
+  custom_options?: IProductAmountCustomOption
 }
