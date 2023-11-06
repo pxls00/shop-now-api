@@ -37,11 +37,11 @@ export interface IProductOptionBrand {
 }
 
 export interface IProductEmpty {
-  name: string,
-  price: number,
-  sale_price?: number,
-  in_sale: boolean,
-  brand: IProductOptionBrand,
+  name: string
+  price: number
+  sale_price?: number
+  in_sale: boolean
+  brand: IProductOptionBrand
 }
 
 export interface IProducFieldsBase extends IProductEmpty {
@@ -71,10 +71,9 @@ export interface IProductDocument extends IProducFieldsBase, Document {
   amount: number
 }
 
-
-export interface IOrderedProductDocument extends IProductEmpty{ 
-  amount: number,
-  img: string,
-  color? : string,
+export interface IOrderedProductDocument extends IProductEmpty {
+  amount: number
+  img: string
+  color?: string
   custom_options?: IProductAmountCustomOption
 }
