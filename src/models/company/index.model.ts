@@ -32,12 +32,7 @@ const CompanySchema = new Schema(
     },
     rate: [
       {
-        user: {
-          type: Schema.Types.ObjectId,
-          ref: 'users',
-          required: true,
-          autopopulate: true,
-        },
+        user: Object,
         comment: {
           type: String,
           default: '',

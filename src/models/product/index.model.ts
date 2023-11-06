@@ -73,7 +73,23 @@ const ProductSchema = new Schema(
       ref: 'companies',
       autopopulate: true,
     },
-    rate: [String],
+    rate: [
+      {
+        user: Object,
+        comment: {
+          type: String,
+          default: '',
+        },
+        rate_number: {
+          type: Number,
+          required: true,
+        },
+        created_at: {
+          type: Date,
+          default: Date.now,
+        },
+      },
+    ],
     rate_base: {
       type: Number,
       default: 5.0,
