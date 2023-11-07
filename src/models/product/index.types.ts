@@ -42,6 +42,7 @@ export interface IProductEmpty {
   sale_price?: number
   in_sale: boolean
   brand: IProductOptionBrand
+  created_at: Date
 }
 
 export interface IProducFieldsBase extends IProductEmpty {
@@ -63,7 +64,6 @@ export interface IRateItem {
 
 export interface IProductDocument extends IProducFieldsBase, Document {
   sales_company: ICompanyDocument
-  created_at: Date
   orders_count: number
   rate?: Array<string>
   rate_base: number
@@ -71,9 +71,17 @@ export interface IProductDocument extends IProducFieldsBase, Document {
   amount: number
 }
 
+export interface IOrderedProductSalesCompany {
+  name: string
+  _id: string
+  logo_img: string
+}
+
 export interface IOrderedProductDocument extends IProductEmpty {
   amount: number
   img: string
   color?: string
   custom_options?: IProductAmountCustomOption
+  _id: string
+  sales_company: IOrderedProductSalesCompany
 }

@@ -6,6 +6,7 @@ import type { IUserDocument } from '../../models/user/index.types'
 // Types
 
 // Interfaces
+
 export interface ICompanyFieldsBase {
   name: string
   email: string
