@@ -16,11 +16,13 @@ import {
 import { ProductRouter } from '../modules/product'
 import { CompanyTagRouter } from '../modules/company-options'
 import { WishRouter } from '../modules/wishes'
+import { OrderBasketRouter } from '../modules/order-baskets'
 
 const router = Router()
 
 router.use(AuthRouter)
 router.use(WishRouter)
+router.use(OrderBasketRouter)
 router.use(CompanyRouter)
 router.use(UserRouter)
 router.use(CategoryRouter)

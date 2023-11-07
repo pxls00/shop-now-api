@@ -1,28 +1,28 @@
 // import logger from '../../../../utils/logger'
 import { Router } from 'express'
 import config from '../lib/config'
-// import WishController from '../../../controllers/wishes/wish.controller'
+import OrderBasketController from '../../../controllers/order-baskets/order-basket.controller'
 import AuthMiddleware from '../../../middleware/auth-user/index.middleware'
 
 const router = Router()
-// const controller = new WishController()
+const controller = new OrderBasketController()
 
 router.get(
   `${config.moduleRouteBaseURL}`,
-  AuthMiddleware
-  // controller.getWishListOfUser
+  AuthMiddleware,
+  controller.getOrderBasketListOfUser
 )
 
 router.post(
-  `${config.moduleRouteBaseURL}/:${config.moduleRouteItemIdURL}`,
-  AuthMiddleware
-  // controller.addProductToWishes
+  `${config.moduleRouteBaseURL}/`,
+  AuthMiddleware,
+  controller.addProductToOrderBasketList
 )
 
 router.delete(
   `${config.moduleRouteBaseURL}/:${config.moduleRouteItemIdURL}`,
-  AuthMiddleware
-  // controller.removeProductFromWishes
+  AuthMiddleware,
+  controller.removeProductFromOrderBasketList
 )
 
 export default router
