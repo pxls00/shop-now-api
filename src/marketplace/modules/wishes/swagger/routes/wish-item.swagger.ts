@@ -12,19 +12,9 @@
  *        required: true
  *      security:
  *        - bearerAuth: []
- *      requestBody:
- *        required: true
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/CreateWishFields'
  *      responses:
  *        201:
- *          description: Success
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/Product-detail'
+ *          description: Product added successfuly
  *        400:
  *          description: Bad Request
  *        403:

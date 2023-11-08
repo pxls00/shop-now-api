@@ -45,7 +45,7 @@
  *                    type: 'array'
  *                    description: 'Array of Wish data'
  *                    items:
- *                      $ref: '#/components/schemas/Wish'
+ *                      $ref: '#/components/schemas/Product'
  *                  has_next_page:
  *                    type: 'boolean'
  *                    description: 'For pagination does exit next page, if true=yes or false=no'
