@@ -2,7 +2,7 @@ import PointsModel from '../../../models/points-list//index.model'
 
 import type {
   IPointItemDocument,
-  IPointItem
+  IPointItem,
 } from '../../../models/points-list/index.types'
 
 class PointsService {
