@@ -18,7 +18,7 @@ export interface IPointLocation {
 
 export interface IPoinWorkTime {
   work_time: string
-  non_working_days: string
+  non_working_days?: string
 }
 
 export interface IPointRelatedAdmin {
@@ -28,7 +28,7 @@ export interface IPointRelatedAdmin {
 export interface IPointItem {
   location: IPointLocation
   worktime: IPoinWorkTime
-  created_at: Date
+  created_at?: Date
   // temporarily
   related_admin: IPointRelatedAdmin
 }
