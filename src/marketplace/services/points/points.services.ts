@@ -17,13 +17,13 @@ class PointsService {
     return pointItem
   }
 
-  public async createPoint(fields: IPointItem): Promise<IPointItemDocument> {
+  public async createPoint(fields: IPointItem): Promise<IPointItemDocument | undefined | null> {
     const isPointExists = await PointsModel.findOne({
       'related_admin.email': fields.related_admin.email,
     })
 
     if (isPointExists) {
-      return undefined
+      return 
     }
 
     const Point = new PointsModel(fields)

@@ -54,6 +54,6 @@ const PointsListSchema = new Schema({
   },
 })
 
-const Points = model<IPointItemDocument>('company_tags', PointsListSchema)
+const Points = model<IPointItemDocument>('points', PointsListSchema)
 
 export default Points

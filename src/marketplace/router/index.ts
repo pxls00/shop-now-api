@@ -17,6 +17,7 @@ import { ProductRouter } from '../modules/product'
 import { CompanyTagRouter } from '../modules/company-options'
 import { WishRouter } from '../modules/wishes'
 import { OrderBasketRouter } from '../modules/order-baskets'
+import { PointsRouter } from '../modules/points'
 
 const router = Router()
 
@@ -33,6 +34,7 @@ router.use(ProductRouter)
 router.use(ProductSearchTagsRouter)
 router.use(CompanySearchTagsRouter)
 router.use(CompanyTagRouter)
+router.use(PointsRouter)
 
 // Swager page
 router.use(SwaggerDocs())
