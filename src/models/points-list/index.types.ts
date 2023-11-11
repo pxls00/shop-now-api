@@ -31,6 +31,7 @@ export interface IPointItem {
   created_at?: Date
   // temporarily
   related_admin: IPointRelatedAdmin
+  contact_number: string
 }
 
-export interface IPointItemDocument extends Document {}
+export interface IPointItemDocument extends IPointItem, Document {}

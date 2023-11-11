@@ -1,5 +1,5 @@
 // Routers
-import PointsRouter from './router/points/points'
+import PointsRouter from './router'
 
 export {
   // Router

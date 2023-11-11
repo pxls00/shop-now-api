@@ -17,43 +17,30 @@ class PointsService {
     return pointItem
   }
 
-  public async createPoint(fields: IPointItem): Promise<IPointItemDocument | undefined | null> {
+  public async createPoint(
+    fields: IPointItem
+  ): Promise<IPointItemDocument | undefined | null> {
     const isPointExists = await PointsModel.findOne({
       'related_admin.email': fields.related_admin.email,
     })
 
     if (isPointExists) {
-      return 
+      return
     }
 
-    const Point = new PointsModel(fields)
-    await Point.save()
+    const pointItem = new PointsModel(fields)
+    await pointItem.save()
 
-    return Point
+    return pointItem
   }
 
-  // public async updatePointById(
-  //   id: string,
-  //   updatePayload: IPointBaseFields
-  // ) {
-  //   const Point = await PointModel.findByIdAndUpdate(
-  //     id,
-  //     { name: updatePayload.name },
-  //     { new: true }
-  //   )
-  //   if (!Point) {
-  //     return undefined
-  //   }
-  //   return Point
-  // }
-
-  // public async deletePointById(id: string) {
-  //   const tagItem = await PointModel.findByIdAndDelete(id)
-  //   if (tagItem) {
-  //     return tagItem
-  //   }
-  //   return undefined
-  // }
+  public async deletePointByid(id: string) {
+    const pointItem = await PointsModel.findByIdAndDelete(id)
+    if (pointItem) {
+      return pointItem
+    }
+    return undefined
+  }
 }
 
 export default new PointsService()
