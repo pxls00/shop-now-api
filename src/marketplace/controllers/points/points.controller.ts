@@ -55,27 +55,6 @@ class PointsController {
     }
   }
 
-  public async updatePointById(req: Request, res: Response) {
-    try {
-      const errors = validationResult(req)
-
-      if (!errors.isEmpty()) {
-        return res.status(400).json(errors)
-      }
-
-      const { point_id } = req.params as unknown as IGetPointItemParam
-
-      const newCompanyTag = await pointServices.updatePointById(
-        point_id,
-        req.body as IPointItem
-      )
-
-      return res.status(201).json(newCompanyTag)
-    } catch (error) {
-      return res.json(error)
-    }
-  }
-
   public async deletePointByid(req: Request, res: Response) {
     try {
       const { point_id } = req.params as unknown as IGetPointItemParam

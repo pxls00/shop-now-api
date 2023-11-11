@@ -21,11 +21,6 @@ router.post(
   controller.createPointItem
 )
 
-router.patch(
-  `${config.moduleRouteTagURL}/:${config.moduleRouteTagItemIdURL}`,
-  controller.updatePointById
-)
-
 router.delete(
   `${config.moduleRouteTagURL}/:${config.moduleRouteTagItemIdURL}`,
   controller.deletePointByid

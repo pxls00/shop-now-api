@@ -34,16 +34,6 @@ class PointsService {
     return pointItem
   }
 
-  public async updatePointById(id: string, updatePayload: IPointItem) {
-    const pointItem = await PointsModel.findByIdAndUpdate(id, updatePayload, {
-      new: true,
-    })
-    if (!pointItem) {
-      return undefined
-    }
-    return pointItem
-  }
-
   public async deletePointByid(id: string) {
     const pointItem = await PointsModel.findByIdAndDelete(id)
     if (pointItem) {
