@@ -41,6 +41,10 @@ const PointsListSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  contact_number: {
+    type: String,
+    required: true,
+  },
   related_admin: {
     // temporarily
     email: {

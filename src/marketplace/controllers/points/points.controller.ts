@@ -1,4 +1,4 @@
-// import { validationResult } from 'express-validator'
+import { validationResult } from 'express-validator'
 import PointServices from '../../services/points/points.services'
 
 import type { IGetPointItemParam } from './points.types'
@@ -35,11 +35,11 @@ class PointsController {
 
   public async createPointItem(req: Request, res: Response) {
     try {
-      // const errors = validationResult(req)
+      const errors = validationResult(req)
 
-      // if (!errors.isEmpty()) {
-      //   return res.status(400).json(errors)
-      // }
+      if (!errors.isEmpty()) {
+        return res.status(400).json(errors)
+      }
 
       const pointFields = req.body as IPointItem
 
@@ -55,44 +55,40 @@ class PointsController {
     }
   }
 
-  // public async updateCompanyTagById(req: Request, res: Response) {
-  //   try {
-  //     const errors = validationResult(req)
+  public async updatePointById(req: Request, res: Response) {
+    try {
+      const errors = validationResult(req)
 
-  //     if (!errors.isEmpty()) {
-  //       return res.status(400).json(errors)
-  //     }
+      if (!errors.isEmpty()) {
+        return res.status(400).json(errors)
+      }
 
-  //     const { tag_id } = req.params as unknown as IGetCompanyTagItemParam
+      const { point_id } = req.params as unknown as IGetPointItemParam
 
-  //     const newCompanyTag = await pointServices.updateCompanyTagById(
-  //       tag_id,
-  //       req.body as ICompanyTagBaseFields
-  //     )
-  //     if (!newCompanyTag) {
-  //       return res
-  //         .status(409)
-  //         .json({ message: `Tag with this key already exists` })
-  //     }
-  //     return res.status(201).json(newCompanyTag)
-  //   } catch (error) {
-  //     return res.json(error)
-  //   }
-  // }
+      const newCompanyTag = await pointServices.updatePointById(
+        point_id,
+        req.body as IPointItem
+      )
 
-  // public async deleteCompanyTagById(req: Request, res: Response) {
-  //   try {
-  //     const { tag_id } = req.params as unknown as IGetCompanyTagItemParam
+      return res.status(201).json(newCompanyTag)
+    } catch (error) {
+      return res.json(error)
+    }
+  }
 
-  //     const item = await pointServices.deleteCompanyTagById(tag_id)
-  //     if (!item) {
-  //       return res.status(404).json({ message: 'Tag is not defined' })
-  //     }
-  //     return res.status(201).json({ message: 'Tag deleted succesfully' })
-  //   } catch (error) {
-  //     return res.json(error)
-  //   }
-  // }
+  public async deletePointByid(req: Request, res: Response) {
+    try {
+      const { point_id } = req.params as unknown as IGetPointItemParam
+
+      const item = await pointServices.deletePointByid(point_id)
+      if (!item) {
+        return res.status(404).json({ message: 'Point is not defined' })
+      }
+      return res.status(201).json({ message: 'Point deleted succesfully' })
+    } catch (error) {
+      return res.json(error)
+    }
+  }
 }
 
 export default PointsController
